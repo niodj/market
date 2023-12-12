@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+
+}
+.avatarAndLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.avatar{
+    padding-top: 30px;
+border-radius: 50px;
+}
+
+
+.sidebarlinks {
+  width: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  border-right: 2px solid #ddd; /* Add a border on the right side */
+  padding-right: 10px; /* Add some padding to the right to separate content from the border */
+}
+
+a {
+  margin-top: 30px;
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  color: #026178;
+
+  &:hover {
+    background-color: #34495e;
+  }
+}
+
+.active {
+  background-color: #3498db;
+  color: #ffffff;
+}

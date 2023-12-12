@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Sidebar } from "./componets/sidebar/Sidebar";
+import { TopMenu } from "./componets/topMenu/TopMenu";
+import s from "./App.module.css";
+import { Products } from "./componets/product/Products";
+import { Routes, Route } from "react-router-dom";
+import { Orders } from "./componets/orders/Orders";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={s.wrapper}>
+      <TopMenu />
+         <Routes>
+        <Route path='/' element={<Sidebar />}>
+          <Route index element={<div>start</div>} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/orders' element={<Orders />} />
+          <Route path='*' element={<div>404 No page</div>} />
+        </Route>
+      </Routes>
+
     </div>
   );
 }
