@@ -13,11 +13,10 @@ const options = [
 
 
 export const SerachLine = () => {
-    return(
-
+  return (
+    <div className={s.searchWrapper}>
       <Typeahead
         clearButton
-
         id='selections-example'
         labelKey='name'
         onInputChange={(text: string, e: ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +25,6 @@ export const SerachLine = () => {
         options={options}
         placeholder='Search'
       />
-
-
-
-    )
+    </div>
+  );
 }

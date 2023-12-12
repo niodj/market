@@ -1,12 +1,16 @@
 .wrapper{
-    width: 80%;
+
     border-bottom: solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     }
-    .search{
+    .searchWrapper{
 
+    }
 
+    .logo{
+        width: 80px;
 
     }
