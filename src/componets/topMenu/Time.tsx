@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import s from "./TopMenu.module.css"
 export const Time = () => {
   const [time, setTime] = useState(new Date());
 
@@ -23,10 +23,17 @@ export const Time = () => {
   });
 
   return (
-    <div>
-      <div>Day: {day}</div>
-      <div>Date: {date}</div>
-      <div>Time: {timeString}</div>
+    <div className={s.timeItems}>
+      <div> {day}</div>
+      <div>
+        {date}
+     {"  "}
+        <img
+          src='https://www.freeiconspng.com/download/7813'
+          className={s.clockLogo}
+        ></img>
+        {timeString}
+      </div>
     </div>
   );
 };

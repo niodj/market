@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { Time } from "./Time";
 import s from "./TopMenu.module.css";
-import { SerachLine } from "./SerachLine";
+import { SearchLine } from "./SearchLine";
 
 export const TopMenu = () => {
   return (
@@ -12,7 +12,7 @@ export const TopMenu = () => {
           className={s.logo}
         ></img>
       </div>
-      <SerachLine />
+      <SearchLine />
       <Time />
     </div>
   );

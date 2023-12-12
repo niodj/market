@@ -22,8 +22,8 @@
 .settingBtn {
   width: 50px;
   position: fixed;
-  top: 150px;
-  left: 95px;
+  top: 165px;
+  left: 125px;
    border-radius: 50%;
   transition: width 0.5s ease;
 }

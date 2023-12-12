@@ -1,8 +1,8 @@
-import { Typeahead } from "react-bootstrap-typeahead"; // Import the Typeahead component
-
+import React from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
+import { ChangeEvent } from "react";
 
 import s from "./TopMenu.module.css";
-import { ChangeEvent } from "react";
 
 const options = [
   { name: "Option 1" },
@@ -11,8 +11,7 @@ const options = [
   // Add more options as needed
 ];
 
-
-export const SerachLine = () => {
+export const SearchLine = () => {
   return (
     <div className={s.searchWrapper}>
       <Typeahead
@@ -24,7 +23,8 @@ export const SerachLine = () => {
         }}
         options={options}
         placeholder='Search'
+        className={s.searchInput} // Apply the CSS class here
       />
     </div>
   );
-}
+};
