@@ -1,0 +1,33 @@
+.productsContainer {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.filterSection {
+  margin-bottom: 15px;
+}
+
+.productsTable {
+  width: 100%;
+  border-collapse: separate; /* Используем раздельную границу для отдельных ячеек */
+  border-spacing: 8px; /* Отступ между ячейками */
+}
+
+.productsTable th,
+.productsTable td {
+  padding: 15px;
+  text-align: left;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.productsTable th {
+  background-color: #f2f2f2;
+}
+
+/* Добавим немного отступа для таблицы */
+.productsTableWrapper {
+  margin-top: 20px;
+}
