@@ -10,12 +10,25 @@ export const Sidebar = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.avatarAndLinks}>
-        <div className={s.avatar}><img src=""></img></div>
+        <div className={s.avatarAndSettings}>
+          <img
+            src='https://i.pinimg.com/474x/c2/88/dd/c288dd202b5f578cb2d492d606b0b522.jpg'
+            className={s.avatar}
+          ></img>
+          <NavLink to='/product'>
+            {" "}
+            <img
+              src='https://imgpng.ru/d/gear_PNG37.png'
+              className={s.settingBtn}
+              alt='Settings'
+            />
+          </NavLink>
+        </div>
         <div className={s.sidebarlinks}>
           <NavLink
             to='/orders'
             className={({ isActive }: NavLinkProps) =>
-              isActive ? s.active : ""
+              isActive ? s.active : s.noActive
             }
           >
             Orders
@@ -23,7 +36,7 @@ export const Sidebar = () => {
           <NavLink
             to='/products'
             className={({ isActive }: NavLinkProps) =>
-              isActive ? s.active : ""
+              isActive ? s.active : s.noActive
             }
           >
             Products
