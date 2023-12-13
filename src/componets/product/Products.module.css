@@ -1,6 +1,4 @@
 .productsContainer {
-  max-width: 800px;
-  margin: auto;
   padding: 20px;
 }
 
@@ -10,24 +8,70 @@
 
 .productsTable {
   width: 100%;
-  border-collapse: separate; /* Используем раздельную границу для отдельных ячеек */
-  border-spacing: 8px; /* Отступ между ячейками */
+  border-collapse: separate;
+  border-spacing: 8px;
 }
 
 .productsTable th,
 .productsTable td {
   padding: 15px;
-  text-align: left;
+  text-align: center;
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .productsTable th {
   background-color: #f2f2f2;
 }
 
-/* Добавим немного отступа для таблицы */
 .productsTableWrapper {
   margin-top: 20px;
+}
+
+.statusMarkTrue,
+.statusMarkFalse {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+}
+
+.statusMarkTrue {
+  background-color: greenyellow;
+}
+
+.statusMarkFalse {
+  background-color: gray;
+}
+.statusTextTrue,
+.statusTextFalse {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.statusTextTrue {
+  margin: auto;
+  color: greenyellow;
+}
+
+.statusTextFalse {
+  color: gray;
+}
+
+.defaultPrice {
+  font-weight: bold;
+}
+
+.photo {
+  width: 40px;
+  height: 40px;
+}
+
+.titleAndfilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
