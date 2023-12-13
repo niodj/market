@@ -1,7 +1,8 @@
 .table {
   width: 80%;
 
-  margin-top: 20px;
+  margin: 20px;
+
 }
 
 
@@ -23,4 +24,9 @@
   border: none;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+.ordersAndProducts{
+  display: flex;
+  flex-direction: row;
 }
