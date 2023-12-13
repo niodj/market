@@ -7,9 +7,7 @@ import s from "./Products.module.css"
 
 export const Products = (props:any) => {
   const dispatch = useDispatch();
-  const products = useSelector<StoreType, ProductType[]>(
-    (state) => state.product
-  );
+  const products = useSelector((state: StoreType) => state.product);
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();

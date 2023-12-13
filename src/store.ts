@@ -1,9 +1,11 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { filtersReducer, productReducer } from "./reducers";
+import { orderReducer, productReducer } from "./reducers";
+
 
 //import thunk, { ThunkDispatch } from "redux-thunk";
 
 export type ProductType = {
+
   id: number;
   serialNumber: number;
   isNew: number;
@@ -110,6 +112,8 @@ export const products: ProductType[] = [
 ];
 
 
+
+
 export type OrderType = {
   id: number;
   title: string;
@@ -118,40 +122,35 @@ export type OrderType = {
   products: ProductType[];
 };
 
-const orders: OrderType[] = [
+export const orders: OrderType[] = [
   {
     id: 1,
     title: "Order 1",
     date: "2017-06-29 12:09:33",
     description: "desc",
-    get products() {
-      return products;
-    },
+    products: [], // Assuming ProductType is defined somewhere
   },
   {
     id: 2,
     title: "Order 2",
     date: "2017-06-29 12:09:33",
     description: "desc",
-    get products() {
-      return products;
-    },
+    products: [],
   },
   {
     id: 3,
     title: "Order 3",
     date: "2017-06-29 12:09:33",
     description: "desc",
-    get products() {
-      return products;
-    },
+    products: [],
   },
 ];
 
 
+
 export const rootReducer = combineReducers({
   product: productReducer,
-  filtersReducer: filtersReducer,
+  orders: orderReducer,
 });
 
 export type StoreType = ReturnType<typeof rootReducer>;
