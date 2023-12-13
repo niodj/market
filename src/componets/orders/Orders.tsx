@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
 import { Popup } from "../universalPopup/popup";
-
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Orders = (props:any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -83,14 +84,12 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
                   <td className={s.titleAndshowbnt}>
                     {order.title}
 
-                      <button
-                        onClick={() => handlerProductShow(order.id)}
-                        className={s.showBtn}
-                      >
-                        open
-                      </button>
-
-
+                    <button
+                      onClick={() => handlerProductShow(order.id)}
+                      className={s.showBtn}
+                    >
+                      open
+                    </button>
                   </td>
                   <td>{order.date.split(" ")[0]}</td>
                   <td>{order.description}</td>
@@ -153,6 +152,12 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
                   </td>
                   <td>{product.order}</td>
                   <td>{product.date.split(" ")[0]}</td>
+                  <td>
+                    {" "}
+                    <Button variant='danger'>
+                      <i className='bi bi-trash'></i>
+                    </Button>
+                  </td>
                 </tr>
               ))}
           </table>
