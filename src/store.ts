@@ -10,6 +10,7 @@ export type ProductType = {
   photo: string;
   title: string;
   type: string;
+  status: boolean;
   specification: string;
   guarantee: {
     start: string;
@@ -29,7 +30,8 @@ export const products: ProductType[] = [
     id: 1,
     serialNumber: 1234,
     isNew: 1,
-    photo: "pathToFile.jpg",
+    status: true,
+    photo: "https://m.media-amazon.com/images/I/51eWw4k9MTL._AC_US40_.jpg",
     title: "Product 1",
     type: "Monitors",
     specification: "Specification 1",
@@ -47,10 +49,11 @@ export const products: ProductType[] = [
   {
     id: 2,
     serialNumber: 1234,
-    isNew: 1,
-    photo: "pathToFile.jpg",
+    isNew: 0,
+    photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
     title: "Product 1",
     type: "Printer",
+    status: false,
     specification: "Specification 2",
     guarantee: {
       start: "2017-06-29 12:09:33",
