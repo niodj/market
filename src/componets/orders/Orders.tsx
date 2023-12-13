@@ -48,8 +48,11 @@ export const Orders = (props:any) => {
     return typeMatch && specificationMatch && searchMatch;
   });
 
+
+
+console.log(filteredProducts.find((product) => product.order === showProduct));
   return (
-    <div>
+    <div className={s.wrapper}>
       <Popup
         title={`Are you sure you want delete Order №${orderId}`}
         showPopup={showPopup}
@@ -58,88 +61,101 @@ export const Orders = (props:any) => {
       />
 
       <h2>Orders / {orders.length}</h2>
-      <div>
-        {/* <button onClick={() => dispatch({ type: "ADD_Order" })}>
+      {/* <div>
+        <button onClick={() => dispatch({ type: "ADD_Order" })}>
           Add order
-        </button> */}
-      </div>
+        </button>
+      </div> */}
       <div className={s.ordersAndProducts}>
-        <table className={s.table}>
-          <tbody>
-            {orders.map((order: OrderType) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
+        <div
+          className={`${
+            filteredProducts.find((product) => product.order === showProduct)
+              ? s.halfWidth
+              : s.fullWidth
+          }`}
+        >
+          <table className={s.table}>
+            <tbody>
+              {orders.map((order: OrderType) => (
+                <tr key={order.id}>
+                  <td>{order.id}</td>
 
-                <td className={s.titleAndshowbnt}>
-                  {order.title}
-                  <div
-                    onClick={() => handlerProductShow(order.id)}
-                    className={s.showHide}
-                  >
-                    show/hide
-                  </div>
-                </td>
-                <td>{order.date.split(" ")[0]}</td>
-                <td>{order.description}</td>
-                <td>
-                  <button
-                    className={s.button}
-                    onClick={() => handleModal(order.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div>
-          {filteredProducts
-            .filter((product) => product.order === showProduct)
-            .map((product) => (
-              <tr key={product.id}>
-                <td>
-                  {product.status ? (
-                    <div className={s.statusMarkTrue} />
-                  ) : (
-                    <div className={s.statusMarkFalse} />
-                  )}
-                </td>
-                <td>
-                  <img src={product.photo} className={s.photo}></img>
-                </td>
-                <td>{product.title}</td>
-                <td>
-                  {product.status ? (
-                    <div className={s.statusTextTrue}>Free</div>
-                  ) : (
-                    <div className={s.statusTextFalse}>On repear</div>
-                  )}
-                </td>
-                <td>{product.type}</td>
-                <td>
-                  {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
-                </td>
-                <td>
-                  <div>from {product.guarantee.start.split(" ")[0]}</div>
-                  <div> to {product.guarantee.end.split(" ")[0]}</div>
-                </td>
-                <td>{product.specification} </td>
+                  <td className={s.titleAndshowbnt}>
+                    {order.title}
 
-                <td>
-                  {product.price.map((price, index) => (
-                    <div
-                      key={index}
-                      className={price.isDefault ? s.defaultPrice : ""}
+                      <button
+                        onClick={() => handlerProductShow(order.id)}
+                        className={s.showBtn}
+                      >
+                        open
+                      </button>
+
+
+                  </td>
+                  <td>{order.date.split(" ")[0]}</td>
+                  <td>{order.description}</td>
+                  <td>
+                    <button
+                      className={s.delBtn}
+                      onClick={() => handleModal(order.id)}
                     >
-                      {price.value} {price.symbol}
-                    </div>
-                  ))}
-                </td>
-                <td>{product.order}</td>
-                <td>{product.date.split(" ")[0]}</td>
-              </tr>
-            ))}
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className={s.productsTableWrapper}>
+          <table className={s.productsTable}>
+            {filteredProducts
+              .filter((product) => product.order === showProduct)
+              .map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    {product.status ? (
+                      <div className={s.statusMarkTrue} />
+                    ) : (
+                      <div className={s.statusMarkFalse} />
+                    )}
+                  </td>
+                  <td>
+                    <img src={product.photo} className={s.photo}></img>
+                  </td>
+                  <td>{product.title}</td>
+                  <td>
+                    {product.status ? (
+                      <div className={s.statusTextTrue}>Free</div>
+                    ) : (
+                      <div className={s.statusTextFalse}>On repear</div>
+                    )}
+                  </td>
+                  <td>{product.type}</td>
+                  <td>
+                    {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
+                  </td>
+                  <td>
+                    <div>from {product.guarantee.start.split(" ")[0]}</div>
+                    <div> to {product.guarantee.end.split(" ")[0]}</div>
+                  </td>
+                  <td>{product.specification} </td>
+
+                  <td>
+                    {product.price.map((price, index) => (
+                      <div
+                        key={index}
+                        className={price.isDefault ? s.defaultPrice : ""}
+                      >
+                        {price.value} {price.symbol}
+                      </div>
+                    ))}
+                  </td>
+                  <td>{product.order}</td>
+                  <td>{product.date.split(" ")[0]}</td>
+                </tr>
+              ))}
+          </table>
         </div>
       </div>
     </div>

@@ -127,7 +127,7 @@ export const orders = [
     id: 1,
     title: "Order 1",
     date: "2017-06-29 12:09:33",
-    description: "desc",
+    description: "A long long long long very log super long description",
     get products() {
       return products;
     },

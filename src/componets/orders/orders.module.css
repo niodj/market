@@ -1,138 +1,129 @@
+
+
+.wrapper {
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+
+}
+
+h2 {
+  color: #333;
+}
+
+.ordersAndProducts {
+  display: flex;
+
+  padding: 10px;
+
+}
+
+.ordersTableWrapper {
+
+}
+
+.halfWidth {
+    width: 400px;
+padding-right: 10px;
+}
+
+.fullWidth {
+
+width: 100%;
+border: solid white;
+
+}
+
 .table {
-  width: 80%;
+width: 100%;
+    border-collapse: separate;
 
-  margin: 20px;
-
-}
-
-
-
-.table th, .table td {
-
-  border: 1px solid #ddd;
+   border-top: 1px solid #dddddd;
   padding: 8px;
-  text-align: left;
 }
 
-.table th {
-  background-color: #f2f2f2;
+.table td {
+
+
+   border-bottom: 1px solid #dddddd; /* Устанавливаем нижнюю границу для ячеек */
+  padding: 8px;
+  text-align: center;
 }
 
-.button {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
+.titleAndshowbnt {
 
-.ordersAndProducts{
-  display: flex;
-  flex-direction: row;
-}
-
-.titleAndshowbnt{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .showHide {
-  width: 100px;
-  text-align: center;
-  display: inline-block;
-  padding: 2px 2px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3498db;
-  background-color: #ecf0f1;
-  border: 2px solid #3498db;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
+  transform: translateY(-50%);
+  color: #007bff;
+  cursor: pointer;
 }
 
-.showHide:hover {
-  background-color: #3498db; /* измененный фон при наведении */
-  color: #ffffff; /* измененный цвет текста при наведении */
-   cursor: pointer;
-}
+.delBtn {
 
-.productsContainer {
-  padding: 20px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
-.filterSection {
-  margin-bottom: 15px;
+.delBtn:hover {
+  background-color: #c82333;
 }
-
-.productsTable {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 8px;
-}
-
-.productsTable th,
-.productsTable td {
-  padding: 4px;
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.showBtn{
+background-color: #2a36e9;
+  color: #fff;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
 }
 
-.productsTable th {
-  background-color: #f2f2f2;
+.showBtn:hover {
+  background-color: darkblue;
 }
+
 
 .productsTableWrapper {
-  margin-top: 20px;
+
+  overflow: auto;
+}
+
+.productsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.photo {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
 }
 
 .statusMarkTrue,
 .statusMarkFalse {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 
+  margin-right: 5px;
 }
 
 .statusMarkTrue {
-  background-color: greenyellow;
+  background-color: #28a745; /* Green */
 }
 
 .statusMarkFalse {
-  background-color: gray;
+  background-color: #dc3545; /* Red */
 }
-.statusTextTrue,
-.statusTextFalse {
-    display: flex;
-  align-items: center;
-  justify-content: center;
 
-}
 .statusTextTrue {
-  margin: auto;
-  color: greenyellow;
+  color: #28a745; /* Green */
 }
 
 .statusTextFalse {
-  color: gray;
+  color: #dc3545; /* Red */
 }
 
-.defaultPrice {
-  font-weight: bold;
-}
-
-.photo {
-  width: 40px;
-  height: 40px;
-}
-
-.titleAndfilters{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
