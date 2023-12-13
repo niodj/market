@@ -5,14 +5,14 @@ import { ProductType, StoreType } from "../../store";
 import s from "./Products.module.css"
 
 
-export const Products = () => {
+export const Products = (props:any) => {
   const dispatch = useDispatch();
   const products = useSelector<StoreType, ProductType[]>(
     (state) => state.product
   );
 
-  const [filterType, setFilterType] = useState<string>("");
-  const [filterSpecification, setFilterSpecification] = useState<string>("");
+  const [filterType, setFilterType] = useState<string>();
+  const [filterSpecification, setFilterSpecification] = useState<string>();
 
   const types = Array.from(new Set(products.map((product) => product.type)));
   const specifications = Array.from(
@@ -23,14 +23,14 @@ export const Products = () => {
     const typeMatch = !filterType || product.type === filterType;
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
-
-    return typeMatch && specificationMatch;
+    const searchMatch =
+      !props.searchTerm ||product.title.toLowerCase().includes(props.searchTerm.toLowerCase());
+    return typeMatch && specificationMatch && searchMatch;
   });
 
-const handleDelete = (id: number) => {
-  dispatch({ type: "DELETE_PRODUCT", payload: id });
-};
-
+  const handleDelete = (id: number) => {
+    dispatch({ type: "DELETE_PRODUCT", payload: id });
+  };
 
   return (
     <div className={s.productsContainer}>
@@ -104,7 +104,7 @@ const handleDelete = (id: number) => {
                   {product.price.map((price, index) => (
                     <div
                       key={index}
-                      className={price.isDefault === 1 && s.defaultPrice}
+                      className={price.isDefault ? s.defaultPrice : ""}
                     >
                       {price.value} {price.symbol}
                     </div>

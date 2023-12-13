@@ -22,3 +22,30 @@ font-size: 10px;
     .clockLogo{
         width: 20px;
 }
+
+.searchline {
+  width: 400px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+}
+
+.searchline:focus {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.searchline::placeholder {
+  color: #999;
+}
+
+.searchline:hover {
+  border-color: #aaa;
+}

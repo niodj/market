@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { productReducer } from "./reducer";
+import { filtersReducer, productReducer } from "./reducers";
 
 //import thunk, { ThunkDispatch } from "redux-thunk";
 
@@ -32,7 +32,7 @@ export const products: ProductType[] = [
     isNew: 1,
     status: true,
     photo: "https://m.media-amazon.com/images/I/51eWw4k9MTL._AC_US40_.jpg",
-    title: "Product 1",
+    title: "Samsung monitor 22",
     type: "Monitors",
     specification: "Specification 1",
     guarantee: {
@@ -51,8 +51,49 @@ export const products: ProductType[] = [
     serialNumber: 1234,
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
-    title: "Product 1",
+    title: "HP 3110",
     type: "Printer",
+    status: false,
+    specification: "Specification 2",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33",
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 0 },
+      { value: 2600, symbol: "UAH", isDefault: 1 },
+    ],
+    order: 2,
+    date: "2017-06-29 12:09:33",
+  },
+
+  {
+    id: 3,
+    serialNumber: 1234,
+    isNew: 0,
+    photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
+    title: "Canon MF4410",
+    type: "Printer",
+    status: false,
+    specification: "Specification 1",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33",
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 0 },
+      { value: 2600, symbol: "UAH", isDefault: 1 },
+    ],
+    order: 2,
+    date: "2017-06-29 12:09:33",
+  },
+  {
+    id: 4,
+    serialNumber: 1234,
+    isNew: 0,
+    photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
+    title: "Acer 24",
+    type: "Monitors",
     status: false,
     specification: "Specification 2",
     guarantee: {
@@ -110,6 +151,7 @@ const orders: OrderType[] = [
 
 export const rootReducer = combineReducers({
   product: productReducer,
+  filtersReducer: filtersReducer,
 });
 
 export type StoreType = ReturnType<typeof rootReducer>;
