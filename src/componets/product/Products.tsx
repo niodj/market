@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
 import s from "./Products.module.css"
+import { Popup } from "../universalPopup/popup";
 
 
 export const Products = (props:any) => {
@@ -11,6 +12,17 @@ export const Products = (props:any) => {
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
+  //////////popup/////
+  const [showPopup, setShowPopup] = useState(false);
+  const [productId, setProductId] = useState<number>();
+
+  const handleModal = (productId: number) => {
+    setProductId(productId);
+    setShowPopup(true);
+  };
+
+
+  //////////popup/////
 
   const types = Array.from(new Set(products.map((product) => product.type)));
   const specifications = Array.from(
@@ -22,16 +34,24 @@ export const Products = (props:any) => {
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =
-      !props.searchTerm ||product.title.toLowerCase().includes(props.searchTerm.toLowerCase());
+      !props.searchTerm ||
+      product.title.toLowerCase().includes(props.searchTerm.toLowerCase());
     return typeMatch && specificationMatch && searchMatch;
   });
 
-  const handleDelete = (id: number) => {
-    dispatch({ type: "DELETE_PRODUCT", orderId:id });
+  const handleDelete = () => {
+    dispatch({ type: "DELETE_PRODUCT", productId });
+    setShowPopup(false);
   };
 
   return (
     <div className={s.productsContainer}>
+      <Popup
+        title={`Are you sure you want delete Produtc №${productId}`}
+        showPopup={showPopup}
+        onHide={() => setShowPopup(false)}
+        onConfirm={() =>    handleDelete()}
+      />
       <div className={s.titleAndfilters}>
         <span>
           <h2>Products / {products.length}</h2>
@@ -111,7 +131,7 @@ export const Products = (props:any) => {
                 <td>{product.order}</td>
                 <td>{product.date.split(" ")[0]}</td>
                 <td>
-                  <button onClick={() => handleDelete(product.id)}>
+                  <button onClick={() => handleModal(product.id)}>
                     Delete
                   </button>
                 </td>

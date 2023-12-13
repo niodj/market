@@ -36,9 +36,9 @@ export const orderReducer = (state: OrderType[] = orders, action: RootAction): O
           products.splice(i, 1);
         }
       }
-      
-      ////
 
+      ////
+console.log(action.orderId);
       const filtered = state.filter((order) => order.id !== action.orderId);
       return filtered;
 
