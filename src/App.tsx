@@ -21,7 +21,7 @@ function App() {
             path='/products'
             element={<Products searchTerm={searchTerm} />}
           />
-          <Route path='/orders' element={<Orders />} />
+          <Route path='/orders' element={<Orders searchTerm={searchTerm} />} />
           <Route path='*' element={<div>404 No page</div>} />
         </Route>
       </Routes>

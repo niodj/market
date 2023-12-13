@@ -13,7 +13,7 @@ export const TopMenu = (props: any) => {
           alt='Logo'
         ></img>
       </div>
-      <input placeholder='search' onChange={(e) => props.setSearchTerm(e.currentTarget.value)}className={s.searchline}
+      <input placeholder='search' onChange={(e) => props.setSearchTerm(e.currentTarget.value)} className={s.searchline}
       />
       <Time />
     </div>
