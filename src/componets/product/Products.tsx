@@ -27,7 +27,7 @@ export const Products = (props:any) => {
   });
 
   const handleDelete = (id: number) => {
-    dispatch({ type: "DELETE_PRODUCT", payload: id });
+    dispatch({ type: "DELETE_PRODUCT", orderId:id });
   };
 
   return (

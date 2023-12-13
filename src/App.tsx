@@ -5,8 +5,7 @@ import { Products } from "./componets/product/Products";
 import { Routes, Route } from "react-router-dom";
 
 import  { useState } from "react";
-import Orders from "./componets/orders/Orders";
-
+import { Orders } from "./componets/orders/Orders";
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
