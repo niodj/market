@@ -1,5 +1,4 @@
 
-
 .wrapper {
   font-family: 'Arial', sans-serif;
   width: 100%;
@@ -13,7 +12,6 @@ h2 {
 
 .ordersAndProducts {
   display: flex;
-
   padding: 10px;
 }
 
@@ -38,7 +36,6 @@ border: solid white;
 .table {
 width: 100%;
     border-collapse: separate;
-
    border-top: 1px solid #dddddd;
   padding: 8px;
 }
@@ -115,4 +112,8 @@ flex-direction: column;
 
 .defaultPrice {
   font-weight: bold;
+}
+
+.smallDate{
+  font-size: small;
 }

@@ -160,7 +160,27 @@ dispatch({
                       </Button>
                     </div>
                   </td>
-                  <td>{order.date.split(" ")[0]}</td>
+                  <td>
+                    <div className={s.smallDate}>
+                      {order.date &&
+                        order.date
+                          .split(" ")[0]
+                          .split("-")
+                          .reverse()
+                          .slice(0, 2)
+                          .join(" / ")}
+                    </div>
+
+                    <div>
+                      {order.date &&
+                        order.date
+                          .split(" ")[0]
+                          .split("-")
+                          .reverse()
+                          .join(" / ")
+                          }
+                    </div>
+                  </td>
                   <td>
                     <div className={s.defaultPrice}>
                       {products

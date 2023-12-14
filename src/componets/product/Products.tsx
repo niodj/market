@@ -208,7 +208,26 @@ dispatch({
                   ))}
                 </td>
                 <td>{product.order}</td>
-                <td className={s.dateCell}>{product.date.split(" ")[0]}</td>
+                <td className={s.dateCell}>
+                  <div className={s.smallDate}>
+                    {product.date &&
+                      product.date
+                        .split(" ")[0]
+                        .split("-")
+                        .reverse()
+                        .slice(0, 2)
+                        .join(" / ")}
+                  </div>
+
+                  <div>
+                    {product.date &&
+                      product.date
+                        .split(" ")[0]
+                        .split("-")
+                        .reverse()
+                        .join(" / ")}
+                  </div>
+                </td>
                 <td>
                   {
                     orders.find((order) => order.id === product.order)

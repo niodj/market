@@ -1,5 +1,5 @@
 .productsContainer {
-  padding: 20px;
+  padding: 20px 0px 0px 0px ;
 }
 
 .filterSection {
@@ -8,8 +8,8 @@
 
  .productsTable {
   width: 100%;
-  border-collapse:separate;
-  border-spacing: 8px;
+    border-collapse: separate;
+   border-top: 1px solid #dddddd;
 }
 
 .productsTable th,
@@ -32,8 +32,8 @@
 
 .statusMarkTrue,
 .statusMarkFalse {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
 
 }
@@ -77,9 +77,13 @@
 }
 
 .dateCell{
-  width: 90px;
+  width: 110px;
 }
 .dateCellBig{
    width: 120px;
    font-size: small;
+}
+
+.smallDate{
+  font-size: small;
 }
