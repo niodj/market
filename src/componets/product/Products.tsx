@@ -12,7 +12,7 @@ export const Products = (props:any) => {
   const serviceState = useSelector((state: StoreType) => state.serviceState);
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
-
+ const orders = useSelector((state: StoreType) => state.orders);
 
 const handleModalDeleteProduct = (productId: number) => {
   dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
@@ -191,7 +191,7 @@ const handleModalDeleteProduct = (productId: number) => {
                 <td>
                   {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
                 </td>
-                <td>
+                <td className={s.dateCellBig}>
                   <div>from {product.guarantee.start.split(" ")[0]}</div>
                   <div> to {product.guarantee.end.split(" ")[0]}</div>
                 </td>
@@ -208,7 +208,14 @@ const handleModalDeleteProduct = (productId: number) => {
                   ))}
                 </td>
                 <td>{product.order}</td>
-                <td>{product.date.split(" ")[0]}</td>
+                <td className={s.dateCell}>{product.date.split(" ")[0]}</td>
+                <td>
+                  {
+                    orders.find((order) => order.id === product.order)
+                      ?.description
+                  }
+                </td>
+
                 <td>
                   <Button
                     variant='danger'

@@ -75,3 +75,11 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.dateCell{
+  width: 90px;
+}
+.dateCellBig{
+   width: 120px;
+   font-size: small;
+}
