@@ -10,22 +10,27 @@ type PopupPropsType = {
   showPopup: boolean;
 };
 
-export const Popup =(props:PopupPropsType) => {
+export const Popup = (props: PopupPropsType) => {
+  console.log(props.popupStatus);
   return (
     <Modal show={props.showPopup} onHide={props.onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Confirm delete {props.title}</Modal.Title>
+        <Modal.Title>Confirm</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>status:</div>
-        {props.popupStatus === undefined ? (
-          props.popupStatus
-        ) : props.popupStatus === "free" ? (
-          <div className={s.statusTextTrue}>free</div>
+        {props.popupStatus !== undefined ? (
+          <div>
+            <img src={props.popupImage} className={s.image}></img>
+            {props.popupStatus ? (
+              <div className={s.statusTextTrue}>free</div>
+            ) : (
+              <div className={s.statusTextFalse}>on repair</div>
+            )}
+          </div>
         ) : (
-          <div className={s.statusTextFalse}>on repair</div>
+          ""
         )}
-        {<img src={props.popupImage} className={s.image}></img>}
+
         {props.title}
       </Modal.Body>
       <Modal.Footer>

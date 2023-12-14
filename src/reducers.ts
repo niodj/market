@@ -105,7 +105,7 @@ export type SetPopupImage = {
   popupImage: string | undefined;
 };
 export type SetPopupProductStatus = {
-  type: "SET_POPUP_PRODUCT_STATUS";
+  type: "SET_POPUP_STATUS";
   popupStatus: string | undefined;
 };
 export const serviceStateReducer = (state: serviceStateType = serviceState, action: RootAction): serviceStateType=> {
@@ -120,16 +120,8 @@ export const serviceStateReducer = (state: serviceStateType = serviceState, acti
       return { ...state, popupTitle: action.popupTitle };
     case "SET_POPUP_IMAGE":
       return { ...state, popupImage: action.popupImage };
-    case "SET_POPUP_PRODUCT_STATUS":
-      return {
-        ...state,
-        popupStatus:
-          action.popupStatus === undefined
-            ? undefined
-            : action.popupStatus
-            ? "free"
-            : "on repair",
-      };
+    case "SET_POPUP_STATUS":
+      return { ...state, popupStatus: action.popupStatus};
 
     default:
       return state;

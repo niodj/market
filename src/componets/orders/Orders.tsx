@@ -14,8 +14,10 @@ export const Orders = (props: any) => {
 
   const [showProduct, setShowProduct] = useState<number>();
 
+  console.log(serviceState);
 
   const handleModalDeleteOrder = (orderId: number) => {
+
     dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
     dispatch({type: "SET_POPUP_TITLE", popupTitle: `Delete order #${orderId}?`});
     dispatch({ type: "SET_POPUP_SHOW", popupShow: true })
@@ -41,10 +43,14 @@ export const Orders = (props: any) => {
       popupImage: products.find((product) => product.id === productId)?.photo,
     });
 
+
 dispatch({
-  type: "SET_POPUP_IMAGE",
-  popupStatus: products.find((product) => product.id === productId)?.status,
+  type: "SET_POPUP_STATUS",
+  popupStatus: products.find((product) => product.id === productId)?.status ,
 });
+
+
+
 
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
      dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
@@ -80,7 +86,7 @@ dispatch({
       });
 
    dispatch({
-     type: "SET_POPUP_IMAGE",
+     type: "SET_POPUP_STATUS",
      popupStatus: undefined
    });
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
