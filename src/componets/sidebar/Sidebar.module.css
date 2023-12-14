@@ -34,23 +34,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+
 }
 
-.noActive {
-  margin-top: 30px;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #026178;
-
-  &:hover {
-    background-color: #34495e;
-  }
-}
-
-.active {
-  margin-top: 30px;
-  padding: 10px 15px;
-  text-decoration: none;
-  background-color: #3498db;
-  color: #ffffff;
+.sidebarBtn{
+  margin-top:40px;
+  width: 100px;
 }

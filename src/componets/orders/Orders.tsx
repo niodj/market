@@ -71,11 +71,7 @@ export const Orders = (props:any) => {
       </div>
       <div className={s.ordersAndProducts}>
         <div
-          className={`${
-            filteredProducts.find((product) => product.order === showProduct)
-              ? s.halfWidth
-              : s.fullWidth
-          }`}
+          className={`${showProduct? s.halfWidth: s.fullWidth}`}
         >
           <table className={s.table}>
             <tbody>
@@ -86,12 +82,12 @@ export const Orders = (props:any) => {
                   <td className={s.titleAndshowbnt}>
                     {order.title}
 
-                    <button
+                    <Button
                       onClick={() => handlerProductShow(order.id)}
                       className={s.showBtn}
                     >
                       show/hide
-                    </button>
+                    </Button>
                   </td>
                   <td>{order.date.split(" ")[0]}</td>
                   <td>{order.description}</td>
@@ -108,8 +104,16 @@ export const Orders = (props:any) => {
             </tbody>
           </table>
         </div>
+        {showProduct?
         <div className={s.productsTableWrapper}>
-          <h3>{orders.find((order) => order.id === showProduct)?.description}</h3>
+          <h3>
+            {orders.find((order) => order.id === showProduct)?.description}
+          </h3>
+
+          <div className={s.addProductBtnInOrder}>
+            <Button >Add product</Button>
+          </div>
+
           <table className={s.productsTable}>
             {filteredProducts
               .filter((product) => product.order === showProduct)
@@ -146,8 +150,10 @@ export const Orders = (props:any) => {
                 </tr>
               ))}
           </table>
-        </div>
+          </div>:
+""}
       </div>
+
     </div>
   );
 };

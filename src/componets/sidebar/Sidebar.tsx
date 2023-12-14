@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import s from "./Sidebar.module.css";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 
 interface NavLinkProps {
   isActive: boolean;
@@ -25,21 +25,11 @@ export const Sidebar = () => {
           </NavLink>
         </div>
         <div className={s.sidebarlinks}>
-          <NavLink
-            to='/orders'
-            className={({ isActive }: NavLinkProps) =>
-              isActive ? s.active : s.noActive
-            }
-          >
-            Orders
+          <NavLink to='/orders' className={s.sidebarBtn}>
+            <Button className={s.sidebarBtn}>Orders</Button>
           </NavLink>
-          <NavLink
-            to='/products'
-            className={({ isActive }: NavLinkProps) =>
-              isActive ? s.active : s.noActive
-            }
-          >
-            Products
+          <NavLink to='/products' className={s.sidebarBtn}>
+            <Button className={s.sidebarBtn}>Products</Button>
           </NavLink>
         </div>
       </div>
