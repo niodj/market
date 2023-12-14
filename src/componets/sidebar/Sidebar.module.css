@@ -19,7 +19,7 @@
 .settingBtn {
   width: 40px;
   position: absolute;
-  top: 190px;
+  top: 230px;
   left: 100px;
   border-radius: 50%;
   transition: width 0.5s ease;

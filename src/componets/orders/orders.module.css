@@ -3,6 +3,7 @@
 .wrapper {
   font-family: 'Arial', sans-serif;
   width: 100%;
+  padding: 20px;
 
 }
 
@@ -51,7 +52,8 @@ width: 100%;
 }
 
 .titleAndshowbnt {
-
+display: flex;
+flex-direction: column;
 }
 
 .showHide {
@@ -59,33 +61,6 @@ width: 100%;
   color: #007bff;
   cursor: pointer;
 }
-
-.delBtn {
-
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  margin: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.delBtn:hover {
-  background-color: #c82333;
-}
-.showBtn{
-background-color: #2a36e9;
-  color: #fff;
-  border: none;
-  margin: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-}
-
-.showBtn:hover {
-  background-color: darkblue;
-}
-
 
 .productsTableWrapper {
 
@@ -131,4 +106,13 @@ background-color: #2a36e9;
 .sn{font-size: small;}
 .addProductBtnInOrder{
   margin: 10px;
+}
+
+.ordersAmountInDescription{
+  font-style: italic;
+  font-size: small;
+}
+
+.defaultPrice {
+  font-weight: bold;
 }
