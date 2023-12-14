@@ -24,8 +24,10 @@ export const Orders = (props:any) => {
   };
 
   const handlerProductShow = (order: number) => {
-    setShowProduct(order);
-  };
+   showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
+
+    }
+
   const deleteOrder = () => {
     dispatch({ type: "DELETE_ORDER", orderId });
     setShowPopup(false);
@@ -51,7 +53,7 @@ export const Orders = (props:any) => {
 
 
 
-console.log(filteredProducts.find((product) => product.order === showProduct));
+
   return (
     <div className={s.wrapper}>
       <Popup
@@ -62,11 +64,11 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
       />
 
       <h2>Orders / {orders.length}</h2>
-      {/* <div>
-        <button onClick={() => dispatch({ type: "ADD_Order" })}>
+      <div>
+        <button onClick={() => dispatch({ type: "ADD_ORDER" })}>
           Add order
         </button>
-      </div> */}
+      </div>
       <div className={s.ordersAndProducts}>
         <div
           className={`${
@@ -88,7 +90,7 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
                       onClick={() => handlerProductShow(order.id)}
                       className={s.showBtn}
                     >
-                      open
+                      show/hide
                     </button>
                   </td>
                   <td>{order.date.split(" ")[0]}</td>
@@ -107,6 +109,7 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
           </table>
         </div>
         <div className={s.productsTableWrapper}>
+          <h3>{orders.find((order) => order.id === showProduct)?.description}</h3>
           <table className={s.productsTable}>
             {filteredProducts
               .filter((product) => product.order === showProduct)
@@ -122,7 +125,10 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
                   <td>
                     <img src={product.photo} className={s.photo}></img>
                   </td>
-                  <td>{product.title}</td>
+                  <td>
+                    <div>{product.title}</div>
+                    <div className={s.sn}>s/n:{product.serialNumber}</div>
+                  </td>
                   <td>
                     {product.status ? (
                       <div className={s.statusTextTrue}>Free</div>
@@ -130,28 +136,7 @@ console.log(filteredProducts.find((product) => product.order === showProduct));
                       <div className={s.statusTextFalse}>On repear</div>
                     )}
                   </td>
-                  <td>{product.type}</td>
-                  <td>
-                    {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
-                  </td>
-                  <td>
-                    <div>from {product.guarantee.start.split(" ")[0]}</div>
-                    <div> to {product.guarantee.end.split(" ")[0]}</div>
-                  </td>
-                  <td>{product.specification} </td>
 
-                  <td>
-                    {product.price.map((price, index) => (
-                      <div
-                        key={index}
-                        className={price.isDefault ? s.defaultPrice : ""}
-                      >
-                        {price.value} {price.symbol}
-                      </div>
-                    ))}
-                  </td>
-                  <td>{product.order}</td>
-                  <td>{product.date.split(" ")[0]}</td>
                   <td>
                     {" "}
                     <Button variant='danger'>
