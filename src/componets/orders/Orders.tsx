@@ -20,7 +20,7 @@ export const Orders = (props: any) => {
     setOrderId(orderId);
     setShowPopup(true);
   };
-
+console.log(showProduct);
   const handlerProductShow = (order: number) => {
     showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
   };
@@ -29,6 +29,10 @@ export const Orders = (props: any) => {
     dispatch({ type: "DELETE_ORDER", orderId });
     setShowPopup(false);
   };
+   const addProduct = () => {
+     dispatch({ type: "ADD_PRODUCT", orderId: showProduct });
+
+   };
   ////////////////////////Filter
 
   const [filterType, setFilterType] = useState<string>();
@@ -127,7 +131,7 @@ export const Orders = (props: any) => {
             </h3>
 
             <div className={s.addProductBtnInOrder}>
-              <Button>Add product</Button>
+              <Button onClick={addProduct}>Add product</Button>
             </div>
 
             <table className={s.productsTable}>

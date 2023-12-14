@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
 import s from "./Products.module.css"
 import { Popup } from "../universalPopup/popup";
-
+import Button from "react-bootstrap/Button";
 
 export const Products = (props:any) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const Products = (props:any) => {
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
-  
+
   //////////popup/////
   const [showPopup, setShowPopup] = useState(false);
   const [productId, setProductId] = useState<number>();
@@ -51,7 +51,7 @@ export const Products = (props:any) => {
         title={`Are you sure you want delete Produtc №${productId}`}
         showPopup={showPopup}
         onHide={() => setShowPopup(false)}
-        onConfirm={() =>    handleDelete()}
+        onConfirm={() => handleDelete()}
       />
       <div className={s.titleAndfilters}>
         <span>
@@ -132,9 +132,12 @@ export const Products = (props:any) => {
                 <td>{product.order}</td>
                 <td>{product.date.split(" ")[0]}</td>
                 <td>
-                  <button onClick={() => handleModal(product.id)}>
+                  <Button
+                    variant='danger'
+                    onClick={() => handleModal(product.id)}
+                  >
                     Delete
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
