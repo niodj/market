@@ -10,29 +10,50 @@ export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
   const products = useSelector((state: StoreType) => state.product);
   const dispatch = useDispatch();
-
+  const [showProduct, setShowProduct] = useState<number>();
   //////////popup/////
   const [showPopup, setShowPopup] = useState(false);
-  const [orderId, setOrderId] = useState<number>();
-  const [showProduct, setShowProduct] = useState<number>();
+  const [confirmId, setconfirmId] = useState<number>();
+  const [actionType, setActionType] = useState("");
+  const [popupTitle, setPopupTitle] = useState("");
 
-  const handleModal = (orderId: number) => {
-    setOrderId(orderId);
+  const handleModalDeleteOrder = (orderId: number) => {
+    setActionType('DELETE_ORDER')
+    setPopupTitle(`Delete order #${orderId}?`)
+    setconfirmId(orderId);
     setShowPopup(true);
   };
-console.log(showProduct);
+  const handleModalDeleteProduct = (productId: number) => {
+    setActionType("DELETE_PRODUCT");
+    setPopupTitle(`Delete product #${productId}?`);
+    setconfirmId(productId);
+    setShowPopup(true);
+  };
+
+  const modalConfirmed = ()=> {
+    if (actionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: confirmId })
+      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: confirmId });
+    }
+
+
+    if(actionType==="DELETE_PRODUCT")dispatch({ type: "DELETE_PRODUCT", productId: confirmId });
+      setShowPopup(false);
+    setActionType("");
+    setPopupTitle('');
+    setconfirmId(undefined);
+  };
+
+
+  /////End modal
+
   const handlerProductShow = (order: number) => {
     showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
   };
-
-  const deleteOrder = () => {
-    dispatch({ type: "DELETE_ORDER", orderId });
-    setShowPopup(false);
+  const addProduct = () => {
+    dispatch({ type: "ADD_PRODUCT", orderId: showProduct });
   };
-   const addProduct = () => {
-     dispatch({ type: "ADD_PRODUCT", orderId: showProduct });
 
-   };
   ////////////////////////Filter
 
   const [filterType, setFilterType] = useState<string>();
@@ -55,10 +76,10 @@ console.log(showProduct);
   return (
     <div className={s.wrapper}>
       <Popup
-        title={`Are you sure you want delete Order №${orderId}`}
+        title={popupTitle}
         showPopup={showPopup}
         onHide={() => setShowPopup(false)}
-        onConfirm={() => deleteOrder()}
+        onConfirm={() => modalConfirmed()}
       />
 
       <h2>Orders / {orders.length}</h2>
@@ -114,7 +135,7 @@ console.log(showProduct);
                     <Button
                       variant='danger'
                       className={s.delBtn}
-                      onClick={() => handleModal(order.id)}
+                      onClick={() => handleModalDeleteOrder(order.id)}
                     >
                       Delete
                     </Button>
@@ -163,7 +184,12 @@ console.log(showProduct);
 
                     <td>
                       {" "}
-                      <Button variant='danger'>Delete</Button>
+                      <Button
+                        variant='danger'
+                        onClick={() => handleModalDeleteProduct(product.id)}
+                      >
+                        Delete
+                      </Button>
                     </td>
                   </tr>
                 ))}

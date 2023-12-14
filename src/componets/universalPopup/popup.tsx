@@ -2,10 +2,11 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
 type PopupPropsType = {
-    showPopup: boolean;
-    title: string;
+  showPopup: boolean;
   onHide: () => void;
   onConfirm: () => void;
+  title: string;
+
 }
 
 export const Popup =(props:PopupPropsType) => {
@@ -14,7 +15,7 @@ export const Popup =(props:PopupPropsType) => {
       <Modal.Header closeButton>
         <Modal.Title>Confirm delete {props.title}</Modal.Title>
       </Modal.Header>
-          <Modal.Body> {props.title} </Modal.Body>
+      <Modal.Body> {props.title} </Modal.Body>
       <Modal.Footer>
         <Button variant='primary' onClick={props.onConfirm}>
           Yes

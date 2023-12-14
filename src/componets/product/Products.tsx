@@ -40,7 +40,7 @@ export const Products = (props:any) => {
     return typeMatch && specificationMatch && searchMatch;
   });
 
-  const handleDelete = () => {
+   const handleDelete = () => {
     dispatch({ type: "DELETE_PRODUCT", productId });
     setShowPopup(false);
   };
