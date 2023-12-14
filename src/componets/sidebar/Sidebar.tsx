@@ -31,6 +31,15 @@ export const Sidebar = () => {
           <NavLink to='/products' className={s.sidebarBtn}>
             <Button className={s.sidebarBtn}>Products</Button>
           </NavLink>
+          <Button
+            className={s.sidebarBtn}
+            onClick={() => {
+              alert("Local storage cleared");
+              localStorage.clear();
+            }}
+          >
+            Clear local storage
+          </Button>
         </div>
       </div>
       <Outlet />
