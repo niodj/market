@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { orderReducer, productReducer } from "./reducers";
+import { orderReducer, productReducer, serviceStateReducer } from "./reducers";
 
 
 //import thunk, { ThunkDispatch } from "redux-thunk";
@@ -152,10 +152,30 @@ export const orders = [
   },
 ];
 
+export type serviceStateType = {
+  popupShow: boolean;
+  popupConfirmId: number | undefined;
+  popupActionType: string | undefined;
+  popupTitle: string | undefined;
+  popupImage: string | undefined;
+  popupStatus: string | undefined;
+  searchTerm: string | undefined;
+};
+export const serviceState: serviceStateType = {
+  popupShow: false,
+  popupConfirmId: undefined,
+  popupActionType: "",
+  popupTitle: "",
+  popupImage: "",
+  popupStatus: undefined,
+  searchTerm: "",
+};
+
 
 export const rootReducer = combineReducers({
   product: productReducer,
   orders: orderReducer,
+  serviceState: serviceStateReducer
 });
 
 export type StoreType = ReturnType<typeof rootReducer>;

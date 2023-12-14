@@ -6,10 +6,12 @@ import { Routes, Route } from "react-router-dom";
 
 import  { useState } from "react";
 import { Orders } from "./componets/orders/Orders";
+
 function App() {
+
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  console.log(searchTerm);
+
 
   return (
     <div className={s.wrapper}>

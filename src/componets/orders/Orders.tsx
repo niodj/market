@@ -9,56 +9,81 @@ import Button from "react-bootstrap/Button";
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
   const products = useSelector((state: StoreType) => state.product);
+  const serviceState = useSelector((state: StoreType) => state.serviceState);
   const dispatch = useDispatch();
+
   const [showProduct, setShowProduct] = useState<number>();
-  //////////popup/////
-  const [popupShow, setPopupShow] = useState(false);
-  const [popupConfirmId, setPopupConfirmId] = useState<number>();
-  const [popupActionType, setPopupActionType] = useState("");
-  const [popupTitle, setPopupTitle] = useState("");
-  const [popupImage, setPopupImage] = useState<string|undefined>("");
-  const [popupStatus, setPopupStatus] = useState<boolean | undefined>();
-
-
 
 
   const handleModalDeleteOrder = (orderId: number) => {
-    setPopupActionType("DELETE_ORDER");
-    setPopupTitle(`Delete order #${orderId}?`)
-    setPopupConfirmId(orderId);
-    setPopupShow(true);
+    dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
+    dispatch({type: "SET_POPUP_TITLE", popupTitle: `Delete order #${orderId}?`});
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: true })
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: orderId });
   };
+
+
+
   const handleModalDeleteProduct = (productId: number) => {
-    setPopupActionType("DELETE_PRODUCT");
-    setPopupTitle(
-      `Delete product ${
+    dispatch({type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER"});
+
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: `Delete product ${
         products.find((product) => product.id === productId)?.title
       }  sn: ${
         products.find((product) => product.id === productId)?.serialNumber
-      } ?`
-    );
+      } ?`,
+    });
 
-    setPopupImage(products.find((product) => product.id === productId)?.photo);
-    setPopupStatus(products.find((product) => product.id === productId)?.status);
-    setPopupConfirmId(productId);
-    setPopupShow(true);
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: products.find((product) => product.id === productId)?.photo,
+    });
+
+dispatch({
+  type: "SET_POPUP_IMAGE",
+  popupStatus: products.find((product) => product.id === productId)?.status,
+});
+
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
+     dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
   };
 
   const modalConfirmed = ()=> {
-    if (popupActionType === "DELETE_ORDER") {
-      dispatch({ type: "DELETE_ORDER", orderId: popupConfirmId });
-      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: popupConfirmId });
+    if (serviceState.popupActionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
+      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId,
+      });
     }
 
 
-    if (popupActionType === "DELETE_PRODUCT")
-      dispatch({ type: "DELETE_PRODUCT", productId: popupConfirmId });
-      setPopupShow(false);
-    setPopupActionType("");
-    setPopupTitle('');
-    setPopupImage("")
-    setPopupStatus(undefined);
-    setPopupConfirmId(undefined);
+    if (serviceState.popupActionType === "DELETE_PRODUCT")
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
+      dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
+
+        dispatch({
+          type: "SET_POPUP_TITLE",
+          popupTitle: ''
+        });
+
+      dispatch({
+        type: "SET_POPUP_IMAGE",
+        popupImage: ""
+      });
+
+   dispatch({
+     type: "SET_POPUP_IMAGE",
+     popupStatus: undefined
+   });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
 
@@ -93,11 +118,11 @@ export const Orders = (props: any) => {
   return (
     <div className={s.wrapper}>
       <Popup
-        popupStatus={popupStatus}
-        popupImage={popupImage}
-        title={popupTitle}
-        showPopup={popupShow}
-        onHide={() => setPopupShow(false)}
+        popupStatus={serviceState.popupStatus}
+        popupImage={serviceState.popupImage}
+        title={serviceState.popupTitle}
+        showPopup={serviceState.popupShow}
+        onHide={() => dispatch({ type: "SET_POPUP_SHOW", popupShow: false })}
         onConfirm={() => modalConfirmed()}
       />
 

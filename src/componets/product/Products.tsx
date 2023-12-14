@@ -1,4 +1,4 @@
-// Products.tsx
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
@@ -9,22 +9,101 @@ import Button from "react-bootstrap/Button";
 export const Products = (props:any) => {
   const dispatch = useDispatch();
   const products = useSelector((state: StoreType) => state.product);
-
+  const serviceState = useSelector((state: StoreType) => state.serviceState);
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
 
-  //////////popup/////
-  const [showPopup, setShowPopup] = useState(false);
-  const [productId, setProductId] = useState<number>();
 
-  const handleModal = (productId: number) => {
-    setProductId(productId);
-    setShowPopup(true);
+const handleModalDeleteProduct = (productId: number) => {
+  dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
+
+  dispatch({
+    type: "SET_POPUP_TITLE",
+    popupTitle: `Delete product ${
+      products.find((product) => product.id === productId)?.title
+    }  sn: ${
+      products.find((product) => product.id === productId)?.serialNumber
+    } ?`,
+  });
+
+  dispatch({
+    type: "SET_POPUP_IMAGE",
+    popupImage: products.find((product) => product.id === productId)?.photo,
+  });
+
+  dispatch({
+    type: "SET_POPUP_PRODUCT_STATUS",
+    popupStatus: products.find((product) => product.id === productId)?.status,
+  });
+
+  dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
+  dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
+};
+
+  const modalConfirmed = () => {
+    if (serviceState.popupActionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
+      dispatch({
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
+      });
+    }
+
+    if (serviceState.popupActionType === "DELETE_PRODUCT")
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
 
-  //////////popup/////
+  const onModalReject = () => {
+  dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
 
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+  };
+
+
+  ///////FILTER
   const types = Array.from(new Set(products.map((product) => product.type)));
   const specifications = Array.from(
     new Set(products.map((product) => product.specification))
@@ -40,18 +119,17 @@ export const Products = (props:any) => {
     return typeMatch && specificationMatch && searchMatch;
   });
 
-   const handleDelete = () => {
-    dispatch({ type: "DELETE_PRODUCT", productId });
-    setShowPopup(false);
-  };
+//////////
 
   return (
     <div className={s.productsContainer}>
       <Popup
-        title={`Are you sure you want delete Produtc №${productId}`}
-        showPopup={showPopup}
-        onHide={() => setShowPopup(false)}
-        onConfirm={() => handleDelete()}
+        popupStatus={serviceState.popupStatus}
+        popupImage={serviceState.popupImage}
+        title={serviceState.popupTitle}
+        showPopup={serviceState.popupShow}
+        onHide={() => onModalReject()}
+        onConfirm={() => modalConfirmed()}
       />
       <div className={s.titleAndfilters}>
         <span>
@@ -134,7 +212,7 @@ export const Products = (props:any) => {
                 <td>
                   <Button
                     variant='danger'
-                    onClick={() => handleModal(product.id)}
+                    onClick={() => handleModalDeleteProduct(product.id)}
                   >
                     Delete
                   </Button>
