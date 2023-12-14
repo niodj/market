@@ -1,13 +1,14 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-
+import s from "./popup.module.css"
 type PopupPropsType = {
-  showPopup: boolean;
+  popupStatus?: boolean;
+  popupImage?: string;
+  title: string;
   onHide: () => void;
   onConfirm: () => void;
-  title: string;
-
-}
+  showPopup: boolean;
+};
 
 export const Popup =(props:PopupPropsType) => {
   return (
@@ -15,7 +16,15 @@ export const Popup =(props:PopupPropsType) => {
       <Modal.Header closeButton>
         <Modal.Title>Confirm delete {props.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body> {props.title} </Modal.Body>
+      <Modal.Body>
+        <div>status:</div>{props.popupStatus ? (
+          <div className={s.statusTextTrue}>Free</div>
+        ) : (
+          <div className={s.statusTextFalse}>On repear</div>
+        )}
+        {<img src={props.popupImage} className={s.image}></img>}
+        {props.title} {props.popupStatus}
+      </Modal.Body>
       <Modal.Footer>
         <Button variant='primary' onClick={props.onConfirm}>
           Yes

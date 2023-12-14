@@ -12,36 +12,53 @@ export const Orders = (props: any) => {
   const dispatch = useDispatch();
   const [showProduct, setShowProduct] = useState<number>();
   //////////popup/////
-  const [showPopup, setShowPopup] = useState(false);
-  const [confirmId, setconfirmId] = useState<number>();
-  const [actionType, setActionType] = useState("");
+  const [popupShow, setPopupShow] = useState(false);
+  const [popupConfirmId, setPopupConfirmId] = useState<number>();
+  const [popupActionType, setPopupActionType] = useState("");
   const [popupTitle, setPopupTitle] = useState("");
+  const [popupImage, setPopupImage] = useState<string|undefined>("");
+  const [popupStatus, setPopupStatus] = useState<boolean | undefined>();
+
+
+
 
   const handleModalDeleteOrder = (orderId: number) => {
-    setActionType('DELETE_ORDER')
+    setPopupActionType("DELETE_ORDER");
     setPopupTitle(`Delete order #${orderId}?`)
-    setconfirmId(orderId);
-    setShowPopup(true);
+    setPopupConfirmId(orderId);
+    setPopupShow(true);
   };
   const handleModalDeleteProduct = (productId: number) => {
-    setActionType("DELETE_PRODUCT");
-    setPopupTitle(`Delete product #${productId}?`);
-    setconfirmId(productId);
-    setShowPopup(true);
+    setPopupActionType("DELETE_PRODUCT");
+    setPopupTitle(
+      `Delete product ${
+        products.find((product) => product.id === productId)?.title
+      }  sn: ${
+        products.find((product) => product.id === productId)?.serialNumber
+      } ?`
+    );
+
+    setPopupImage(products.find((product) => product.id === productId)?.photo);
+    setPopupStatus(products.find((product) => product.id === productId)?.status);
+    setPopupConfirmId(productId);
+    setPopupShow(true);
   };
 
   const modalConfirmed = ()=> {
-    if (actionType === "DELETE_ORDER") {
-      dispatch({ type: "DELETE_ORDER", orderId: confirmId })
-      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: confirmId });
+    if (popupActionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: popupConfirmId });
+      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: popupConfirmId });
     }
 
 
-    if(actionType==="DELETE_PRODUCT")dispatch({ type: "DELETE_PRODUCT", productId: confirmId });
-      setShowPopup(false);
-    setActionType("");
+    if (popupActionType === "DELETE_PRODUCT")
+      dispatch({ type: "DELETE_PRODUCT", productId: popupConfirmId });
+      setPopupShow(false);
+    setPopupActionType("");
     setPopupTitle('');
-    setconfirmId(undefined);
+    setPopupImage("")
+    setPopupStatus(undefined);
+    setPopupConfirmId(undefined);
   };
 
 
@@ -76,9 +93,11 @@ export const Orders = (props: any) => {
   return (
     <div className={s.wrapper}>
       <Popup
+        popupStatus={popupStatus}
+        popupImage={popupImage}
         title={popupTitle}
-        showPopup={showPopup}
-        onHide={() => setShowPopup(false)}
+        showPopup={popupShow}
+        onHide={() => setPopupShow(false)}
         onConfirm={() => modalConfirmed()}
       />
 
