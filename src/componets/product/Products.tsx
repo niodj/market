@@ -31,10 +31,10 @@ const handleModalDeleteProduct = (productId: number) => {
     popupImage: products.find((product) => product.id === productId)?.photo,
   });
 
-  dispatch({
-    type: "SET_POPUP_PRODUCT_STATUS",
-    popupStatus: products.find((product) => product.id === productId)?.status,
-  });
+dispatch({
+  type: "SET_POPUP_STATUS",
+  popupStatus: products.find((product) => product.id === productId)?.status,
+});
 
   dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
   dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
@@ -71,7 +71,7 @@ const handleModalDeleteProduct = (productId: number) => {
     });
 
     dispatch({
-      type: "SET_POPUP_IMAGE",
+      type: "SET_POPUP_STATUS",
       popupStatus: undefined,
     });
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
