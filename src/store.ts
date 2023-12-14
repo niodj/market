@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { orderReducer, productReducer, serviceStateReducer } from "./reducers";
 
+import { Middleware } from "redux";
 
 //import thunk, { ThunkDispatch } from "redux-thunk";
 
@@ -171,6 +172,17 @@ export const serviceState: serviceStateType = {
   searchTerm: "",
 };
 
+    // Сохраняем состояние в localStorage
+export const localStorageMiddleware: Middleware =
+  (store) => (next) => (action) => {
+    const result = next(action);
+    localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+    return result;
+  };
+const persistedState = localStorage.getItem("reduxState")
+  ? JSON.parse(localStorage.getItem("reduxState") || "{}")
+  : {};
+//////////////////////////////////////////////////////////
 
 export const rootReducer = combineReducers({
   product: productReducer,
@@ -180,7 +192,13 @@ export const rootReducer = combineReducers({
 
 export type StoreType = ReturnType<typeof rootReducer>;
 
-export const store = createStore(rootReducer); //, applyMiddleware(thunk)
+
+export const store = createStore(
+  rootReducer,
+  persistedState,
+  applyMiddleware(localStorageMiddleware)
+);
+
 
 //если надо что то запускать при изменениии стора
 store.subscribe(() => {
