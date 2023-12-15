@@ -1,3 +1,9 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
 /*!
 	Copyright (c) 2018 Jed Watson.
 	Licensed under the MIT License (MIT), see
@@ -55,7 +61,7 @@
  */
 
 /**
- * @remix-run/router v1.14.0-pre.1
+ * @remix-run/router v1.14.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -66,7 +72,7 @@
  */
 
 /**
- * React Router DOM v6.21.0-pre.3
+ * React Router DOM v6.21.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -77,7 +83,7 @@
  */
 
 /**
- * React Router v6.21.0-pre.3
+ * React Router v6.21.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -85,4 +91,13 @@
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
+ */
+
+/** @license React v16.14.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
