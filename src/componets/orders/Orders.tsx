@@ -3,7 +3,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
-import { Popup } from "../universalPopup/popup";
+import { Popup } from "../universalPopup/Popup";
 import Button from "react-bootstrap/Button";
 
 export const Orders = (props: any) => {
@@ -14,20 +14,24 @@ export const Orders = (props: any) => {
 
   const [showProduct, setShowProduct] = useState<number>();
 
-
-
   const handleModalDeleteOrder = (orderId: number) => {
-
-    dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
-    dispatch({type: "SET_POPUP_TITLE", popupTitle: `Delete order #${orderId}?`});
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: true })
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "DELETE_ORDER",
+    });
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: `Delete order #${orderId}?`,
+    });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: orderId });
   };
 
-
-
   const handleModalDeleteProduct = (productId: number) => {
-    dispatch({type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER"});
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "DELETE_ORDER",
+    });
 
     dispatch({
       type: "SET_POPUP_TITLE",
@@ -43,56 +47,74 @@ export const Orders = (props: any) => {
       popupImage: products.find((product) => product.id === productId)?.photo,
     });
 
-
-dispatch({
-  type: "SET_POPUP_STATUS",
-  popupStatus: products.find((product) => product.id === productId)?.status ,
-});
-
-
-
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: products.find((product) => product.id === productId)?.status,
+    });
 
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
-     dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
   };
 
-  const modalConfirmed = ()=> {
+  const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
       dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId,
+      dispatch({
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
       });
     }
-
 
     if (serviceState.popupActionType === "DELETE_PRODUCT")
       dispatch({
         type: "DELETE_PRODUCT",
         productId: serviceState.popupConfirmId,
       });
-      dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
       popupActionType: "",
     });
 
-        dispatch({
-          type: "SET_POPUP_TITLE",
-          popupTitle: ''
-        });
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
 
-      dispatch({
-        type: "SET_POPUP_IMAGE",
-        popupImage: ""
-      });
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
 
-   dispatch({
-     type: "SET_POPUP_STATUS",
-     popupStatus: undefined
-   });
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: undefined,
+    });
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
+const onModalReject = () => {
+  dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+  dispatch({
+    type: "SET_POPUP_ACTION_TYPE",
+    popupActionType: "",
+  });
 
+  dispatch({
+    type: "SET_POPUP_TITLE",
+    popupTitle: "",
+  });
 
+  dispatch({
+    type: "SET_POPUP_IMAGE",
+    popupImage: "",
+  });
+
+  dispatch({
+    type: "SET_POPUP_IMAGE",
+    popupStatus: undefined,
+  });
+  dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+};
   /////End modal
 
   const handlerProductShow = (order: number) => {
@@ -130,7 +152,7 @@ dispatch({
         popupImage={serviceState.popupImage}
         title={serviceState.popupTitle}
         showPopup={serviceState.popupShow}
-        onHide={() => dispatch({ type: "SET_POPUP_SHOW", popupShow: false })}
+        onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
 
@@ -179,8 +201,7 @@ dispatch({
                           .split(" ")[0]
                           .split("-")
                           .reverse()
-                          .join(" / ")
-                          }
+                          .join(" / ")}
                     </div>
                   </td>
                   <td>

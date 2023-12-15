@@ -2,7 +2,7 @@ import React from "react";
 import { Time } from "./Time";
 import s from "./TopMenu.module.css";
 import { useDispatch } from "react-redux";
-import { type } from "os";
+
 
 
 

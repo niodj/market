@@ -11,7 +11,7 @@ type PopupPropsType = {
 };
 
 export const Popup = (props: PopupPropsType) => {
- 
+
   return (
     <Modal show={props.showPopup} onHide={props.onHide}>
       <Modal.Header closeButton>
@@ -20,7 +20,11 @@ export const Popup = (props: PopupPropsType) => {
       <Modal.Body>
         {props.popupStatus !== undefined ? (
           <div>
-            <img src={props.popupImage} className={s.image}></img>
+            <img
+              src={props.popupImage}
+              className={s.image}
+              alt='Popup Image'
+            ></img>
             {props.popupStatus ? (
               <div className={s.statusTextTrue}>free</div>
             ) : (

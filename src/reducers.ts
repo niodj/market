@@ -40,8 +40,7 @@ export const productReducer = (state: ProductType[] = products, action: RootActi
 
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
-    case "ADD_PRODUCT":
-      return [
+    case "ADD_PRODUCT": return [
         {
           ...state[0],
           order: action.orderId,

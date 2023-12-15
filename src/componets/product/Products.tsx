@@ -1,45 +1,47 @@
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
-import s from "./Products.module.css"
-import { Popup } from "../universalPopup/popup";
+import s from "./Products.module.css";
+import { Popup } from "../universalPopup/Popup";
 import Button from "react-bootstrap/Button";
 
-export const Products = (props:any) => {
+export const Products = (props: any) => {
   const dispatch = useDispatch();
   const products = useSelector((state: StoreType) => state.product);
   const serviceState = useSelector((state: StoreType) => state.serviceState);
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
- const orders = useSelector((state: StoreType) => state.orders);
+  const orders = useSelector((state: StoreType) => state.orders);
 
-const handleModalDeleteProduct = (productId: number) => {
-  dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "DELETE_ORDER" });
+  const handleModalDeleteProduct = (productId: number) => {
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "DELETE_ORDER",
+    });
 
-  dispatch({
-    type: "SET_POPUP_TITLE",
-    popupTitle: `Delete product ${
-      products.find((product) => product.id === productId)?.title
-    }  sn: ${
-      products.find((product) => product.id === productId)?.serialNumber
-    } ?`,
-  });
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: `Delete product ${
+        products.find((product) => product.id === productId)?.title
+      }  sn: ${
+        products.find((product) => product.id === productId)?.serialNumber
+      } ?`,
+    });
 
-  dispatch({
-    type: "SET_POPUP_IMAGE",
-    popupImage: products.find((product) => product.id === productId)?.photo,
-  });
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: products.find((product) => product.id === productId)?.photo,
+    });
 
-dispatch({
-  type: "SET_POPUP_STATUS",
-  popupStatus: products.find((product) => product.id === productId)?.status,
-});
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: products.find((product) => product.id === productId)?.status,
+    });
 
-  dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
-  dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
-};
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
+  };
 
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
@@ -78,9 +80,8 @@ dispatch({
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
-
   const onModalReject = () => {
-  dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
       popupActionType: "",
@@ -103,7 +104,6 @@ dispatch({
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
-
   ///////FILTER
   const types = Array.from(new Set(products.map((product) => product.type)));
   const specifications = Array.from(
@@ -122,7 +122,7 @@ dispatch({
     return typeMatch && specificationMatch && searchMatch;
   });
 
-//////////
+  //////////
 
   return (
     <div className={s.productsContainer}>
@@ -254,5 +254,3 @@ dispatch({
     </div>
   );
 };
-
-
