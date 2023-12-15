@@ -10,6 +10,7 @@ export const Products = (props:any) => {
   const dispatch = useDispatch();
   const products = useSelector((state: StoreType) => state.product);
   const serviceState = useSelector((state: StoreType) => state.serviceState);
+
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
  const orders = useSelector((state: StoreType) => state.orders);
@@ -114,8 +115,10 @@ dispatch({
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =
-      !props.searchTerm ||
-      product.title.toLowerCase().includes(props.searchTerm.toLowerCase());
+      !serviceState.searchTerm ||
+      product.title
+        .toLowerCase()
+        .includes(serviceState.searchTerm.toLowerCase());
     return typeMatch && specificationMatch && searchMatch;
   });
 

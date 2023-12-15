@@ -2,6 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import s from "./Sidebar.module.css";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
+import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { StoreType } from "../../store";
 
 
 interface NavLinkProps {
@@ -9,6 +13,17 @@ interface NavLinkProps {
 }
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
+  // //////////dark mode
+  // const currentHour = new Date().getHours();
+  // useEffect(() => {
+  //   currentHour >= 19 || currentHour < 6
+  //     ? dispatch({ type: "NIGHT_NOW" })
+  //     : dispatch({ type: "DAY_NOW" });
+  // }, []);
+  const dark = useSelector((state: StoreType) => state.serviceState.dark);
+  ///////////////
+
   return (
     <motion.div
       className={s.wrapper}
@@ -17,6 +32,20 @@ export const Sidebar = () => {
       exit={{ opacity: 0 }}
     >
       <div className={s.avatarAndLinks}>
+        <div className={s.themeBlock}>
+          <span>dark</span>
+          <BootstrapSwitchButton
+
+            width={15}
+            height={30}
+
+            onstyle='secondary'
+            onChange={() => {
+              dispatch({ type: "CHANGE_THEME" })
+            }}
+          />
+        </div>
+
         <div className={s.avatarAndSettings}>
           <img
             src='https://i.pinimg.com/474x/c2/88/dd/c288dd202b5f578cb2d492d606b0b522.jpg'

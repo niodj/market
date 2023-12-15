@@ -1,19 +1,30 @@
 import React from "react";
 import { Time } from "./Time";
 import s from "./TopMenu.module.css";
+import { useDispatch } from "react-redux";
+import { type } from "os";
+
 
 
 export const TopMenu = (props: any) => {
+
+const dispatch = useDispatch();
+
   return (
     <div className={s.wrapper}>
-          <img
-          src='https://www.freeiconspng.com/download/49594'
-          className={s.logo}
-          alt='Logo'
-        ></img>
+      <img
+        src='https://www.freeiconspng.com/download/49594'
+        className={s.logo}
+        alt='Logo'
+      ></img>
 
-      <input placeholder='search' onChange={(e) => props.setSearchTerm(e.currentTarget.value)} className={s.searchline}
+      <input
+        placeholder='search'
+        onChange={(e) =>          dispatch({ type: "SEARCH_TERM", searchTerm: e.currentTarget.value })
+        }
+        className={s.searchline}
       />
+
       <Time />
     </div>
   );

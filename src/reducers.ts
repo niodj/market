@@ -11,7 +11,10 @@ export type RootAction =
   | SetPopupActionType
   | SetPopupTitle
   | SetPopupImage
-  | SetPopupProductStatus;
+  | SetPopupProductStatus
+  | LoadingAction
+  | IsDarkAction
+  | SetSearchTerm;
 
 
 
@@ -108,6 +111,17 @@ export type SetPopupProductStatus = {
   type: "SET_POPUP_STATUS";
   popupStatus: string | undefined;
 };
+export type LoadingAction = {
+  type: "LOADING"
+};
+export type IsDarkAction = {
+  type: "CHANGE_THEME"
+};
+export type SetSearchTerm = {
+  type: "SEARCH_TERM";
+  searchTerm: string | undefined;
+};
+
 export const serviceStateReducer = (state: serviceStateType = serviceState, action: RootAction): serviceStateType=> {
   switch (action.type) {
     case "SET_POPUP_SHOW":
@@ -121,7 +135,13 @@ export const serviceStateReducer = (state: serviceStateType = serviceState, acti
     case "SET_POPUP_IMAGE":
       return { ...state, popupImage: action.popupImage };
     case "SET_POPUP_STATUS":
-      return { ...state, popupStatus: action.popupStatus};
+      return { ...state, popupStatus: action.popupStatus };
+    case "LOADING":
+      return { ...state, isLoading: true };
+    case "CHANGE_THEME":
+      return { ...state, dark: !state.dark };
+    case "SEARCH_TERM":
+      return { ...state, searchTerm: action.searchTerm };
 
     default:
       return state;

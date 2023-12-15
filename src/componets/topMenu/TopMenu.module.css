@@ -6,7 +6,7 @@ height: 80px;
     justify-content: space-around;
     align-items: center;
  padding: 50px;
-     border-bottom: solid black;
+     border-bottom: solid rgb(109, 107, 107);
     }
 
 .searchWrapper input {

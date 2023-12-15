@@ -9,21 +9,21 @@
  .productsTable {
   width: 100%;
     border-collapse: separate;
-   border-top: 1px solid #dddddd;
+   border: 1px solid #dddddd;
 }
 
 .productsTable th,
 .productsTable td {
   padding: 4px;
   text-align: center;
-  background-color: #ffffff;
+border: 1px solid #dddddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 
 .productsTable th {
-  background-color: #f2f2f2;
+
 }
 
 .productsTableWrapper {

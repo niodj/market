@@ -116,8 +116,10 @@ dispatch({
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =
-      !props.searchTerm ||
-      product.title.toLowerCase().includes(props.searchTerm.toLowerCase());
+      !serviceState.searchTerm ||
+      product.title
+        .toLowerCase()
+        .includes(serviceState.searchTerm.toLowerCase());
     return typeMatch && specificationMatch && searchMatch;
   });
 

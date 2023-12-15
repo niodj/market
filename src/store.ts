@@ -161,6 +161,9 @@ export type serviceStateType = {
   popupImage: string | undefined;
   popupStatus: string | undefined;
   searchTerm: string | undefined;
+  dark: boolean;
+  isLoading: boolean;
+
 };
 export const serviceState: serviceStateType = {
   popupShow: false,
@@ -170,6 +173,9 @@ export const serviceState: serviceStateType = {
   popupImage: "",
   popupStatus: undefined,
   searchTerm: "",
+  dark: false,
+  isLoading: false
+  
 };
 
     // Сохраняем состояние в localStorage
