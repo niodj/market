@@ -2,10 +2,7 @@
 .wrapper{
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-=======
-    transition: background-color 3s, color 3s; 
->>>>>>> develop
+    transition: background-color 3s, color 3s;
 
 }
 .wrapper.dark{

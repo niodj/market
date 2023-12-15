@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
-<<<<<<< HEAD
-import s from "./Products.module.css"
 
-=======
 import s from "./Products.module.css";
-import { Popup } from "../universalPopup/Popup";
+
 import Button from "react-bootstrap/Button";
->>>>>>> develop
+import { Popup } from "../universalPopup/Popup";
+
+
 
 export const Products = (props: any) => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ export const Products = (props: any) => {
   const handleModalDeleteProduct = (productId: number) => {
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
-      popupActionType: "DELETE_ORDER",
+      popupActionType: "DELETE_PRODUCT",
     });
 
     dispatch({
@@ -102,10 +101,11 @@ export const Products = (props: any) => {
       popupImage: "",
     });
 
-    dispatch({
-      type: "SET_POPUP_IMAGE",
-      popupStatus: undefined,
-    });
+      dispatch({
+        type: "SET_POPUP_STATUS",
+        popupStatus: undefined,
+      });
+
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
@@ -131,8 +131,6 @@ export const Products = (props: any) => {
 
   return (
     <div className={s.productsContainer}>
-<<<<<<< HEAD
-=======
       <Popup
         popupStatus={serviceState.popupStatus}
         popupImage={serviceState.popupImage}
@@ -141,7 +139,6 @@ export const Products = (props: any) => {
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
->>>>>>> develop
       <div className={s.titleAndfilters}>
         <span>
           <h2>Products / {products.length}</h2>
@@ -202,11 +199,7 @@ export const Products = (props: any) => {
                 <td>
                   {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
                 </td>
-<<<<<<< HEAD
-                <td>
-=======
                 <td className={s.dateCellBig}>
->>>>>>> develop
                   <div>from {product.guarantee.start.split(" ")[0]}</div>
                   <div> to {product.guarantee.end.split(" ")[0]}</div>
                 </td>
@@ -216,20 +209,13 @@ export const Products = (props: any) => {
                   {product.price.map((price, index) => (
                     <div
                       key={index}
-<<<<<<< HEAD
-                      className={price.isDefault === 1 && s.defaultPrice}
-=======
                       className={price.isDefault ? s.defaultPrice : ""}
->>>>>>> develop
                     >
                       {price.value} {price.symbol}
                     </div>
                   ))}
                 </td>
                 <td>{product.order}</td>
-<<<<<<< HEAD
-                <td>{product.date.split(" ")[0]}</td>
-=======
                 <td className={s.dateCell}>
                   <div className={s.smallDate}>
                     {product.date &&
@@ -250,7 +236,6 @@ export const Products = (props: any) => {
                         .join(" / ")}
                   </div>
                 </td>
->>>>>>> develop
                 <td>
                   {
                     orders.find((order) => order.id === product.order)

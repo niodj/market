@@ -35,11 +35,7 @@ export const products: ProductType[] = [
     isNew: 1,
     status: true,
     photo: "https://m.media-amazon.com/images/I/51eWw4k9MTL._AC_US40_.jpg",
-<<<<<<< HEAD
-    title: "Product 1",
-=======
     title: "Samsung monitor 22",
->>>>>>> develop
     type: "Monitors",
     specification: "Specification 1",
     guarantee: {
@@ -58,11 +54,6 @@ export const products: ProductType[] = [
     serialNumber: 1234,
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
-<<<<<<< HEAD
-    title: "Product 1",
-    type: "Printer",
-    status: false,
-=======
     title: "HP 3110",
     type: "Printer",
     status: false,
@@ -107,7 +98,6 @@ export const products: ProductType[] = [
     title: "Acer 24",
     type: "Monitors",
     status: false,
->>>>>>> develop
     specification: "Specification 2",
     guarantee: {
       start: "2017-06-29 12:09:33",
@@ -185,7 +175,7 @@ export const serviceState: serviceStateType = {
   searchTerm: "",
   dark: false,
   isLoading: false
-  
+
 };
 
     // Сохраняем состояние в localStorage

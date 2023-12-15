@@ -1,9 +1,5 @@
 .productsContainer {
-<<<<<<< HEAD
-  padding: 20px;
-=======
   padding: 20px 0px 0px 0px ;
->>>>>>> develop
 }
 
 .filterSection {
@@ -12,26 +8,15 @@
 
  .productsTable {
   width: 100%;
-<<<<<<< HEAD
-  border-collapse: separate;
-  border-spacing: 8px;
-=======
     border-collapse: separate;
    border: 1px solid #dddddd;
->>>>>>> develop
 }
 
 .productsTable th,
 .productsTable td {
-<<<<<<< HEAD
-  padding: 15px;
-  text-align: center;
-  background-color: #ffffff;
-=======
   padding: 4px;
   text-align: center;
 border: 1px solid #dddddd;
->>>>>>> develop
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -47,13 +32,8 @@ border: 1px solid #dddddd;
 
 .statusMarkTrue,
 .statusMarkFalse {
-<<<<<<< HEAD
-  width: 20px;
-  height: 20px;
-=======
   width: 15px;
   height: 15px;
->>>>>>> develop
   border-radius: 50%;
 
 }
@@ -94,8 +74,6 @@ border: 1px solid #dddddd;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-<<<<<<< HEAD
-=======
 }
 
 .dateCell{
@@ -108,5 +86,4 @@ border: 1px solid #dddddd;
 
 .smallDate{
   font-size: small;
->>>>>>> develop
 }
