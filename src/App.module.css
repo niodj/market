@@ -1,5 +1,15 @@
+
 .wrapper{
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
+=======
+    transition: background-color 3s, color 3s; 
+>>>>>>> develop
+
+}
+.wrapper.dark{
+    background-color: black;
+    color:wheat
 
 }

@@ -1,19 +1,115 @@
-// Products.tsx
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
+<<<<<<< HEAD
 import s from "./Products.module.css"
 
+=======
+import s from "./Products.module.css";
+import { Popup } from "../universalPopup/Popup";
+import Button from "react-bootstrap/Button";
+>>>>>>> develop
 
-export const Products = () => {
+export const Products = (props: any) => {
   const dispatch = useDispatch();
-  const products = useSelector<StoreType, ProductType[]>(
-    (state) => state.product
-  );
+  const products = useSelector((state: StoreType) => state.product);
+  const serviceState = useSelector((state: StoreType) => state.serviceState);
 
-  const [filterType, setFilterType] = useState<string>("");
-  const [filterSpecification, setFilterSpecification] = useState<string>("");
+  const [filterType, setFilterType] = useState<string>();
+  const [filterSpecification, setFilterSpecification] = useState<string>();
+  const orders = useSelector((state: StoreType) => state.orders);
 
+  const handleModalDeleteProduct = (productId: number) => {
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "DELETE_ORDER",
+    });
+
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: `Delete product ${
+        products.find((product) => product.id === productId)?.title
+      }  sn: ${
+        products.find((product) => product.id === productId)?.serialNumber
+      } ?`,
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: products.find((product) => product.id === productId)?.photo,
+    });
+
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: products.find((product) => product.id === productId)?.status,
+    });
+
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
+  };
+
+  const modalConfirmed = () => {
+    if (serviceState.popupActionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
+      dispatch({
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
+      });
+    }
+
+    if (serviceState.popupActionType === "DELETE_PRODUCT")
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+  };
+
+  const onModalReject = () => {
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
+
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+  };
+
+  ///////FILTER
   const types = Array.from(new Set(products.map((product) => product.type)));
   const specifications = Array.from(
     new Set(products.map((product) => product.specification))
@@ -23,17 +119,29 @@ export const Products = () => {
     const typeMatch = !filterType || product.type === filterType;
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
-
-    return typeMatch && specificationMatch;
+    const searchMatch =
+      !serviceState.searchTerm ||
+      product.title
+        .toLowerCase()
+        .includes(serviceState.searchTerm.toLowerCase());
+    return typeMatch && specificationMatch && searchMatch;
   });
 
-const handleDelete = (id: number) => {
-  dispatch({ type: "DELETE_PRODUCT", payload: id });
-};
-
+  //////////
 
   return (
     <div className={s.productsContainer}>
+<<<<<<< HEAD
+=======
+      <Popup
+        popupStatus={serviceState.popupStatus}
+        popupImage={serviceState.popupImage}
+        title={serviceState.popupTitle}
+        showPopup={serviceState.popupShow}
+        onHide={() => onModalReject()}
+        onConfirm={() => modalConfirmed()}
+      />
+>>>>>>> develop
       <div className={s.titleAndfilters}>
         <span>
           <h2>Products / {products.length}</h2>
@@ -94,7 +202,11 @@ const handleDelete = (id: number) => {
                 <td>
                   {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
                 </td>
+<<<<<<< HEAD
                 <td>
+=======
+                <td className={s.dateCellBig}>
+>>>>>>> develop
                   <div>from {product.guarantee.start.split(" ")[0]}</div>
                   <div> to {product.guarantee.end.split(" ")[0]}</div>
                 </td>
@@ -104,18 +216,55 @@ const handleDelete = (id: number) => {
                   {product.price.map((price, index) => (
                     <div
                       key={index}
+<<<<<<< HEAD
                       className={price.isDefault === 1 && s.defaultPrice}
+=======
+                      className={price.isDefault ? s.defaultPrice : ""}
+>>>>>>> develop
                     >
                       {price.value} {price.symbol}
                     </div>
                   ))}
                 </td>
                 <td>{product.order}</td>
+<<<<<<< HEAD
                 <td>{product.date.split(" ")[0]}</td>
+=======
+                <td className={s.dateCell}>
+                  <div className={s.smallDate}>
+                    {product.date &&
+                      product.date
+                        .split(" ")[0]
+                        .split("-")
+                        .reverse()
+                        .slice(0, 2)
+                        .join(" / ")}
+                  </div>
+
+                  <div>
+                    {product.date &&
+                      product.date
+                        .split(" ")[0]
+                        .split("-")
+                        .reverse()
+                        .join(" / ")}
+                  </div>
+                </td>
+>>>>>>> develop
                 <td>
-                  <button onClick={() => handleDelete(product.id)}>
+                  {
+                    orders.find((order) => order.id === product.order)
+                      ?.description
+                  }
+                </td>
+
+                <td>
+                  <Button
+                    variant='danger'
+                    onClick={() => handleModalDeleteProduct(product.id)}
+                  >
                     Delete
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -125,5 +274,3 @@ const handleDelete = (id: number) => {
     </div>
   );
 };
-
-

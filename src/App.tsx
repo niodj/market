@@ -1,23 +1,18 @@
-import { Sidebar } from "./componets/sidebar/Sidebar";
 import { TopMenu } from "./componets/topMenu/TopMenu";
 import s from "./App.module.css";
-import { Products } from "./componets/product/Products";
-import { Routes, Route } from "react-router-dom";
-import { Orders } from "./componets/orders/Orders";
-
+import { AnimatedRoutes } from "./AnimatedRoutes";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { StoreType } from "./store";
+import { Button } from "react-bootstrap";
 function App() {
-  return (
-    <div className={s.wrapper}>
-      <TopMenu />
-         <Routes>
-        <Route path='/' element={<Sidebar />}>
-          <Route index element={<div>start</div>} />
-          <Route path='/products' element={<Products />} />
-          <Route path='/orders' element={<Orders />} />
-          <Route path='*' element={<div>404 No page</div>} />
-        </Route>
-      </Routes>
 
+  const dark = useSelector((state: StoreType) => state.serviceState.dark);
+  return (
+    <div className={`${s.wrapper} ${dark ? s.dark : ""}`}>
+
+      <TopMenu />
+      <AnimatedRoutes />
     </div>
   );
 }

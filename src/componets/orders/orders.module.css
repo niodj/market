@@ -1,0 +1,119 @@
+
+.wrapper {
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+  padding: 20px;
+
+}
+
+h2 {
+
+}
+
+.ordersAndProducts {
+  display: flex;
+  padding: 10px;
+}
+
+.ordersTableWrapper {
+
+}
+
+.halfWidth {
+    width: 400px;
+
+margin-right: 20px;
+
+}
+
+.fullWidth {
+
+width: 100%;
+border: solid white;
+
+}
+
+.table {
+width: 100%;
+    border-collapse: separate;
+   border-top: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.table td {
+
+
+   border-bottom: 1px solid #dddddd; /* Устанавливаем нижнюю границу для ячеек */
+  padding: 8px;
+  text-align: center;
+}
+
+.titleAndshowbnt {
+display: flex;
+flex-direction: column;
+}
+
+.showHide {
+  transform: translateY(-50%);
+  color: #007bff;
+  cursor: pointer;
+}
+
+.productsTableWrapper {
+
+  overflow: auto;
+}
+
+.productsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.photo {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+}
+
+.statusMarkTrue,
+.statusMarkFalse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  margin-right: 5px;
+}
+
+.statusMarkTrue {
+  background-color: #28a745; /* Green */
+}
+
+.statusMarkFalse {
+  background-color: #dc3545; /* Red */
+}
+
+.statusTextTrue {
+  color: #28a745; /* Green */
+}
+
+.statusTextFalse {
+  color: #dc3545; /* Red */
+}
+
+.sn{font-size: small;}
+.addProductBtnInOrder{
+  margin: 10px;
+}
+
+.ordersAmountInDescription{
+  font-style: italic;
+  font-size: small;
+}
+
+.defaultPrice {
+  font-weight: bold;
+}
+
+.smallDate{
+  font-size: small;
+}

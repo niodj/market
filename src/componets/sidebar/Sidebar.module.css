@@ -1,61 +1,47 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-
 }
-.avatarAndLinks{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-right: 2px solid #ddd; /* Add a border on the right side */
-
+.avatarAndLinks {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ddd;
+  padding: 30px;
 }
 
-.avatar{
-    margin-top: 30px;
-    width: 100px;
-    height: 100px;
-    border-radius: 30px;
-    position: relative;
+.avatar {
+  margin-top: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  position: relative;
 }
 .settingBtn {
-  width: 50px;
-  position: fixed;
-  top: 165px;
-  left: 125px;
-   border-radius: 50%;
+  width: 40px;
+  position: absolute;
+  top: 230px;
+  left: 100px;
+  border-radius: 50%;
   transition: width 0.5s ease;
+  border: solid 1px;
 }
 .settingBtn:hover {
   width: 60px;
 }
-
 
 .sidebarlinks {
   width: 100px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 50px ;
+
 }
 
-.noActive {
-  margin-top: 30px;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #026178;
-
-  &:hover {
-    background-color: #34495e;
-
-  }
+.sidebarBtn{
+  margin-top:40px;
+  width: 100px;
 }
-
-.active {
-  margin-top: 30px;
-  padding: 10px 15px;
-  text-decoration: none;
-  background-color: #3498db;
-  color: #ffffff;
+.themeBlock{
+  
+  font-size: small;
 }
