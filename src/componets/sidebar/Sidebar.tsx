@@ -34,7 +34,7 @@ export const Sidebar = () => {
         <div className={s.themeBlock}>
           <span>dark</span>
           <BootstrapSwitchButton
-
+checked={false}
             width={15}
             height={30}
 
