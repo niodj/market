@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
 import s from "./Products.module.css";
-import { Popup } from "../universalPopup/Popup";
+
 import Button from "react-bootstrap/Button";
+import { Popup } from "../universalPopup/Popup";
+
+
+
 
 export const Products = (props: any) => {
   const dispatch = useDispatch();
@@ -17,7 +21,7 @@ export const Products = (props: any) => {
   const handleModalDeleteProduct = (productId: number) => {
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
-      popupActionType: "DELETE_ORDER",
+      popupActionType: "DELETE_PRODUCT",
     });
 
     dispatch({
@@ -97,10 +101,11 @@ export const Products = (props: any) => {
       popupImage: "",
     });
 
-    dispatch({
-      type: "SET_POPUP_IMAGE",
-      popupStatus: undefined,
-    });
+      dispatch({
+        type: "SET_POPUP_STATUS",
+        popupStatus: undefined,
+      });
+
     dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 

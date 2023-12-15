@@ -28,9 +28,10 @@ export const Orders = (props: any) => {
   };
 
   const handleModalDeleteProduct = (productId: number) => {
+
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
-      popupActionType: "DELETE_ORDER",
+      popupActionType: "DELETE_PRODUCT",
     });
 
     dispatch({
@@ -59,39 +60,35 @@ export const Orders = (props: any) => {
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
       dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-      dispatch({
-        type: "DELETE_ORDER_PRODUCTS",
-        orderId: serviceState.popupConfirmId,
-      });
+      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId, });
     }
 
-    if (serviceState.popupActionType === "DELETE_PRODUCT")
+    if (serviceState.popupActionType === "DELETE_PRODUCT") {
+      dispatch({ type: "DELETE_PRODUCT", productId: serviceState.popupConfirmId, });
+    }
+      dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+      dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "", });
+
       dispatch({
-        type: "DELETE_PRODUCT",
-        productId: serviceState.popupConfirmId,
+        type: "SET_POPUP_TITLE",
+        popupTitle: "",
       });
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
-    dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
-      popupActionType: "",
-    });
 
-    dispatch({
-      type: "SET_POPUP_TITLE",
-      popupTitle: "",
-    });
+      dispatch({
+        type: "SET_POPUP_IMAGE",
+        popupImage: "",
+      });
 
-    dispatch({
-      type: "SET_POPUP_IMAGE",
-      popupImage: "",
-    });
+      dispatch({
+        type: "SET_POPUP_STATUS",
+        popupStatus: undefined,
+      });
+      dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+    
 
-    dispatch({
-      type: "SET_POPUP_STATUS",
-      popupStatus: undefined,
-    });
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
-  };
+  }
+
+
 const onModalReject = () => {
   dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
   dispatch({
@@ -110,7 +107,7 @@ const onModalReject = () => {
   });
 
   dispatch({
-    type: "SET_POPUP_IMAGE",
+    type: "SET_POPUP_STATUS",
     popupStatus: undefined,
   });
   dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
@@ -249,43 +246,45 @@ const onModalReject = () => {
             </div>
 
             <table className={s.productsTable}>
-              {filteredProducts
-                .filter((product) => product.order === showProduct)
-                .map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      {product.status ? (
-                        <div className={s.statusMarkTrue} />
-                      ) : (
-                        <div className={s.statusMarkFalse} />
-                      )}
-                    </td>
-                    <td>
-                      <img src={product.photo} className={s.photo}></img>
-                    </td>
-                    <td>
-                      <div>{product.title}</div>
-                      <div className={s.sn}>s/n:{product.serialNumber}</div>
-                    </td>
-                    <td>
-                      {product.status ? (
-                        <div className={s.statusTextTrue}>Free</div>
-                      ) : (
-                        <div className={s.statusTextFalse}>On repear</div>
-                      )}
-                    </td>
+              <tbody>
+                {filteredProducts
+                  .filter((product) => product.order === showProduct)
+                  .map((product) => (
+                    <tr key={product.id}>
+                      <td>
+                        {product.status ? (
+                          <div className={s.statusMarkTrue} />
+                        ) : (
+                          <div className={s.statusMarkFalse} />
+                        )}
+                      </td>
+                      <td>
+                        <img src={product.photo} className={s.photo}></img>
+                      </td>
+                      <td>
+                        <div>{product.title}</div>
+                        <div className={s.sn}>s/n:{product.serialNumber}</div>
+                      </td>
+                      <td>
+                        {product.status ? (
+                          <div className={s.statusTextTrue}>Free</div>
+                        ) : (
+                          <div className={s.statusTextFalse}>On repear</div>
+                        )}
+                      </td>
 
-                    <td>
-                      {" "}
-                      <Button
-                        variant='danger'
-                        onClick={() => handleModalDeleteProduct(product.id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                      <td>
+                        {" "}
+                        <Button
+                          variant='danger'
+                          onClick={() => handleModalDeleteProduct(product.id)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
             </table>
           </div>
         ) : (

@@ -1,7 +1,12 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Popup } from "./Popup"; // Replace with the correct path
+import { Popup } from "./Popup";
+
+
+
+
+
 
 type PopupPropsType = {
   popupStatus?: boolean;

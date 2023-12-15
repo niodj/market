@@ -35,20 +35,20 @@ export type DeleteOrderProductsAction = {
 
 export const productReducer = (state: ProductType[] = products, action: RootAction): ProductType[] => {
   switch (action.type) {
-    case "DELETE_PRODUCT":
+    case "DELETE_PRODUCT":console.log(action.productId);
       return state.filter((product) => product.id !== action.productId);
 
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
-    case "ADD_PRODUCT": return [
-        {
-          ...state[0],
-          order: action.orderId,
-          title: "new product (copy first row propduct table)",
-          id: (state[state.length - 1].id += 1),
-        },
-        ...state,
-      ];
+    // case "ADD_PRODUCT": return [
+    //     {
+    //       ...state[0],
+    //       order: action.orderId,
+    //       title: "new product (copy first row propduct table)",
+    //       id: (state[state.length - 1].id += 1),
+    //     },
+    //     ...state,
+    //   ];
 
     default:
       return state;
@@ -70,13 +70,13 @@ export type AddOrderAction = {
 
 export const orderReducer = (state: OrderType[] = orders, action: RootAction): OrderType[] => {
   switch (action.type) {
-    case "DELETE_ORDER":console.log(action);
+    case "DELETE_ORDER":
       return  state.filter((order) => order.id !== action.orderId);
-    case "ADD_ORDER": return [...state,{        ...state[state.length - 1],
-        id: state[state.length - 1].id + 1,
-        description: "New order",
-      },
-    ];
+    // case "ADD_ORDER": return [...state,{        ...state[state.length - 1],
+    //     id: state[state.length - 1].id + 1,
+    //     description: "New order",
+    //   },
+    // ];
 
     default:
       return state;

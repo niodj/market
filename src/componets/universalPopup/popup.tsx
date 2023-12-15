@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Modal, Button } from 'react-bootstrap';
 import s from "./popup.module.css"
 type PopupPropsType = {
@@ -19,12 +19,7 @@ export const Popup = (props: PopupPropsType) => {
       </Modal.Header>
       <Modal.Body>
         {props.popupStatus !== undefined ? (
-          <div>
-            <img
-              src={props.popupImage}
-              className={s.image}
-              alt='Popup Image'
-            ></img>
+          <div> <img src={props.popupImage} className={s.image} alt='Popup Image'></img>
             {props.popupStatus ? (
               <div className={s.statusTextTrue}>free</div>
             ) : (
