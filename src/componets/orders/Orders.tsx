@@ -14,7 +14,7 @@ export const Orders = (props: any) => {
 
   const [showProduct, setShowProduct] = useState<number>();
 
-  console.log(serviceState);
+
 
   const handleModalDeleteOrder = (orderId: number) => {
 

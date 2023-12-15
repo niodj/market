@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import s from "./Sidebar.module.css";
 import Button from "react-bootstrap/Button";
+import { motion } from "framer-motion";
+
 
 interface NavLinkProps {
   isActive: boolean;
@@ -8,7 +10,12 @@ interface NavLinkProps {
 
 export const Sidebar = () => {
   return (
-    <div className={s.wrapper}>
+    <motion.div
+      className={s.wrapper}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className={s.avatarAndLinks}>
         <div className={s.avatarAndSettings}>
           <img
@@ -43,6 +50,6 @@ export const Sidebar = () => {
         </div>
       </div>
       <Outlet />
-    </div>
+    </motion.div>
   );
 };

@@ -11,7 +11,7 @@ type PopupPropsType = {
 };
 
 export const Popup = (props: PopupPropsType) => {
-  console.log(props.popupStatus);
+ 
   return (
     <Modal show={props.showPopup} onHide={props.onHide}>
       <Modal.Header closeButton>
