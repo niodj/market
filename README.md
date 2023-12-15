@@ -1,5 +1,6 @@
 
 to start the project run the command 
+
 yarn add --dev typescript
 
 here used:
