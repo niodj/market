@@ -10,22 +10,23 @@ import { Form } from "react-bootstrap";
 export const TopMenu = () => {
   const dispatch = useDispatch();
   //////////dark mode
+
   const dark = useSelector((state: StoreType) => state.serviceState.dark);
   const currentHour = new Date().getHours();
   useEffect(() => {
-    currentHour >= 19 || (currentHour < 6 && !dark)
+    currentHour >= 19 && currentHour < 6 && !dark
       ? dispatch({ type: "CHANGE_THEME" })
       : dispatch({ type: "" });
-  }, []);
+ }, []);
 
 
   return (
     <div className={s.wrapper}>
       <div className={s.themeToggle}>
+        <div>{dark ? "it's a time of darkness." : "it's daylight time"}</div>
         <Form>
           <Form.Check
             type='switch'
-            label='dark'
             checked={dark}
             onChange={() => dispatch({ type: "CHANGE_THEME" })}
           ></Form.Check>

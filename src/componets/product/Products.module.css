@@ -1,91 +1,206 @@
-.wrapperProducts {
-  padding: 20px;
+/* /////////////////// */
 
+.wrapperProducts {
+
+  padding: 1rem;
 }
 
+/* ///////////////// */
 .titleAndfilters {
   display: flex;
   flex-direction: row;
-
+  align-items: center;
 }
-.productTitle{
-  font-size: 30px;
-  margin-top: 15px;
-  font-weight:bold;
-  letter-spacing:2px;
+/* /////////////////// */
+.productTableTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
 }
 .filterSection {
-  margin: 0px 30px 0px 30px;
+  margin: 0px 0px 0px 2rem;
+}
+.filterLabel {
+  margin-right: 2rem;
 }
 
-.productsTable {
-  width: 100%;
-  border-collapse: separate;
-  border: 1px solid #dddddd;
-}
-
-.productsTable th,
-.productsTable td {
-  padding: 4px;
-  text-align: center;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.productsTable th {
-}
-
+/* ////////TABLE/////////// */
 .productsTableWrapper {
-  margin-top: 20px;
+
 }
 
-.statusMarkTrue,
-.statusMarkFalse {
-  width: 15px;
-  height: 15px;
+.propductRow {
+  display: flex;
+  border: solid rgb(192, 192, 192) 0.1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  justify-content: start;
+  background-color: white;
+}
+
+/* //////////cellMArkStatus///////// */
+.cellMArkStatus {
+  align-items: center;
+  margin-left: 1rem;
+}
+.markTrueStatus,
+.markFalseStatus {
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
 }
-
-.statusMarkTrue {
+.markTrueStatus {
   background-color: greenyellow;
 }
-
-.statusMarkFalse {
+.markFalseStatus {
   background-color: gray;
+}
+/* /////////CellPhoto////////// */
+.cellPhoto {
+  margin-left: 1rem;
+}
+.photo {
+  width: 2rem;
+}
+/* //////////CellProductName///////// */
+.cellProductName {
+  margin-left: 1rem;
+  width: 12rem;
+
+}
+
+.productName {
+  color: black;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.1rem;
+}
+
+.SN {
+  font-style: italic;
+  font-size: 0.5rem;
+  text-align: left;
+  color: rgb(192, 192, 192);
+  font-weight: bold;
+}
+/* /////cellStatusText///// */
+.cellStatusText {
+  margin-left: 1rem;
+  width: 1.6rem;
+
+
 }
 .statusTextTrue,
 .statusTextFalse {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.statusTextTrue {
-  margin: auto;
-  color: greenyellow;
+  font-size: 0.5rem;
+  text-align: center;
 }
 
+.statusTextTrue {
+  color: rgb(170, 204, 118);
+}
 .statusTextFalse {
   color: gray;
 }
 
-.defaultPrice {
+/* //cellGuaranteeDate/// */
+.cellGuaranteeDate {
+  font-size: 0.5rem;
+  margin-left: 1rem;
+  width: 5.7rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: gray;
+
+}
+.garantDateNumbers {
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
   font-weight: bold;
 }
 
-.photo {
-  width: 40px;
-  height: 40px;
+/* ///cellIsNew// */
+
+.cellIsNew {
+  margin-left: 1rem;
+  color: gray;
+  width: 1.5rem;
+  font-size: 0.5rem;
+
 }
 
-.dateCell {
-  width: 110px;
+/* ///cellPrice// */
+.cellPrice {
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  width: 8rem;
+
 }
-.dateCellBig {
-  width: 120px;
-  font-size: small;
+.defaultPrice {
+
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: gray;
+
+}
+/* ////////cellSpecification////// */
+
+.cellSpecification {
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  color: gray;
+  width: 10rem;
+
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.1rem;
+
+}
+.cellManager{
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  color: gray;
+  width: 7rem;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.1rem;
+
 }
 
-.smallDate {
-  font-size: small;
+.cellOrderTitle{
+    font-size: 0.8rem;
+  margin-left: 1rem;
+  color: gray;
+  width: 15rem;
+
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.1rem;
+
+}
+
+
+.cellOrderDate{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  width: 5rem;
+  color: gray;
+  font-size: 0.6rem;
+  font-weight: bold;
+
+}
+.cellDeleteIcon{
+  margin-left: 1rem;
+   color: grey;
+   margin-right: 1rem;
 }
