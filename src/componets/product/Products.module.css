@@ -1,29 +1,39 @@
-.productsContainer {
-  padding: 20px 0px 0px 0px ;
+.wrapperProducts {
+  padding: 20px;
+
 }
 
+.titleAndfilters {
+  display: flex;
+  flex-direction: row;
+
+}
+.productTitle{
+  font-size: 30px;
+  margin-top: 15px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
 .filterSection {
-  margin-bottom: 15px;
+  margin: 0px 30px 0px 30px;
 }
 
- .productsTable {
+.productsTable {
   width: 100%;
-    border-collapse: separate;
-   border: 1px solid #dddddd;
+  border-collapse: separate;
+  border: 1px solid #dddddd;
 }
 
 .productsTable th,
 .productsTable td {
   padding: 4px;
   text-align: center;
-border: 1px solid #dddddd;
+  border: 1px solid #dddddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
 .productsTable th {
-
 }
 
 .productsTableWrapper {
@@ -35,7 +45,6 @@ border: 1px solid #dddddd;
   width: 15px;
   height: 15px;
   border-radius: 50%;
-
 }
 
 .statusMarkTrue {
@@ -47,10 +56,9 @@ border: 1px solid #dddddd;
 }
 .statusTextTrue,
 .statusTextFalse {
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .statusTextTrue {
   margin: auto;
@@ -70,20 +78,14 @@ border: 1px solid #dddddd;
   height: 40px;
 }
 
-.titleAndfilters{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.dateCell{
+.dateCell {
   width: 110px;
 }
-.dateCellBig{
-   width: 120px;
-   font-size: small;
+.dateCellBig {
+  width: 120px;
+  font-size: small;
 }
 
-.smallDate{
+.smallDate {
   font-size: small;
 }

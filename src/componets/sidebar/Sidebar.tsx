@@ -2,49 +2,33 @@ import { NavLink, Outlet } from "react-router-dom";
 import s from "./Sidebar.module.css";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
-import BootstrapSwitchButton from "bootstrap-switch-button-react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { StoreType } from "../../store";
 
 
-interface NavLinkProps {
+
+type NavLinkProps ={
   isActive: boolean;
 }
 
 export const Sidebar = () => {
-  const dispatch = useDispatch();
-  // //////////dark mode
-  // const currentHour = new Date().getHours();
-  // useEffect(() => {
-  //   currentHour >= 19 || currentHour < 6
-  //     ? dispatch({ type: "NIGHT_NOW" })
-  //     : dispatch({ type: "DAY_NOW" });
-  // }, []);
-  const dark = useSelector((state: StoreType) => state.serviceState.dark);
-  ///////////////
+
+ const dark = useSelector((state: StoreType) => state.serviceState.dark);
 
   return (
     <motion.div
-      className={s.wrapper}
+      className={s.wrapperSidebarAndContent}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 1 }}
+      transition={{ duration: 1 }}
     >
       <div className={s.sidebarWrapper}>
-        <div className={s.themeBlock}>
-          <span>dark</span>
 
-          <BootstrapSwitchButton
-            size='xs'
-            checked={dark}
-            offstyle='outline-primary'
-            width={15}
-            height={30}
-            onChange={() => {
-              dispatch({ type: "CHANGE_THEME" });
-            }}
-          />
-        </div>
+
+
+
 
         <div className={s.avatarAndSettings}>
           <img
@@ -65,15 +49,12 @@ export const Sidebar = () => {
             to='/orders'
             className={({ isActive }) => (isActive ? s.linkActive : s.link)}
           >
-
             ORDERS
           </NavLink>
 
           <NavLink
             to='/products'
-            className={({ isActive }) =>
-              isActive ? s.linkActive : s.link
-            }
+            className={({ isActive }) => (isActive ? s.linkActive : s.link)}
           >
             PRODUCTS
           </NavLink>

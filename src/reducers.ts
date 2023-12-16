@@ -114,7 +114,7 @@ export type LoadingAction = {
   type: "LOADING"
 };
 export type IsDarkAction = {
-  type: "CHANGE_THEME"
+  type: "CHANGE_THEME";
 };
 export type SetSearchTerm = {
   type: "SEARCH_TERM";
@@ -137,7 +137,7 @@ export const serviceStateReducer = (state: serviceStateType = serviceState, acti
       return { ...state, popupStatus: action.popupStatus };
     case "LOADING":
       return { ...state, isLoading: true };
-    case "CHANGE_THEME":
+    case "CHANGE_THEME": console.log('d')
       return { ...state, dark: !state.dark };
     case "SEARCH_TERM":
       return { ...state, searchTerm: action.searchTerm };

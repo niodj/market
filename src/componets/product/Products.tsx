@@ -130,7 +130,7 @@ export const Products = (props: any) => {
   //////////
 
   return (
-    <div className={s.productsContainer}>
+    <div className={s.wrapperProducts}>
       <Popup
         popupStatus={serviceState.popupStatus}
         popupImage={serviceState.popupImage}
@@ -140,8 +140,9 @@ export const Products = (props: any) => {
         onConfirm={() => modalConfirmed()}
       />
       <div className={s.titleAndfilters}>
-        <span>
-          <h2>Products / {products.length}</h2>
+        <span className={s.productTitle}>
+          Products / {products.length}
+
         </span>
         <span className={s.filterSection}>
           <label>Type:</label>

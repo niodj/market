@@ -1,47 +1,51 @@
-.wrapper{
-
-height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-
-     width: 80%;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    }
-
-.searchWrapper input {
-
-width: 500px;
+.wrapper {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px;
+  width: 80%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.themeToggle{
+  margin-left: 10px;
+}
+.logo {
+  margin-left: 150px;
+  width: 80px;
 }
 
-
-    .logo{
-      margin-left: 150px;
-      margin-right: 100px;
-        width: 80px;
-    }
-
-    .timeItems{
-font-size: 10px;
-margin-right: 20px;
+.timeItems {
+  width: 150px;
+  font-size: 10px;
+  margin-right: 20px;
 }
 
-    .clockLogo{
-        width: 20px;
+.clockLogo {
+  width: 20px;
 }
+.logoAndImg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
 
+  align-items: center;
+}
 .searchline {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   height: 40px;
+  margin-left: 100px;
+  margin-right: 20px;
   padding: 8px;
   border: 2px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: rgb(241, 241, 241);
   border: 1px solid rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
