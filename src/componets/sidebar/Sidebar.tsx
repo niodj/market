@@ -31,17 +31,18 @@ export const Sidebar = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className={s.avatarAndLinks}>
+      <div className={s.sidebarWrapper}>
         <div className={s.themeBlock}>
           <span>dark</span>
-          <BootstrapSwitchButton
 
+          <BootstrapSwitchButton
+            size='xs'
+            checked={dark}
+            offstyle='outline-primary'
             width={15}
             height={30}
-
-            onstyle='secondary'
             onChange={() => {
-              dispatch({ type: "CHANGE_THEME" })
+              dispatch({ type: "CHANGE_THEME" });
             }}
           />
         </div>
@@ -61,21 +62,32 @@ export const Sidebar = () => {
           </NavLink>
         </div>
         <div className={s.sidebarlinks}>
-          <NavLink to='/orders' className={s.sidebarBtn}>
-            <Button className={s.sidebarBtn}>Orders</Button>
+          <NavLink
+            to='/orders'
+            className={({ isActive }) => (isActive ? s.linkActive : s.link)}
+          >
+
+            ORDERS
           </NavLink>
-          <NavLink to='/products' className={s.sidebarBtn}>
-            <Button className={s.sidebarBtn}>Products</Button>
+
+          <NavLink
+            to='/products'
+            className={({ isActive }) =>
+              isActive ? s.linkActive : s.link
+            }
+          >
+            PRODUCTS
           </NavLink>
-          <Button
-            className={s.sidebarBtn}
+
+          <a
+            className={s.link}
             onClick={() => {
               alert("Local storage cleared");
               localStorage.clear();
             }}
           >
-            Clear local storage
-          </Button>
+            CLEAN LOCAL STORAGE
+          </a>
         </div>
       </div>
       <Outlet />
