@@ -173,7 +173,7 @@ export const serviceState: serviceStateType = {
   popupImage: "",
   popupStatus: undefined,
   searchTerm: "",
-  dark: false,
+  dark: true,
   isLoading: false
 
 };
