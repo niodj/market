@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
+
 import s from "./Products.module.css";
 
 import Button from "react-bootstrap/Button";
 import { Popup } from "../universalPopup/Popup";
-
 
 
 

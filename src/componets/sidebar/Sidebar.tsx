@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { StoreType } from "../../store";
 
 

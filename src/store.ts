@@ -175,7 +175,7 @@ export const serviceState: serviceStateType = {
   searchTerm: "",
   dark: true,
   isLoading: false
-  
+
 };
 
     // Сохраняем состояние в localStorage
