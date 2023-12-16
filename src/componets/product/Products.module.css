@@ -13,7 +13,7 @@
 }
 /* /////////////////// */
 .productTableTitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
 }
@@ -45,8 +45,8 @@
 }
 .markTrueStatus,
 .markFalseStatus {
-  width: 1rem;
-  height: 1rem;
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 50%;
 }
 .markTrueStatus {
@@ -71,7 +71,7 @@
 
 .productName {
   color: black;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
@@ -80,7 +80,7 @@
 
 .SN {
   font-style: italic;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   text-align: left;
   color: rgb(192, 192, 192);
   font-weight: bold;
@@ -94,7 +94,7 @@
 }
 .statusTextTrue,
 .statusTextFalse {
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 
@@ -107,9 +107,9 @@
 
 /* //cellGuaranteeDate/// */
 .cellGuaranteeDate {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   margin-left: 1rem;
-  width: 5.7rem;
+  width: 6.5 rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -117,7 +117,7 @@
 
 }
 .garantDateNumbers {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   margin-left: 0.3rem;
   font-weight: bold;
 }
@@ -128,12 +128,13 @@
   margin-left: 1rem;
   color: gray;
   width: 1.5rem;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 
 }
 
 /* ///cellPrice// */
 .cellPrice {
+  color: gray;
   text-wrap: nowrap;
   font-size: 0.8rem;
   margin-left: 1rem;
@@ -203,4 +204,9 @@
   margin-left: 1rem;
    color: grey;
    margin-right: 1rem;
+}
+.cellDeleteIcon:hover{
+cursor: pointer;
+color: red;
+
 }
