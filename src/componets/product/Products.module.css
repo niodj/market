@@ -1,9 +1,7 @@
-
-
 .wrapperProducts {
-margin-top: 20px;
-margin-left: 30px;
-margin-right: 20px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 20px;
 }
 
 /* ///////////////// */
@@ -16,28 +14,24 @@ margin-right: 20px;
 }
 /* ////////productTableTitle/////////// */
 .productTableTitle {
-  font-size:20px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 3px;
   margin-right: 25px;
 }
 .filterSection {
- margin-right: 60px;
+  margin-right: 60px;
 }
 .filterLabel {
- margin-right: 15px;
+  margin-right: 15px;
 }
 
 /* ////////TABLE/////////// */
 .productsTableWrapper {
-
 }
-.productsTable{
-
-
-
+.productsTable {
+  min-width: 900px;
 }
-
 
 .propductRow {
   display: flex;
@@ -50,10 +44,9 @@ margin-right: 20px;
 
 /* //////////cellMArkStatus///////// */
 .cellMArkStatus {
-margin-left:10px ;
-margin-right:10px ;
-  width:1.5%;
-
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 1.5%;
 }
 .markTrueStatus,
 .markFalseStatus {
@@ -70,18 +63,16 @@ margin-right:10px ;
 /* /////////CellPhoto////////// */
 .cellPhoto {
 
-margin-right:10px ;
 }
 .photo {
   width: 40px;
-
 }
 /* //////////CellProductName///////// */
 .cellProductName {
-
- padding-right:10px;
- width: 20%;
- min-width: 8%;
+  padding-right: 10px;
+  width: 150px;
+  min-width: 150px;
+  margin-left: 10px;
 }
 
 .productName {
@@ -94,23 +85,18 @@ margin-right:10px ;
 }
 
 .SN {
-  font-size: 12px;
-  text-align: left;
+  font-size: 10px;
   color: rgb(192, 192, 192);
   font-weight: bold;
 }
 /* /////cellStatusText///// */
 .cellStatusText {
-margin-right:10px;
-    width: 3.5%;
-
-
-
-
+  margin-right: 10px;
+  width: 34px;
 }
 .statusTextTrue,
 .statusTextFalse {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 }
 
@@ -125,14 +111,13 @@ margin-right:10px;
 .cellGuaranteeDate {
   font-size: 8px;
   margin-left: 10px;
-  width: 9%;
+  width: 90px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   color: gray;
   text-wrap: nowrap;
-
 }
 .garantDateNumbers {
   font-size: 10px;
@@ -145,10 +130,9 @@ margin-right:10px;
 .cellIsNew {
   margin-left: 10px;
   color: gray;
-    width: 2.7%;
+  width: 23px;
   font-size: 10px;
- text-align: left;
-
+  text-align: left;
 }
 
 /* ///cellPrice// */
@@ -157,38 +141,33 @@ margin-right:10px;
   text-wrap: nowrap;
   font-size: 12px;
   margin-left: 10px;
-    width: 10%;
-
- text-align: left;
-
-
+  width: 110px;
+  min-width: 110px;
+  text-align: left;
 }
 .defaultPrice {
- text-align: left;
+  text-align: left;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px;
   color: gray;
-
 }
 /* ////////cellSpecification////// */
 
 .cellSpecification {
-  font-size: 12px;
+  font-size: 10px;
   margin-left: 10px;
   color: gray;
-   width: 12%;
-
- min-width: 8%;
- text-align: left;
+  width: 100px;
+  min-width: 100px;
+  text-align: left;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 1px;
-
 }
 /* ////////cellManager////// */
-.cellManager{
-  font-size: 12px;
+.cellManager {
+  font-size: 10px;
   margin-left: 10px;
   color: gray;
 
@@ -196,19 +175,16 @@ margin-right:10px;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 1px;
-   width: 8%;
-
- min-width: 8%;
+  width: 100px;
+  min-width: 100px;
 }
 /* ////////cellOrderTitle////// */
-.cellOrderTitle{
-    font-size: 12px;
+.cellOrderTitle {
+  font-size: 10px;
   margin-left: 10px;
   color: gray;
-       width: 10%;
-
- min-width: 8%;
-
+  width: 150px;
+  min-width: 150px;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
@@ -216,32 +192,29 @@ margin-right:10px;
 }
 
 /* ////////cellOrderDate////// */
-.cellOrderDate{
+.cellOrderDate {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: 10px;
-     width: 8%;
+  width: 73px;
 
   color: gray;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   text-wrap: nowrap;
-
 }
 /* ////////cellDeleteIcon////// */
-.cellDeleteIcon{
+.cellDeleteIcon {
   margin-left: 10px;
-   color: grey;
-   margin-right: 10px;
-      width: 1%;
+  color: grey;
+  margin-right: 10px;
+  width: 1%;
 
-   text-align: right;
-
+  text-align: right;
 }
-.cellDeleteIcon:hover{
-cursor: pointer;
-color: red;
-
+.cellDeleteIcon:hover {
+  cursor: pointer;
+  color: red;
 }

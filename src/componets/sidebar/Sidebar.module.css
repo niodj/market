@@ -1,6 +1,7 @@
 .wrapperSidebarAndContent {
   display: flex;
   flex-direction: row;
+
 }
 
 .sidebarWrapper {
