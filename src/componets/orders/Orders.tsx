@@ -163,9 +163,9 @@ export const Orders = (props: any) => {
           className={s.addBtn}
           onClick={() => dispatch({ type: "ADD_ORDER" })}
         >
-          Add order
+
         </IoIosAddCircle>
-        <div className={s.orderTitle}>Orders / {orders.length}</div>
+        <div className={s.orderTitle}>Order{orders.length > 1 ? 's' : ''} / {orders.length}</div>
       </div>
       <div className={s.ordersTableWrapper}>
         <div
