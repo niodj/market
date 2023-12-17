@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Trash } from 'react-bootstrap-icons';
+
+
 import s from "./Products.module.css";
 
 import Button from "react-bootstrap/Button";

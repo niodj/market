@@ -1,119 +1,148 @@
-
 .wrapper {
-  font-family: 'Arial', sans-serif;
+  margin-top: 40px;
+  margin-left: 50px;
+  margin-right: 40px;
   width: 100%;
-  padding: 20px;
-
 }
-
-h2 {
-
-}
-
-.ordersAndProducts {
+.addBtnAndOrderTitle {
   display: flex;
-  padding: 10px;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  text-wrap: nowrap;
+}
+.addBtn {
+  font-size: 40px;
+  margin-right: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
+  color: green;
+  border-radius: 50%;
 }
 
-.ordersTableWrapper {
-
+.addBtn:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
 }
 
-.halfWidth {
-    width: 400px;
-
-margin-right: 20px;
-
-}
-
-.fullWidth {
-
-width: 100%;
-border: solid white;
-
-}
-
-.table {
-width: 100%;
-    border-collapse: separate;
-   border-top: 1px solid #dddddd;
-  padding: 8px;
-}
-
-.table td {
-
-
-   border-bottom: 1px solid #dddddd; /* Устанавливаем нижнюю границу для ячеек */
-  padding: 8px;
-  text-align: center;
-}
-
-.titleAndshowbnt {
-display: flex;
-flex-direction: column;
-}
-
-.showHide {
-  transform: translateY(-50%);
-  color: #007bff;
+.addBtn:hover {
+  transform: scale(1.05);
   cursor: pointer;
 }
 
-.productsTableWrapper {
-
-  overflow: auto;
+.orderTitle {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-right: 25px;
 }
 
-.productsTable td {
-  border: 1px solid #ddd;
-  padding: 8px;
+/* ///////////cellhalfWidthOrderRow////////// */
+.cellhalfWidthOrderRow {
+  display: flex;
+  border: solid rgb(192, 192, 192) 0.1rem;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+}
+.halfWidthTable {
+  width: 100%;
 }
 
-.photo {
-  max-width: 50px;
-  max-height: 50px;
-  object-fit: cover;
+.halfWidthOrderRow {
+  display: flex;
+  border: solid rgb(192, 192, 192) 0.1rem;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+.halfWidthOrderDescripton {
+  width: 400px;
+  min-width: 400px;
+  margin-left: 10px;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.4px;
+
 }
 
-.statusMarkTrue,
-.statusMarkFalse {
-  width: 10px;
-  height: 10px;
+.cellShowBtnAndProdutc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ width: 82px;
+}
+.showProductBtn {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  font-size: 20px;
   border-radius: 50%;
-
-  margin-right: 5px;
+  border: solid 1px rgb(190, 189, 189);
+  margin-right: 10px;
 }
 
-.statusMarkTrue {
-  background-color: #28a745; /* Green */
-}
+.amountProductTitle {
+  font-size: 14px;
+  font-weight: bold;
 
-.statusMarkFalse {
-  background-color: #dc3545; /* Red */
 }
-
-.statusTextTrue {
-  color: #28a745; /* Green */
+.titProduct {
+font-size: 10px;
 }
-
-.statusTextFalse {
-  color: #dc3545; /* Red */
+.cellHalfDate {
+  font-size: 8px;
+  margin-left: 10px;
+  width: 85px;
+text-align: center;
+  color: gray;
+  text-wrap: nowrap;
 }
+.smallDate {
 
-.sn{font-size: small;}
-.addProductBtnInOrder{
-  margin: 10px;
 }
-
-.ordersAmountInDescription{
-  font-style: italic;
-  font-size: small;
-}
-
-.defaultPrice {
+.bigDate{
+    font-size: 12px;
+  margin-left: 5px;
   font-weight: bold;
 }
+.cellPrice {
+  color: gray;
+  text-wrap: nowrap;
+  font-size: 13px;
+  margin-left: 10px;
+  width: 110px;
+  min-width: 110px;
+  text-align: left;
 
-.smallDate{
-  font-size: small;
+}
+.defaultPrice {
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  color: gray;
+}
+
+
+.fullWidthTable {
+  width: 100%;
+  border: solid white;
+}
+/* ////////cellDeleteIcon////// */
+.cellDeleteIcon {
+  margin-left: 10px;
+  color: grey;
+  margin-right: 10px;
+  width: 1%;
+
+  text-align: right;
+}
+.cellDeleteIcon:hover {
+  cursor: pointer;
+  color: red;
 }

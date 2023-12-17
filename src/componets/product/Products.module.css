@@ -32,7 +32,6 @@
 }
 .productsTable {
   width: 100%;
-
 }
 
 .propductRow {
@@ -96,6 +95,7 @@
   margin-right: 10px;
   width: 34px;
 }
+
 .statusTextTrue,
 .statusTextFalse {
   font-size: 10px;
@@ -105,6 +105,7 @@
 .statusTextTrue {
   color: rgb(170, 204, 118);
 }
+
 .statusTextFalse {
   color: gray;
 }

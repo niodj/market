@@ -5,6 +5,9 @@ import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
 import { Popup } from "../universalPopup/Popup";
 import Button from "react-bootstrap/Button";
+import { IoIosAddCircle } from "react-icons/io";
+import { FiList } from "react-icons/fi";
+import { Trash } from "react-bootstrap-icons";
 
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -28,7 +31,6 @@ export const Orders = (props: any) => {
   };
 
   const handleModalDeleteProduct = (productId: number) => {
-
     dispatch({
       type: "SET_POPUP_ACTION_TYPE",
       popupActionType: "DELETE_PRODUCT",
@@ -60,58 +62,61 @@ export const Orders = (props: any) => {
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
       dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId, });
+      dispatch({
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
+      });
     }
 
     if (serviceState.popupActionType === "DELETE_PRODUCT") {
-      dispatch({ type: "DELETE_PRODUCT", productId: serviceState.popupConfirmId, });
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
     }
-      dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
-      dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "", });
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "" });
 
-      dispatch({
-        type: "SET_POPUP_TITLE",
-        popupTitle: "",
-      });
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
 
-      dispatch({
-        type: "SET_POPUP_IMAGE",
-        popupImage: "",
-      });
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
 
-      dispatch({
-        type: "SET_POPUP_STATUS",
-        popupStatus: undefined,
-      });
-      dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
-    
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+  };
 
-  }
+  const onModalReject = () => {
+    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    dispatch({
+      type: "SET_POPUP_ACTION_TYPE",
+      popupActionType: "",
+    });
 
+    dispatch({
+      type: "SET_POPUP_TITLE",
+      popupTitle: "",
+    });
 
-const onModalReject = () => {
-  dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
-  dispatch({
-    type: "SET_POPUP_ACTION_TYPE",
-    popupActionType: "",
-  });
+    dispatch({
+      type: "SET_POPUP_IMAGE",
+      popupImage: "",
+    });
 
-  dispatch({
-    type: "SET_POPUP_TITLE",
-    popupTitle: "",
-  });
-
-  dispatch({
-    type: "SET_POPUP_IMAGE",
-    popupImage: "",
-  });
-
-  dispatch({
-    type: "SET_POPUP_STATUS",
-    popupStatus: undefined,
-  });
-  dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
-};
+    dispatch({
+      type: "SET_POPUP_STATUS",
+      popupStatus: undefined,
+    });
+    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
+  };
   /////End modal
 
   const handlerProductShow = (order: number) => {
@@ -152,36 +157,46 @@ const onModalReject = () => {
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
-
-      <h2>Orders / {orders.length}</h2>
-      <div>
-        <Button onClick={() => dispatch({ type: "ADD_ORDER" })}>
+      <div className={s.addBtnAndOrderTitle}>
+        {" "}
+        <IoIosAddCircle
+          className={s.addBtn}
+          onClick={() => dispatch({ type: "ADD_ORDER" })}
+        >
           Add order
-        </Button>
+        </IoIosAddCircle>
+        <div className={s.orderTitle}>Orders / {orders.length}</div>
       </div>
-      <div className={s.ordersAndProducts}>
-        <div className={`${showProduct ? s.halfWidth : s.fullWidth}`}>
-          <table className={s.table}>
+      <div className={s.ordersTableWrapper}>
+        <div
+          className={`${showProduct ? s.halfWidthWrapper : s.fullWidthWrapper}`}
+        >
+          <table className={s.halfWidthTable}>
             <tbody>
               {orders.map((order: OrderType) => (
-                <tr key={order.id}>
-                  <td className={s.titleAndshowbnt}>
+                <tr className={s.cellhalfWidthOrderRow} key={order.id}>
+                  <td className={s.halfWidthOrderDescripton}>
                     {order.description}
-                    <div className={s.ordersAmountInDescription}>
-                      (
-                      {
-                        products.filter((product) => product.order === order.id)
-                          .length
-                      }{" "}
-                      products )
-                    </div>
+                  </td>
+                  <td className={s.cellShowBtnAndProdutc}>
+                    <FiList
+                      className={s.showProductBtn}
+                      onClick={() => handlerProductShow(order.id)}
+                    />
                     <div>
-                      <Button onClick={() => handlerProductShow(order.id)}>
-                        show/hide
-                      </Button>
+                      <div className={s.amountProductTitle}>
+                        {
+                          products.filter(
+                            (product) => product.order === order.id
+                          ).length
+                        }
+                      </div>
+
+                      <div className={s.titProduct}>products</div>
                     </div>
                   </td>
-                  <td>
+
+                  <td className={s.cellHalfDate}>
                     <div className={s.smallDate}>
                       {order.date &&
                         order.date
@@ -192,25 +207,16 @@ const onModalReject = () => {
                           .join(" / ")}
                     </div>
 
-                    <div>
+                    <div className={s.bigDate}>
                       {order.date &&
-                        order.date
-                          .split(" ")[0]
-                          .split("-")
-                          .reverse()
-                          .join(" / ")}
+                        new Date(order.date).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
                     </div>
                   </td>
-                  <td>
-                    <div className={s.defaultPrice}>
-                      {products
-                        .filter((product) => product.order === order.id)
-                        .reduce(
-                          (acc, product) => (acc += product.price[1].value),
-                          0
-                        )}{" "}
-                      UAH
-                    </div>
+                  <td className={s.cellPrice}>
                     <div>
                       {products
                         .filter((product) => product.order === order.id)
@@ -220,15 +226,25 @@ const onModalReject = () => {
                         )}{" "}
                       $
                     </div>
+
+                    <div className={s.defaultPrice}>
+                      {products
+                        .filter((product) => product.order === order.id)
+                        .reduce(
+                          (acc, product) => (acc += product.price[1].value),
+                          0
+                        )}{" "}
+                      UAH
+                    </div>
                   </td>
-                  <td>
-                    <Button
-                      variant='danger'
+
+                  <td className={s.cellDeleteIcon}>
+                    <Trash
                       className={s.delBtn}
                       onClick={() => handleModalDeleteOrder(order.id)}
                     >
                       Delete
-                    </Button>
+                    </Trash>
                   </td>
                 </tr>
               ))}
