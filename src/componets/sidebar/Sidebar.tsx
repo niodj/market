@@ -8,10 +8,6 @@ import { StoreType } from "../../store";
 
 
 
-type NavLinkProps ={
-  isActive: boolean;
-}
-
 export const Sidebar = () => {
 
  const dark = useSelector((state: StoreType) => state.serviceState.dark);
@@ -25,10 +21,6 @@ export const Sidebar = () => {
       transition={{ duration: 1 }}
     >
       <div className={s.sidebarWrapper}>
-
-
-
-
 
         <div className={s.avatarAndSettings}>
           <img

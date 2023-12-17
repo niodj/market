@@ -1,8 +1,8 @@
-/* /////////////////// */
+
 
 .wrapperProducts {
-
-  padding: 1rem;
+padding: 1%;
+width: 100%;
 }
 
 /* ///////////////// */
@@ -28,6 +28,12 @@
 .productsTableWrapper {
 
 }
+.productsTable{
+width: 100%;
+
+
+}
+
 
 .propductRow {
   display: flex;
@@ -36,16 +42,17 @@
   align-items: center;
   justify-content: start;
   background-color: white;
+
 }
 
 /* //////////cellMArkStatus///////// */
 .cellMArkStatus {
-  align-items: center;
   margin-left: 1rem;
+  width: 1%;
 }
 .markTrueStatus,
 .markFalseStatus {
-  width: 0.6rem;
+   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
 }
@@ -58,6 +65,7 @@
 /* /////////CellPhoto////////// */
 .cellPhoto {
   margin-left: 1rem;
+  width: 1%;
 }
 .photo {
   width: 2rem;
@@ -65,8 +73,7 @@
 /* //////////CellProductName///////// */
 .cellProductName {
   margin-left: 1rem;
-  width: 12rem;
-
+ width: 10%;
 }
 
 .productName {
@@ -88,7 +95,8 @@
 /* /////cellStatusText///// */
 .cellStatusText {
   margin-left: 1rem;
-  width: 1.6rem;
+   width: 1%;
+
 
 
 }
@@ -109,11 +117,12 @@
 .cellGuaranteeDate {
   font-size: 0.6rem;
   margin-left: 1rem;
-  width: 6.5 rem;
+ width: 8%;
   display: flex;
   flex-direction: row;
   align-items: center;
   color: gray;
+  text-wrap: nowrap;
 
 }
 .garantDateNumbers {
@@ -127,9 +136,9 @@
 .cellIsNew {
   margin-left: 1rem;
   color: gray;
-  width: 1.5rem;
+   width: 2%;
   font-size: 0.7rem;
-
+ text-align: left;
 }
 
 /* ///cellPrice// */
@@ -138,11 +147,11 @@
   text-wrap: nowrap;
   font-size: 0.8rem;
   margin-left: 1rem;
-  width: 8rem;
-
+   width: 9%;
+ text-align: left;
 }
 .defaultPrice {
-
+ text-align: left;
   font-weight: bold;
   font-size: 0.9rem;
   color: gray;
@@ -154,56 +163,60 @@
   font-size: 0.8rem;
   margin-left: 1rem;
   color: gray;
-  width: 10rem;
-
+  width: 9%;
+ text-align: left;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 0.1rem;
 
 }
+/* ////////cellManager////// */
 .cellManager{
   font-size: 0.8rem;
   margin-left: 1rem;
   color: gray;
-  width: 7rem;
+  width: 9%;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 0.1rem;
 
 }
-
+/* ////////cellOrderTitle////// */
 .cellOrderTitle{
     font-size: 0.8rem;
   margin-left: 1rem;
   color: gray;
-  width: 15rem;
+     width: 18%;
 
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 0.1rem;
-
 }
 
-
+/* ////////cellOrderDate////// */
 .cellOrderDate{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: 1rem;
-  width: 5rem;
+     width: 6%;
   color: gray;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: bold;
+  text-wrap: nowrap;
 
 }
+/* ////////cellDeleteIcon////// */
 .cellDeleteIcon{
   margin-left: 1rem;
    color: grey;
    margin-right: 1rem;
+   width: 1%;
+   text-align: right;
 }
 .cellDeleteIcon:hover{
 cursor: pointer;

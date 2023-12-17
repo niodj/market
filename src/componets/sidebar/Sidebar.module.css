@@ -1,66 +1,65 @@
 .wrapperSidebarAndContent {
   display: flex;
   flex-direction: row;
-
 }
 
 .sidebarWrapper {
   display: flex;
   flex-direction: column;
-letter-spacing:2px;
+  align-items: center;
+  width: 160px;
+  letter-spacing: 2px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: 30px;
-  width: 150px;
+  border-right: solid 1px wheat;
 }
 
 .avatar {
   margin-top: 30px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
   border-radius: 50%;
   position: relative;
 }
 .settingBtn {
   width: 40px;
   position: absolute;
-  top: 230px;
-  left: 100px;
+  top: 155px;
+  left: 90px;
   border-radius: 50%;
   transition: width 0.5s ease;
   border: solid 1px;
 }
 .settingBtn:hover {
-  width: 60px;
+  width: 45px;
 }
 
-.sidebarlinks  {
+.sidebarlinks {
   display: flex;
   flex-direction: column;
   width: 100px;
   height: 100vh;
   text-align: center;
   margin-top: 30px;
-
 }
 
 .link,
 .linkActive {
   margin-top: 15px;
-  font-weight:500;
+  font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  color:   inherit;
+  color: inherit;
 }
-.linkActive{
-text-decoration: underline;
-text-decoration-color:green;
-text-decoration-thickness: 3px;
-text-underline-offset: 6px;
+.linkActive {
+  text-decoration: underline;
+  text-decoration-color: green;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
-
 
 .sidebarBtn {
 }
+
+
 .themeBlock {
   font-size: small;
 }

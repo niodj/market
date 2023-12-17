@@ -22,8 +22,8 @@ export const TopMenu = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.themeToggle}>
-        <div>{dark ? "it's a time of darkness." : "it's daylight time"}</div>
+        <div className={s.themeToggle}>
+          {dark ? "it's a time of darkness." : "it's daylight time"}
         <Form>
           <Form.Check
             type='switch'
@@ -33,7 +33,7 @@ export const TopMenu = () => {
         </Form>
       </div>
 
-      <div className={s.logoAndImg}>
+      <div className={s.logoAndSearch}>
         <img
           src='https://www.freeiconspng.com/download/49594'
           className={s.logo}
