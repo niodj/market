@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import { IoIosAddCircle } from "react-icons/io";
 import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -162,22 +163,31 @@ export const Orders = (props: any) => {
         <IoIosAddCircle
           className={s.addBtn}
           onClick={() => dispatch({ type: "ADD_ORDER" })}
-        >
-
-        </IoIosAddCircle>
-        <div className={s.orderTitle}>Order{orders.length > 1 ? 's' : ''} / {orders.length}</div>
+        ></IoIosAddCircle>
+        {/* ///////Add S to order word////////// */}
+        <div className={s.orderTitle}>
+          Order{orders.length > 1 ? "s" : ""} / {orders.length}
+        </div>
+        {/* ///////Add S to order word////////// */}
       </div>
       <div className={s.ordersTableWrapper}>
-        <div
-          className={`${showProduct ? s.halfWidthWrapper : s.fullWidthWrapper}`}
-        >
-          <table className={s.halfWidthTable}>
+        {/* ///////choise type table ////////// */}
+        <div>
+          {/* ///////Add S to order word////////// */}
+          <table
+            className={`${showProduct ? s.halfWidthTable : s.fullWidthTable}`}
+          >
             <tbody>
               {orders.map((order: OrderType) => (
                 <tr className={s.cellhalfWidthOrderRow} key={order.id}>
-                  <td className={s.halfWidthOrderDescripton}>
-                    {order.description}
-                  </td>
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <td className={s.halfWidthOrderDescripton}>
+                      {order.description}
+                    </td>
+                  )}
+
                   <td className={s.cellShowBtnAndProdutc}>
                     <FiList
                       className={s.showProductBtn}
@@ -216,36 +226,51 @@ export const Orders = (props: any) => {
                         })}
                     </div>
                   </td>
-                  <td className={s.cellPrice}>
-                    <div>
-                      {products
-                        .filter((product) => product.order === order.id)
-                        .reduce(
-                          (acc, product) => (acc += product.price[0].value),
-                          0
-                        )}{" "}
-                      $
-                    </div>
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <>
+                      <td className={s.cellPrice}>
+                        <div>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[0].value),
+                              0
+                            )}{" "}
+                          $
+                        </div>
 
-                    <div className={s.defaultPrice}>
-                      {products
-                        .filter((product) => product.order === order.id)
-                        .reduce(
-                          (acc, product) => (acc += product.price[1].value),
-                          0
-                        )}{" "}
-                      UAH
-                    </div>
-                  </td>
-
-                  <td className={s.cellDeleteIcon}>
-                    <Trash
-                      className={s.delBtn}
-                      onClick={() => handleModalDeleteOrder(order.id)}
-                    >
-                      Delete
-                    </Trash>
-                  </td>
+                        <div className={s.defaultPrice}>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[1].value),
+                              0
+                            )}{" "}
+                          UAH
+                        </div>
+                      </td>
+                    </>
+                  )}
+                  {showProduct ? (
+                    <td className={`${order.id === showProduct?s.arrowWrapper:""}`}>
+                      <div className={s.arrowBtn}>
+                        <MdOutlineArrowForwardIos
+                          className={s.arrowBtn}
+                        ></MdOutlineArrowForwardIos>
+                      </div>
+                    </td>
+                  ) : (
+                    <td className={s.cellDeleteIcon}>
+                      <Trash
+                        className={s.delBtn}
+                        onClick={() => handleModalDeleteOrder(order.id)}
+                      >
+                        Delete
+                      </Trash>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

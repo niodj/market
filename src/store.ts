@@ -45,7 +45,7 @@ export const products: ProductType[] = [
     },
     price: [
       { value: 2100, symbol: "USD", isDefault: 0 },
-      { value: 2500500.50, symbol: "UAH", isDefault: 1 },
+      { value: 2500500.5, symbol: "UAH", isDefault: 1 },
     ],
     order: 1,
     date: "2017-06-29 12:09:33",
@@ -58,7 +58,8 @@ export const products: ProductType[] = [
     title: "XFX Radeon RX 7900 XT Speedster MERC310 Ultra HDMI 3xDP 20GB",
     type: "Graphics Cards",
     status: false,
-    specification: "Middle level price",
+    specification:
+      "Portable Printer with Sublimation Technology and Wireless Connectivity",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -79,7 +80,8 @@ export const products: ProductType[] = [
     title: "Canon MF4410",
     type: "Printer",
     status: false,
-    specification: "Middle level price",
+    specification:
+      "Portable Printer with Sublimation Technology and Wireless Connectivity",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -99,7 +101,7 @@ export const products: ProductType[] = [
     title: "Acer 24",
     type: "Monitors",
     status: false,
-    specification: "Specification 2",
+    specification: "Compact Photo Printing Solutions",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -131,7 +133,8 @@ export const orders = [
     title: "Order 1",
     manager: "David Medison",
     date: "2017-06-29 12:09:33",
-    description: "A long long long long very log super long description",
+    description:
+      "This document outlines the safe transportation and reception of technology, covering packaging, handling, and equipment condition verification for efficient processing.",
     get products() {
       return products;
     },
@@ -141,7 +144,8 @@ export const orders = [
     title: "Order 2",
     manager: "",
     date: "2017-06-29 12:09:33",
-    description: "desc",
+    description:
+      "A record of meticulous technology reception, highlighting transportation stages, unloading, and verification. From seals to equipment checks, this document ensures precise recording of received goods.",
     get products() {
       return products;
     },
@@ -151,7 +155,8 @@ export const orders = [
     title: "Order 3",
     manager: "Ody Cram",
     date: "2017-06-29 12:09:33",
-    description: "desc",
+    description:
+      "Detailed reception description, including transportation and initial checks. Covers packaging, integrity, and functional status for clarity on new technological assets.",
     get products() {
       return products;
     },
