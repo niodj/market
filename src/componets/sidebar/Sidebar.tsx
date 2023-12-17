@@ -62,7 +62,7 @@ export const Sidebar = () => {
           </a>
         </div>
       </div>
-      <Outlet />
+       <Outlet />
     </motion.div>
   );
 };

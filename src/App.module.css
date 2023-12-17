@@ -1,7 +1,7 @@
 
 .wrapper{
-    max-width: 1280px;
- /* margin: 0 auto; */
+
+    
     transition: background-color 3s, color 3s;
 }
 .wrapper.dark{

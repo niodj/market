@@ -1,8 +1,9 @@
 
 
 .wrapperProducts {
-padding: 1%;
-width: 100%;
+margin-top: 20px;
+margin-left: 30px;
+margin-right: 20px;
 }
 
 /* ///////////////// */
@@ -10,18 +11,21 @@ width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20px;
+  text-wrap: nowrap;
 }
-/* /////////////////// */
+/* ////////productTableTitle/////////// */
 .productTableTitle {
-  font-size: 1.5rem;
+  font-size:20px;
   font-weight: bold;
-  letter-spacing: 0.2rem;
+  letter-spacing: 3px;
+  margin-right: 25px;
 }
 .filterSection {
-  margin: 0px 0px 0px 2rem;
+ margin-right: 60px;
 }
 .filterLabel {
-  margin-right: 2rem;
+ margin-right: 15px;
 }
 
 /* ////////TABLE/////////// */
@@ -29,7 +33,7 @@ width: 100%;
 
 }
 .productsTable{
-width: 100%;
+
 
 
 }
@@ -38,22 +42,23 @@ width: 100%;
 .propductRow {
   display: flex;
   border: solid rgb(192, 192, 192) 0.1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
   align-items: center;
   justify-content: start;
   background-color: white;
-
 }
 
 /* //////////cellMArkStatus///////// */
 .cellMArkStatus {
-  margin-left: 1rem;
-  width: 1%;
+margin-left:10px ;
+margin-right:10px ;
+  width:1.5%;
+
 }
 .markTrueStatus,
 .markFalseStatus {
-   width: 0.6rem;
-  height: 0.6rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 }
 .markTrueStatus {
@@ -64,45 +69,48 @@ width: 100%;
 }
 /* /////////CellPhoto////////// */
 .cellPhoto {
-  margin-left: 1rem;
-  width: 1%;
+
+margin-right:10px ;
 }
 .photo {
-  width: 2rem;
+  width: 40px;
+
 }
 /* //////////CellProductName///////// */
 .cellProductName {
-  margin-left: 1rem;
- width: 10%;
+
+ padding-right:10px;
+ width: 20%;
+ min-width: 8%;
 }
 
 .productName {
   color: black;
-  font-size: 0.7rem;
+  font-size: 10px;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.1rem;
+  text-decoration-thickness: 0.4px;
 }
 
 .SN {
-  font-style: italic;
-  font-size: 0.7rem;
+  font-size: 12px;
   text-align: left;
   color: rgb(192, 192, 192);
   font-weight: bold;
 }
 /* /////cellStatusText///// */
 .cellStatusText {
-  margin-left: 1rem;
-   width: 1%;
+margin-right:10px;
+    width: 3.5%;
+
 
 
 
 }
 .statusTextTrue,
 .statusTextFalse {
-  font-size: 0.8rem;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -115,85 +123,96 @@ width: 100%;
 
 /* //cellGuaranteeDate/// */
 .cellGuaranteeDate {
-  font-size: 0.6rem;
-  margin-left: 1rem;
- width: 8%;
+  font-size: 8px;
+  margin-left: 10px;
+  width: 9%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   color: gray;
   text-wrap: nowrap;
 
 }
 .garantDateNumbers {
-  font-size: 0.7rem;
-  margin-left: 0.3rem;
+  font-size: 10px;
+  margin-left: 5px;
   font-weight: bold;
 }
 
 /* ///cellIsNew// */
 
 .cellIsNew {
-  margin-left: 1rem;
+  margin-left: 10px;
   color: gray;
-   width: 2%;
-  font-size: 0.7rem;
+    width: 2.7%;
+  font-size: 10px;
  text-align: left;
+
 }
 
 /* ///cellPrice// */
 .cellPrice {
   color: gray;
   text-wrap: nowrap;
-  font-size: 0.8rem;
-  margin-left: 1rem;
-   width: 9%;
+  font-size: 12px;
+  margin-left: 10px;
+    width: 10%;
+
  text-align: left;
+
+
 }
 .defaultPrice {
  text-align: left;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 13px;
   color: gray;
 
 }
 /* ////////cellSpecification////// */
 
 .cellSpecification {
-  font-size: 0.8rem;
-  margin-left: 1rem;
+  font-size: 12px;
+  margin-left: 10px;
   color: gray;
-  width: 9%;
+   width: 12%;
+
+ min-width: 8%;
  text-align: left;
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.1rem;
+  text-decoration-thickness: 1px;
 
 }
 /* ////////cellManager////// */
 .cellManager{
-  font-size: 0.8rem;
-  margin-left: 1rem;
+  font-size: 12px;
+  margin-left: 10px;
   color: gray;
-  width: 9%;
+
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.1rem;
+  text-decoration-thickness: 1px;
+   width: 8%;
 
+ min-width: 8%;
 }
 /* ////////cellOrderTitle////// */
 .cellOrderTitle{
-    font-size: 0.8rem;
-  margin-left: 1rem;
+    font-size: 12px;
+  margin-left: 10px;
   color: gray;
-     width: 18%;
+       width: 10%;
+
+ min-width: 8%;
 
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.1rem;
+  text-decoration-thickness: 1px;
 }
 
 /* ////////cellOrderDate////// */
@@ -202,21 +221,24 @@ width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 1rem;
-     width: 6%;
+  margin-left: 10px;
+     width: 8%;
+
   color: gray;
-  font-size: 0.7rem;
+  font-size: 12px;
   font-weight: bold;
   text-wrap: nowrap;
 
 }
 /* ////////cellDeleteIcon////// */
 .cellDeleteIcon{
-  margin-left: 1rem;
+  margin-left: 10px;
    color: grey;
-   margin-right: 1rem;
-   width: 1%;
+   margin-right: 10px;
+      width: 1%;
+
    text-align: right;
+
 }
 .cellDeleteIcon:hover{
 cursor: pointer;
