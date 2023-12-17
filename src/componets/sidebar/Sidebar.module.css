@@ -16,17 +16,22 @@
   padding-right: 10px;
 }
 
+.avatarAndSettings{
+position: relative;
+margin-bottom: 50px;
+}
+
 .avatar {
   margin-top: 30px;
   width: 90px;
   border-radius: 50%;
-  position: relative;
+
 }
 .settingBtn {
   width: 40px;
   position: absolute;
-  top: 155px;
-  left: 80px;
+  top: 90px;
+  left: 60px;
   border-radius: 50%;
   transition: width 0.5s ease;
   border: solid 1px;
