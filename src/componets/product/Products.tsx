@@ -18,34 +18,23 @@ export const Products = (props: any) => {
   const [filterSpecification, setFilterSpecification] = useState<string>();
   const orders = useSelector((state: StoreType) => state.orders);
 
-  const handleModalDeleteProduct = (productId: number) => {
-    dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
-      popupActionType: "DELETE_PRODUCT",
-    });
+const handleModalDeleteProduct = (productId: number) => {
+  dispatch({
+    type: "SET_MODAL",
+    popupActionType: "DELETE_PRODUCT",
+    popupTitle: `Are you sure you want to delete product?`,
+    popupText: `Delete product ${
+      products.find((product) => product.id === productId)?.title
+    }  sn: ${
+      products.find((product) => product.id === productId)?.serialNumber
+    } ?`,
+    popupImage: products.find((product) => product.id === productId)?.photo,
+    popupStatus: products.find((product) => product.id === productId)?.status,
+    popupConfirmId: productId,
+    popupShow: true,
+  });
+};
 
-    dispatch({
-      type: "SET_POPUP_TITLE",
-      popupTitle: `Delete product ${
-        products.find((product) => product.id === productId)?.title
-      }  sn: ${
-        products.find((product) => product.id === productId)?.serialNumber
-      } ?`,
-    });
-
-    dispatch({
-      type: "SET_POPUP_IMAGE",
-      popupImage: products.find((product) => product.id === productId)?.photo,
-    });
-
-    dispatch({
-      type: "SET_POPUP_STATUS",
-      popupStatus: products.find((product) => product.id === productId)?.status,
-    });
-
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
-  };
 
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
@@ -56,57 +45,35 @@ export const Products = (props: any) => {
       });
     }
 
-    if (serviceState.popupActionType === "DELETE_PRODUCT")
+    if (serviceState.popupActionType === "DELETE_PRODUCT") {
       dispatch({
         type: "DELETE_PRODUCT",
         productId: serviceState.popupConfirmId,
       });
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
+    }
     dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
+      type: "SET_MODAL",
+      popupShow: false,
       popupActionType: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_TITLE",
       popupTitle: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_IMAGE",
+      popupText: "",
       popupImage: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_STATUS",
       popupStatus: undefined,
+      popupConfirmId: undefined,
     });
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
   const onModalReject = () => {
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
     dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
+      type: "SET_MODAL",
+      popupShow: false,
       popupActionType: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_TITLE",
       popupTitle: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_IMAGE",
+      popupText: "",
       popupImage: "",
-    });
-
-    dispatch({
-      type: "SET_POPUP_STATUS",
       popupStatus: undefined,
+      popupConfirmId: undefined,
     });
-
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
   };
 
   ///////FILTER
@@ -133,6 +100,7 @@ export const Products = (props: any) => {
         popupStatus={serviceState.popupStatus}
         popupImage={serviceState.popupImage}
         title={serviceState.popupTitle}
+        text={serviceState.popupText}
         showPopup={serviceState.popupShow}
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
