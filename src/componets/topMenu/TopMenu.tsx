@@ -14,7 +14,8 @@ export const TopMenu = () => {
   const dark = useSelector((state: StoreType) => state.serviceState.dark);
   const currentHour = new Date().getHours();
   useEffect(() => {
-    currentHour >= 19 && currentHour < 6 && !dark
+
+    currentHour >= 18 || currentHour < 6 && !dark
       ? dispatch({ type: "CHANGE_THEME" })
       : dispatch({ type: "" });
  }, []);

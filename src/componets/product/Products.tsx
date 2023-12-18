@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType } from "../../store";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Trash } from 'react-bootstrap-icons';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Trash } from "react-bootstrap-icons";
 
 import s from "./Products.module.css";
 
 import Button from "react-bootstrap/Button";
-import { Popup } from "../universalPopup/Popup";
+import { Popup } from "../universalPopupConfigm/PopupConfirm";
 
 export const Products = (props: any) => {
   const dispatch = useDispatch();

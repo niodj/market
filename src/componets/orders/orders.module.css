@@ -22,13 +22,13 @@
   border-radius: 50%;
 }
 
-.addBtn:active {
+.addOrderBtn:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transform: scale(0.95);
 }
 
-.addBtn:hover {
-  transform: scale(1.05);
+.addOrderBtn:hover {
+  transform: scale(1.2);
   cursor: pointer;
 }
 
@@ -61,16 +61,12 @@ box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
 }
 
 
-.fullWidthTable,.halfWidthTable{
-
-
-}
 .fullWidthTable {
-  width: 100%;
+  width: 30%;
 }
 
 .halfWidthTable {
-  width: 30%;
+  width: 100%;
 
 }
 
@@ -250,16 +246,14 @@ filter: drop-shadow(1px 3px 3px #000);
 
 
 /* //////////cellMArkStatus///////// */
-.cellMArkStatus {
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 1.5%;
-}
 .markTrueStatus,
 .markFalseStatus {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+   margin-left: 10px;
+  margin-right: 10px;
+  width: 1.5%;
 }
 .markTrueStatus {
   background-color: greenyellow;

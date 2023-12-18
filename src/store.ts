@@ -168,6 +168,7 @@ export type serviceStateType = {
   popupConfirmId: number | undefined;
   popupActionType: string | undefined;
   popupTitle: string | undefined;
+  popupText: string | undefined;
   popupImage: string | undefined;
   popupStatus: string | undefined;
   searchTerm: string | undefined;
@@ -179,7 +180,8 @@ export const serviceState: serviceStateType = {
   popupShow: false,
   popupConfirmId: undefined,
   popupActionType: "",
-  popupTitle: "",
+  popupTitle: "Are you sure?",
+  popupText:"",
   popupImage: "",
   popupStatus: undefined,
   searchTerm: "",

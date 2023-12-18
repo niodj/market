@@ -6,12 +6,7 @@ export type RootAction =
   | AddOrderAction
   | AddProductAction
   | DeleteOrderProductsAction
-  | SetPopupShow
-  | SetPopupConfirmId
-  | SetPopupActionType
-  | SetPopupTitle
-  | SetPopupImage
-  | SetPopupProductStatus
+  | SetModalDefault
   | LoadingAction
   | IsDarkAction
   | SetSearchTerm;
@@ -40,16 +35,6 @@ export const productReducer = (state: ProductType[] = products, action: RootActi
 
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
-    // case "ADD_PRODUCT": return [
-    //     {
-    //       ...state[0],
-    //       order: action.orderId,
-    //       title: "new product (copy first row propduct table)",
-    //       id: (state[state.length - 1].id += 1),
-    //     },
-    //     ...state,
-    //   ];
-
     default:
       return state;
   }
@@ -72,12 +57,6 @@ export const orderReducer = (state: OrderType[] = orders, action: RootAction): O
   switch (action.type) {
     case "DELETE_ORDER":
       return  state.filter((order) => order.id !== action.orderId);
-    // case "ADD_ORDER": return [...state,{        ...state[state.length - 1],
-    //     id: state[state.length - 1].id + 1,
-    //     description: "New order",
-    //   },
-    // ];
-
     default:
       return state;
   }
@@ -85,31 +64,17 @@ export const orderReducer = (state: OrderType[] = orders, action: RootAction): O
 
 /////serviceStateReducer
 
-export type SetPopupShow = {
-  type: "SET_POPUP_SHOW";
+export type SetModalDefault = {
+  type: "SET_MODAL";
   popupShow: boolean;
-};
-export type SetPopupConfirmId = {
-  type: "SET_POPUP_CONFIRM_ID";
-  popupConfirmId: number | undefined;
+   popupActionType: "";
+  popupTitle: "";
+  popupText: "";
+  popupImage: "";
+  popupStatus: undefined;
+  popupConfirmId: undefined;
 };
 
-export type SetPopupActionType = {
-  type: "SET_POPUP_ACTION_TYPE";
-  popupActionType: string | undefined;
-}
-export type SetPopupTitle = {
-  type: "SET_POPUP_TITLE";
-  popupTitle: string | undefined;
-}
-export type SetPopupImage = {
-  type: "SET_POPUP_IMAGE";
-  popupImage: string | undefined;
-};
-export type SetPopupProductStatus = {
-  type: "SET_POPUP_STATUS";
-  popupStatus: string | undefined;
-};
 export type LoadingAction = {
   type: "LOADING"
 };
@@ -123,21 +88,22 @@ export type SetSearchTerm = {
 
 export const serviceStateReducer = (state: serviceStateType = serviceState, action: RootAction): serviceStateType=> {
   switch (action.type) {
-    case "SET_POPUP_SHOW":
-      return { ...state, popupShow: action.popupShow };
-    case "SET_POPUP_CONFIRM_ID":
-      return { ...state, popupConfirmId: action.popupConfirmId };
-    case "SET_POPUP_ACTION_TYPE":
-      return { ...state, popupActionType: action.popupActionType };
-    case "SET_POPUP_TITLE":
-      return { ...state, popupTitle: action.popupTitle };
-    case "SET_POPUP_IMAGE":
-      return { ...state, popupImage: action.popupImage };
-    case "SET_POPUP_STATUS":
-      return { ...state, popupStatus: action.popupStatus };
+
+
+    case "SET_MODAL":
+      return {
+        ...state,
+        popupShow: action.popupShow,
+        popupConfirmId: action.popupConfirmId,
+        popupActionType: action.popupActionType,
+        popupTitle: action.popupTitle,
+        popupText: action.popupText,
+        popupImage: action.popupImage,
+        popupStatus: action.popupStatus,
+      };
     case "LOADING":
       return { ...state, isLoading: true };
-    case "CHANGE_THEME": console.log('d')
+    case "CHANGE_THEME":
       return { ...state, dark: !state.dark };
     case "SEARCH_TERM":
       return { ...state, searchTerm: action.searchTerm };

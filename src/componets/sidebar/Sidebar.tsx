@@ -35,7 +35,7 @@ export const Sidebar = () => {
               />
             </NavLink>
           </div>
-   
+
         <div className={s.sidebarlinks}>
           <NavLink
             to='/orders'
@@ -56,6 +56,7 @@ export const Sidebar = () => {
             onClick={() => {
               alert("Local storage cleared");
               localStorage.clear();
+              window.location.reload();
             }}
           >
             CLEAN LOCAL STORAGE
