@@ -9,6 +9,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -161,7 +162,7 @@ export const Orders = (props: any) => {
       <div className={s.addBtnAndOrderTitle}>
         {" "}
         <IoIosAddCircle
-          className={s.addBtn}
+          className={s.addOrderBtn}
           onClick={() => dispatch({ type: "ADD_ORDER" })}
         ></IoIosAddCircle>
         {/* ///////Add S to order word////////// */}
@@ -170,6 +171,7 @@ export const Orders = (props: any) => {
         </div>
         {/* ///////Add S to order word////////// */}
       </div>
+
       <div className={s.ordersTableWrapper}>
         {/* ///////choise type table ////////// */}
         <div>
@@ -254,7 +256,11 @@ export const Orders = (props: any) => {
                     </>
                   )}
                   {showProduct ? (
-                    <td className={`${order.id === showProduct?s.arrowWrapper:""}`}>
+                    <td
+                      className={`${
+                        order.id === showProduct ? s.arrowWrapper : ""
+                      }`}
+                    >
                       <div className={s.arrowBtn}>
                         <MdOutlineArrowForwardIos
                           className={s.arrowBtn}
@@ -266,9 +272,7 @@ export const Orders = (props: any) => {
                       <Trash
                         className={s.delBtn}
                         onClick={() => handleModalDeleteOrder(order.id)}
-                      >
-                        Delete
-                      </Trash>
+                      ></Trash>
                     </td>
                   )}
                 </tr>
@@ -276,52 +280,60 @@ export const Orders = (props: any) => {
             </tbody>
           </table>
         </div>
+
         {showProduct ? (
-          <div className={s.productsTableWrapper}>
-            <h3>
-              {orders.find((order) => order.id === showProduct)?.description}
-            </h3>
-
-            <div className={s.addProductBtnInOrder}>
-              <Button onClick={addProduct}>Add product</Button>
+          <div className={s.childComponentWraper}>
+            <div className={s.childOrderDescriptionAndCloseBtn}>
+              {" "}
+              <div className={s.closeProductBtn}>
+                <IoCloseCircleOutline
+                  onClick={() => setShowProduct(undefined)}
+                />
+              </div>
             </div>
+            <div className={s.fullWidthOrderDescripton}>
+              {orders.find((order) => order.id === showProduct)?.description}
+            </div>{" "}
 
+            <div className={s.addProdutnAndTitle}>
+              <IoIosAddCircle
+                className={s.addProductBtn}
+                onClick={addProduct}
+              ></IoIosAddCircle>
+              Add propduct
+            </div>
             <table className={s.productsTable}>
               <tbody>
                 {filteredProducts
                   .filter((product) => product.order === showProduct)
                   .map((product) => (
-                    <tr key={product.id}>
-                      <td>
+                    <tr key={product.id} className={s.childTableRow}>
+                      <td className={s.cellMArkStatus}>
                         {product.status ? (
-                          <div className={s.statusMarkTrue} />
+                          <div className={s.markTrueStatus} />
                         ) : (
-                          <div className={s.statusMarkFalse} />
+                          <div className={s.markFalseStatus} />
                         )}
                       </td>
                       <td>
                         <img src={product.photo} className={s.photo}></img>
                       </td>
-                      <td>
-                        <div>{product.title}</div>
-                        <div className={s.sn}>s/n:{product.serialNumber}</div>
+                      <td className={s.cellProductName}>
+                        <div className={s.productName}>{product.title}</div>
+                        <div className={s.SN}>s/n:{product.serialNumber}</div>
                       </td>
-                      <td>
+                      <td className={s.cellStatusText}>
                         {product.status ? (
                           <div className={s.statusTextTrue}>Free</div>
                         ) : (
                           <div className={s.statusTextFalse}>On repear</div>
                         )}
                       </td>
-
-                      <td>
-                        {" "}
-                        <Button
-                          variant='danger'
+                      <td className={s.cellDeleteIcon}>
+                        <Trash
+                          className={s.delBtn}
                           onClick={() => handleModalDeleteProduct(product.id)}
-                        >
-                          Delete
-                        </Button>
+                        ></Trash>
                       </td>
                     </tr>
                   ))}
@@ -335,3 +347,4 @@ export const Orders = (props: any) => {
     </div>
   );
 };
+
