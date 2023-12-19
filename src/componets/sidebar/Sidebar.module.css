@@ -70,3 +70,10 @@ margin-bottom: 50px;
 .themeBlock {
   font-size: small;
 }
+
+.link:hover{
+  text-decoration: underline;
+  text-decoration-color: green;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}

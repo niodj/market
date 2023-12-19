@@ -1,7 +1,7 @@
 
 import { Time } from "./Time";
 import s from "./TopMenu.module.css";
-import React, { useEffect, useState } from "react";
+
 import { StoreType } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
@@ -9,16 +9,9 @@ import { Form } from "react-bootstrap";
 
 export const TopMenu = () => {
   const dispatch = useDispatch();
-  //////////dark mode
+
 
   const dark = useSelector((state: StoreType) => state.serviceState.dark);
-  const currentHour = new Date().getHours();
-  useEffect(() => {
-
-    currentHour >= 18 || currentHour < 6 && !dark
-      ? dispatch({ type: "CHANGE_THEME" })
-      : dispatch({ type: "" });
- }, []);
 
 
   return (

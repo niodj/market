@@ -194,9 +194,14 @@ export const serviceState: serviceStateType = {
 export const localStorageMiddleware: Middleware =
   (store) => (next) => (action) => {
     const result = next(action);
-    localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+    const { serviceState, ...stateWithoutServiceState } = store.getState();
+    localStorage.setItem(
+      "reduxState",
+      JSON.stringify(stateWithoutServiceState)
+    );
     return result;
   };
+  
 const persistedState = localStorage.getItem("reduxState")
   ? JSON.parse(localStorage.getItem("reduxState") || "{}")
   : {};
