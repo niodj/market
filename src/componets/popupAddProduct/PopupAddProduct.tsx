@@ -1,8 +1,8 @@
 import { Modal, Button, FormControl } from "react-bootstrap";
 import s from "./popupAddProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { StoreType, products } from "../../store";
-import { ChangeEvent, useState } from "react";
+import { StoreType } from "../../store";
+import {  useState } from "react";
 
 type PopupPropsType = {
   onHide: () => void;
@@ -46,6 +46,21 @@ export const PopupAddProduct = (props: PopupPropsType) => {
   const uniqueOrderNumber = Array.from(
     new Set(product.map((propduct) => propduct.order))
   );
+const handleInputChange = (e:any) => {
+  const inputValue = e.target.value;
+  const dotCount = (inputValue.match(/\./g) || []).length;
+
+  if (dotCount <= 1) {
+    const cleanedValue = inputValue
+      .replace(/[^\d.]/g, "") // Удаляем все символы, кроме цифр и точек
+      .replace(/^00/, "0") // Заменяем два нуля в начале строки на один
+      .replace(/^0(\d)/, "$1") // Удаляем 0 в начале строки перед цифрой
+      .replace(/^\.+/g, "") // Удаляем точки в начале строки
+      .replace(/(\.\d{2})\d*$/, "$1"); // Удостоверяемся, что после точки не больше двух цифр
+
+    setPriceValue(cleanedValue);
+  }
+};
 
 
 
@@ -76,8 +91,11 @@ export const PopupAddProduct = (props: PopupPropsType) => {
       return;
     }
 
-    if (/^\d*\.?\d*$/.test(priceValue) && +priceValue<0.01) {
-      setPriceValueError(true);
+    if (+priceValue < 0.01) {
+      console.log(+priceValue);
+      setPriceValueError(true)
+       console.log(priceError);
+      return;
     }
 
 
@@ -160,10 +178,9 @@ export const PopupAddProduct = (props: PopupPropsType) => {
                   setIsNew(+e.target.value);
                 }}
                 className='form-control'
+                defaultValue={1}
               >
-                <option value={1} selected>
-                  New
-                </option>
+                <option value={1}>New</option>
                 <option value={1}>New</option>
                 <option value={0}>Used</option>
               </select>
@@ -255,15 +272,11 @@ export const PopupAddProduct = (props: PopupPropsType) => {
               <label>Price</label>
               <input
                 type='text'
-                className={`form-control`}
+                className={`form-control ${
+                  priceValueError ? "is-invalid" : ""
+                }`}
                 value={priceValue}
-                onChange={(e) =>
-                  setPriceValue(
-                    e.target.value
-                      .replace(/[^0-9.]/g, "")
-                      .replace(/(\.\d{2})\d+$/, "$1")
-                  )
-                }
+                onChange={handleInputChange}
                 placeholder='Enter price'
               />
             </div>
