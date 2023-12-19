@@ -48,7 +48,7 @@
 /* ///////////cellhalfWidthOrderRow////////// */
 .cellhalfWidthOrderRow {
   display: flex;
-  border: solid rgb(192, 192, 192) 0.1rem;
+  border: solid rgb(192, 192, 192) 1px;
   margin-bottom: 15px;
   align-items: center;
   justify-content: space-between;
@@ -65,7 +65,9 @@ box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
 .fullWidthTable {
 width: 100%;
 }
+
 .halfWidthTable {
+
 
 
 
@@ -73,11 +75,13 @@ width: 100%;
 
 .halfWidthOrderRow {
   display: flex;
+
   border: solid rgb(192, 192, 192) 0.1rem;
   margin-bottom: 15px;
   align-items: center;
   justify-content: space-between;
   background-color: white;
+
 }
 
 .halfWidthOrderDescripton {
@@ -187,8 +191,10 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
 margin-left: 20px;
+  background-color: white;
+border: solid rgb(192, 192, 192) 1px;
 
-
+padding: 30px;
 
 width: 700px;
 }
@@ -210,7 +216,7 @@ filter: drop-shadow(1px 3px 3px #000);
 
 }
 .closeProductBtn:hover{
-  filter: drop-shadow(1px 1px 1px #000);
+  filter: drop-shadow(1px 1px px #000);
   cursor: pointer;
 }
 .fullWidthOrderDescripton {
@@ -262,7 +268,7 @@ filter: drop-shadow(1px 3px 3px #000);
   border-bottom: solid rgb(192, 192, 192) 0.1rem;
   margin-bottom: 15px;
   align-items: center;
-  background-color: white;
+
   justify-content: space-around;
 
 

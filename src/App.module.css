@@ -2,7 +2,7 @@
 .wrapper{
     overflow: auto;
     transition: background-color 3s, color 3s;
-      background-color: rgb(247, 247, 247);
+      background-color: rgb(240, 240, 240);
 }
 .wrapper.dark{
     background-color: black;
