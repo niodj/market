@@ -6,10 +6,11 @@ import { Trash } from "react-bootstrap-icons";
 
 import s from "./Products.module.css";
 
-import Button from "react-bootstrap/Button";
+
 import { Popup } from "../popupuniversalConfirm/PopupConfirm";
 
 export const Products = (props: any) => {
+
   const dispatch = useDispatch();
   const products = useSelector((state: StoreType) => state.product);
   const serviceState = useSelector((state: StoreType) => state.serviceState);
@@ -17,7 +18,8 @@ export const Products = (props: any) => {
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
   const orders = useSelector((state: StoreType) => state.orders);
-
+  ////////////////////confirmPopup/////////////
+  const [confirmPopupShow, setConfirmPopupShow] = useState(false)
   const handleModalDeleteProduct = (productId: number) => {
     dispatch({
       type: "SET_MODAL",
@@ -31,8 +33,10 @@ export const Products = (props: any) => {
       popupImage: products.find((product) => product.id === productId)?.photo,
       popupStatus: products.find((product) => product.id === productId)?.status,
       popupConfirmId: productId,
-      popupShow: true,
+
     });
+
+    setConfirmPopupShow(true);
   };
 
   const modalConfirmed = () => {
@@ -52,7 +56,7 @@ export const Products = (props: any) => {
     }
     dispatch({
       type: "SET_MODAL",
-      popupShow: false,
+
       popupActionType: "",
       popupTitle: "",
       popupText: "",
@@ -60,19 +64,22 @@ export const Products = (props: any) => {
       popupStatus: undefined,
       popupConfirmId: undefined,
     });
+    setConfirmPopupShow(false)
   };
 
   const onModalReject = () => {
     dispatch({
       type: "SET_MODAL",
-      popupShow: false,
+
       popupActionType: "",
       popupTitle: "",
       popupText: "",
       popupImage: "",
       popupStatus: undefined,
       popupConfirmId: undefined,
+
     });
+      setConfirmPopupShow(false);
   };
 
   ///////FILTER
@@ -100,7 +107,7 @@ export const Products = (props: any) => {
         popupImage={serviceState.popupImage}
         title={serviceState.popupTitle}
         text={serviceState.popupText}
-        showPopup={serviceState.popupShow}
+        showPopup={confirmPopupShow}
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />

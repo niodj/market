@@ -142,7 +142,7 @@ export const orders = [
   {
     id: 2,
     title: "Order 2",
-    manager: "",
+    manager: "Fill Derban",
     date: "2017-06-29 12:09:33",
     description:
       "A record of meticulous technology reception, highlighting transportation stages, unloading, and verification. From seals to equipment checks, this document ensures precise recording of received goods.",
@@ -164,7 +164,7 @@ export const orders = [
 ];
 
 export type serviceStateType = {
-  popupShow: boolean;
+
   popupConfirmId: number | undefined;
   popupActionType: string | undefined;
   popupTitle: string | undefined;
@@ -177,7 +177,7 @@ export type serviceStateType = {
 
 };
 export const serviceState: serviceStateType = {
-  popupShow: false,
+
   popupConfirmId: undefined,
   popupActionType: "",
   popupTitle: "Are you sure?",
@@ -186,21 +186,17 @@ export const serviceState: serviceStateType = {
   popupStatus: undefined,
   searchTerm: "",
   dark: false,
-  isLoading: false,
+  isLoading: false
+
 };
 
     // Сохраняем состояние в localStorage
 export const localStorageMiddleware: Middleware =
   (store) => (next) => (action) => {
     const result = next(action);
-    const { serviceState, ...stateWithoutServiceState } = store.getState();
-    localStorage.setItem(
-      "reduxState",
-      JSON.stringify(stateWithoutServiceState)
-    );
+    localStorage.setItem("reduxState", JSON.stringify(store.getState()));
     return result;
   };
-
 const persistedState = localStorage.getItem("reduxState")
   ? JSON.parse(localStorage.getItem("reduxState") || "{}")
   : {};

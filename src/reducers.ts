@@ -1,4 +1,11 @@
-import { OrderType, ProductType, orders, products, serviceState, serviceStateType } from "./store";
+import {
+  OrderType,
+  ProductType,
+  orders,
+  products,
+  serviceState,
+  serviceStateType,
+} from "./store";
 
 export type RootAction =
   | DeleteProductAction
@@ -11,13 +18,12 @@ export type RootAction =
   | IsDarkAction
   | SetSearchTerm;
 
-
-
-
 //////////PRODUCT
 export type AddProductAction = {
   type: "ADD_PRODUCT";
-  orderId: number;
+  orderTitle: string;
+  orderDescription: string;
+  selectedManager: string;
 };
 export type DeleteProductAction = {
   type: "DELETE_PRODUCT";
@@ -28,9 +34,13 @@ export type DeleteOrderProductsAction = {
   orderId: number;
 };
 
-export const productReducer = (state: ProductType[] = products, action: RootAction): ProductType[] => {
+export const productReducer = (
+  state: ProductType[] = products,
+  action: RootAction
+): ProductType[] => {
   switch (action.type) {
-    case "DELETE_PRODUCT":console.log(action.productId);
+    case "DELETE_PRODUCT":
+      console.log(action.productId);
       return state.filter((product) => product.id !== action.productId);
 
     case "DELETE_ORDER_PRODUCTS":
@@ -38,36 +48,54 @@ export const productReducer = (state: ProductType[] = products, action: RootActi
     default:
       return state;
   }
-
-}
+};
 
 //////////////////////Order reducer
 export type DeleteOrderAction = {
-
   type: "DELETE_ORDER";
   orderId: number;
 };
 export type AddOrderAction = {
   type: "ADD_ORDER";
-  productId: number;
+  orderTitle: string;
+  orderDescription: string;
+  selectedManager: string;
+  date: string;
 };
 
-
-export const orderReducer = (state: OrderType[] = orders, action: RootAction): OrderType[] => {
+export const orderReducer = (
+  state: OrderType[] = orders,
+  action: RootAction
+): OrderType[] => {
   switch (action.type) {
     case "DELETE_ORDER":
-      return  state.filter((order) => order.id !== action.orderId);
+      return state.filter((order) => order.id !== action.orderId);
+
+    case "ADD_ORDER":
+      return state.length > 0
+        ? [
+            ...state,
+            {
+              id: state[state.length - 1].id + 1,
+              title: action.orderTitle,
+              manager: action.selectedManager,
+              description: action.orderDescription,
+              date: action.date,
+              products,
+            },
+          ]
+        : state;
     default:
       return state;
   }
-}
+};
 
 /////serviceStateReducer
 
 export type SetModalDefault = {
   type: "SET_MODAL";
   popupShow: boolean;
-   popupActionType: "";
+  popupActionType: "";
   popupTitle: "";
   popupText: "";
   popupImage: "";
@@ -76,7 +104,7 @@ export type SetModalDefault = {
 };
 
 export type LoadingAction = {
-  type: "LOADING"
+  type: "LOADING";
 };
 export type IsDarkAction = {
   type: "CHANGE_THEME";
@@ -86,14 +114,14 @@ export type SetSearchTerm = {
   searchTerm: string | undefined;
 };
 
-export const serviceStateReducer = (state: serviceStateType = serviceState, action: RootAction): serviceStateType=> {
+export const serviceStateReducer = (
+  state: serviceStateType = serviceState,
+  action: RootAction
+): serviceStateType => {
   switch (action.type) {
-
-
     case "SET_MODAL":
       return {
         ...state,
-        popupShow: action.popupShow,
         popupConfirmId: action.popupConfirmId,
         popupActionType: action.popupActionType,
         popupTitle: action.popupTitle,
@@ -111,7 +139,4 @@ export const serviceStateReducer = (state: serviceStateType = serviceState, acti
     default:
       return state;
   }
-
-}
-
-
+};

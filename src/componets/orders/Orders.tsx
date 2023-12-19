@@ -10,6 +10,8 @@ import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { PopupAddOrder } from "../popupAddOrder/PopupAddOrder";
+
 
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -18,16 +20,18 @@ export const Orders = (props: any) => {
   const dispatch = useDispatch();
 
   const [showProduct, setShowProduct] = useState<number>();
-
+  ////////////////////confirmPopup/////////////
+  const [confirmPopupShow, setConfirmPopupShow] = useState(false);
   const handleModalDeleteOrder = (orderId: number) => {
     dispatch({
       type: "SET_MODAL",
       popupActionType: "DELETE_ORDER",
       popupTitle: `Are you sure you want to delete order?`,
       popupText: `Delete order #${orderId}?`,
-      popupShow: true,
+
       popupConfirmId: orderId,
     });
+    setConfirmPopupShow(true);
   };
 
   const handleModalDeleteProduct = (productId: number) => {
@@ -43,8 +47,8 @@ export const Orders = (props: any) => {
       popupImage: products.find((product) => product.id === productId)?.photo,
       popupStatus: products.find((product) => product.id === productId)?.status,
       popupConfirmId: productId,
-      popupShow: true,
     });
+    setConfirmPopupShow(true);
   };
 
   const modalConfirmed = () => {
@@ -72,6 +76,7 @@ export const Orders = (props: any) => {
       popupStatus: undefined,
       popupConfirmId: undefined,
     });
+    setConfirmPopupShow(false);
   };
 
   const onModalReject = () => {
@@ -85,8 +90,15 @@ export const Orders = (props: any) => {
       popupStatus: undefined,
       popupConfirmId: undefined,
     });
+    setConfirmPopupShow(false);
   };
-  /////End modal
+  /////End confirm popup
+
+  //////////add Order Popup/////////////
+
+  const [addOrderPopapShow, setAddOrderPopupShow] = useState(false);
+
+  //////////end Order Popup/////////////
 
   const handlerProductShow = (order: number) => {
     showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
@@ -123,16 +135,21 @@ export const Orders = (props: any) => {
         popupImage={serviceState.popupImage}
         title={serviceState.popupTitle}
         text={serviceState.popupText}
-        showPopup={serviceState.popupShow}
+        showPopup={confirmPopupShow}
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
-      
+      <PopupAddOrder
+        showPopup={addOrderPopapShow}
+        onHide={() => setAddOrderPopupShow(false)}
+        onConfirm={() => setAddOrderPopupShow(false)}
+      />
+
       <div className={s.addBtnAndOrderTitle}>
         {" "}
         <IoIosAddCircle
           className={s.addOrderBtn}
-          onClick={() => dispatch({ type: "ADD_ORDER" })}
+          onClick={() => setAddOrderPopupShow(true)}
         ></IoIosAddCircle>
         {/* ///////Add S to order word////////// */}
         <div className={s.orderTitle}>
@@ -249,7 +266,7 @@ export const Orders = (props: any) => {
                   </td>
                 )}
               </tr>
-            ))}
+            )).reverse()}
           </tbody>
         </table>
 
