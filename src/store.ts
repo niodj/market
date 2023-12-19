@@ -186,8 +186,7 @@ export const serviceState: serviceStateType = {
   popupStatus: undefined,
   searchTerm: "",
   dark: false,
-  isLoading: false
-
+  isLoading: false,
 };
 
     // Сохраняем состояние в localStorage
@@ -201,7 +200,7 @@ export const localStorageMiddleware: Middleware =
     );
     return result;
   };
-  
+
 const persistedState = localStorage.getItem("reduxState")
   ? JSON.parse(localStorage.getItem("reduxState") || "{}")
   : {};
