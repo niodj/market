@@ -146,7 +146,7 @@ export const Orders = (props: any) => {
 
         {/* ///////Add S to order word////////// */}
         <table
-          className={`${showProduct ? s.fullWidthTable : s.halfWidthTable}`}
+          className={`${showProduct ? s.halfWidthTable : s.fullWidthTable}`}
         >
           <tbody>
             {orders.map((order: OrderType) => (
@@ -160,11 +160,13 @@ export const Orders = (props: any) => {
                 )}
 
                 <td className={s.cellShowBtnAndProdutc}>
-                  <FiList
-                    className={s.showProductBtn}
-                    onClick={() => handlerProductShow(order.id)}
-                  />
                   <div>
+                    <FiList
+                      className={s.showProductBtn}
+                      onClick={() => handlerProductShow(order.id)}
+                    />
+                  </div>
+                  <div className={s.amountAndProductWrapper}>
                     <div className={s.amountProductTitle}>
                       {
                         products.filter((product) => product.order === order.id)
@@ -229,7 +231,10 @@ export const Orders = (props: any) => {
                       order.id === showProduct ? s.arrowWrapper : ""
                     }`}
                   >
-                    <div className={s.arrowBtn}>
+                    <div
+                      className={s.arrowBtn}
+                      onClick={() => handlerProductShow(order.id)}
+                    >
                       <MdOutlineArrowForwardIos
                         className={s.arrowBtn}
                       ></MdOutlineArrowForwardIos>
