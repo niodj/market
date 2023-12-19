@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductType, StoreType } from "../../store";
+import { StoreType } from "../../store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Trash } from "react-bootstrap-icons";
-
 import s from "./Products.module.css";
-
-
 import { Popup } from "../popupuniversalConfirm/PopupConfirm";
 
-export const Products = (props: any) => {
+export const Products = () => {
 
   const dispatch = useDispatch();
   const products = useSelector((state: StoreType) => state.product);
@@ -83,13 +80,13 @@ export const Products = (props: any) => {
   };
 
   ///////FILTER
-  const types = Array.from(new Set(products.map((product) => product.type)));
+  const types = Array.from(new Set(products.map((product) => product.category)));
   const specifications = Array.from(
     new Set(products.map((product) => product.specification))
   );
 
   const filteredProducts = products.filter((product) => {
-    const typeMatch = !filterType || product.type === filterType;
+    const typeMatch = !filterType || product.category === filterType;
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =

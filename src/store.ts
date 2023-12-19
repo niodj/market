@@ -6,13 +6,12 @@ import { Middleware } from "redux";
 //import thunk, { ThunkDispatch } from "redux-thunk";
 
 export type ProductType = {
-
   id: number;
   serialNumber: number;
   isNew: number;
   photo: string;
   title: string;
-  type: string;
+  category: string;
   status: boolean;
   specification: string;
   guarantee: {
@@ -37,7 +36,7 @@ export const products: ProductType[] = [
     photo: "https://pricespy-75b8.kxcdn.com/product/standard/280/7302185.jpg",
     title:
       "Graphiccard Gigabyte GeForce RTX 3060 EAGLE OC 12GB (GV-N3060EAGLE OC-12GD 2.0 LHR)",
-    type: "Graphics Cards",
+    category: "Graphics Cards",
     specification: "Middle level price",
     guarantee: {
       start: "2017-06-29 12:09:33",
@@ -56,7 +55,7 @@ export const products: ProductType[] = [
     isNew: 0,
     photo: "https://pricespy-75b8.kxcdn.com/product/standard/280/7302185.jpg",
     title: "XFX Radeon RX 7900 XT Speedster MERC310 Ultra HDMI 3xDP 20GB",
-    type: "Graphics Cards",
+    category: "Graphics Cards",
     status: false,
     specification:
       "Portable Printer with Sublimation Technology and Wireless Connectivity",
@@ -78,7 +77,7 @@ export const products: ProductType[] = [
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
     title: "Canon MF4410",
-    type: "Printer",
+    category: "Printer",
     status: false,
     specification:
       "Portable Printer with Sublimation Technology and Wireless Connectivity",
@@ -99,7 +98,7 @@ export const products: ProductType[] = [
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
     title: "Acer 24",
-    type: "Monitors",
+    category: "Monitors",
     status: false,
     specification: "Compact Photo Printing Solutions",
     guarantee: {
@@ -114,9 +113,6 @@ export const products: ProductType[] = [
     date: "2017-06-29 12:09:33",
   },
 ];
-
-
-
 
 export type OrderType = {
   id: number;

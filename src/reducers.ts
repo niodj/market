@@ -21,10 +21,26 @@ export type RootAction =
 //////////PRODUCT
 export type AddProductAction = {
   type: "ADD_PRODUCT";
-  orderTitle: string;
-  orderDescription: string;
-  selectedManager: string;
+  serialNumber: number;
+  isNew: number;
+  photo: string;
+  title: string;
+  category: string;
+  status: boolean;
+  specification: string;
+  guarantee: {
+    start: string;
+    end: string;
+  };
+  price: {
+    value: number;
+    symbol: string;
+    isDefault: number;
+  }[];
+  order: number;
+  date: string;
 };
+
 export type DeleteProductAction = {
   type: "DELETE_PRODUCT";
   productId: number;
@@ -40,11 +56,11 @@ export const productReducer = (
 ): ProductType[] => {
   switch (action.type) {
     case "DELETE_PRODUCT":
-      console.log(action.productId);
       return state.filter((product) => product.id !== action.productId);
-
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
+    case "ADD_PRODUCT":
+      return state;
     default:
       return state;
   }

@@ -13,7 +13,7 @@ type PopupPropsType = {
 export const PopupAddOrder = (props: PopupPropsType) => {
   const orders = useSelector((state: StoreType) => state.orders);
   const dispatch = useDispatch();
-console.log(orders)
+
   const uniqueManagers = Array.from(
     new Set(orders.map((order) => order.manager))
   );
@@ -101,7 +101,7 @@ console.log(orders)
               )}
             </div>
 
-            <div className={errorManager ? s.errorManager : ""}>
+            <div className={errorManager ? s.errorFrame : ""}>
               <label htmlFor='manager'>Manager:</label>
               <select
                 id='manager'

@@ -4,13 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
 import { Popup } from "../popupuniversalConfirm/PopupConfirm";
-import Button from "react-bootstrap/Button";
 import { IoIosAddCircle } from "react-icons/io";
 import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { PopupAddOrder } from "../popupAddOrder/PopupAddOrder";
+import { PopupAddProduct } from "../popupAddProduct/PopupAddProduct";
+
 
 
 export const Orders = (props: any) => {
@@ -97,8 +98,9 @@ export const Orders = (props: any) => {
   //////////add Order Popup/////////////
 
   const [addOrderPopapShow, setAddOrderPopupShow] = useState(false);
+  const [addProductPopapShow, setAddProductPopupShow] = useState(true);
 
-  //////////end Order Popup/////////////
+
 
   const handlerProductShow = (order: number) => {
     showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
@@ -111,13 +113,15 @@ export const Orders = (props: any) => {
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
-  const types = Array.from(new Set(products.map((product) => product.type)));
+  const types = Array.from(
+    new Set(products.map((product) => product.category))
+  );
   const specifications = Array.from(
     new Set(products.map((product) => product.specification))
   );
 
   const filteredProducts = products.filter((product) => {
-    const typeMatch = !filterType || product.type === filterType;
+    const typeMatch = !filterType || product.category === filterType;
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =
@@ -144,7 +148,12 @@ export const Orders = (props: any) => {
         onHide={() => setAddOrderPopupShow(false)}
         onConfirm={() => setAddOrderPopupShow(false)}
       />
-
+      <PopupAddProduct
+        showPopup={addProductPopapShow}
+        onHide={() => setAddProductPopupShow(false)}
+        onConfirm={() => setAddProductPopupShow(false)}
+        orderId={showProduct}
+      />
       <div className={s.addBtnAndOrderTitle}>
         {" "}
         <IoIosAddCircle
@@ -166,107 +175,110 @@ export const Orders = (props: any) => {
           className={`${showProduct ? s.halfWidthTable : s.fullWidthTable}`}
         >
           <tbody>
-            {orders.map((order: OrderType) => (
-              <tr className={s.cellhalfWidthOrderRow} key={order.id}>
-                {showProduct ? (
-                  ""
-                ) : (
-                  <td className={s.halfWidthOrderDescripton}>
-                    {order.description}
-                  </td>
-                )}
+            {orders
+              .map((order: OrderType) => (
+                <tr className={s.cellhalfWidthOrderRow} key={order.id}>
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <td className={s.halfWidthOrderDescripton}>
+                      {order.title}
+                    </td>
+                  )}
 
-                <td className={s.cellShowBtnAndProdutc}>
-                  <div>
-                    <FiList
-                      className={s.showProductBtn}
-                      onClick={() => handlerProductShow(order.id)}
-                    />
-                  </div>
-                  <div className={s.amountAndProductWrapper}>
-                    <div className={s.amountProductTitle}>
-                      {
-                        products.filter((product) => product.order === order.id)
-                          .length
-                      }
+                  <td className={s.cellShowBtnAndProdutc}>
+                    <div>
+                      <FiList
+                        className={s.showProductBtn}
+                        onClick={() => handlerProductShow(order.id)}
+                      />
                     </div>
-
-                    <div className={s.titProduct}>products</div>
-                  </div>
-                </td>
-
-                <td className={s.cellHalfDate}>
-                  <div className={s.smallDate}>
-                    {order.date &&
-                      order.date
-                        .split(" ")[0]
-                        .split("-")
-                        .reverse()
-                        .slice(0, 2)
-                        .join(" / ")}
-                  </div>
-
-                  <div className={s.bigDate}>
-                    {order.date &&
-                      new Date(order.date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                  </div>
-                </td>
-                {showProduct ? (
-                  ""
-                ) : (
-                  <>
-                    <td className={s.cellPrice}>
-                      <div>
-                        {products
-                          .filter((product) => product.order === order.id)
-                          .reduce(
-                            (acc, product) => (acc += product.price[0].value),
-                            0
-                          )}{" "}
-                        $
+                    <div className={s.amountAndProductWrapper}>
+                      <div className={s.amountProductTitle}>
+                        {
+                          products.filter(
+                            (product) => product.order === order.id
+                          ).length
+                        }
                       </div>
 
-                      <div className={s.defaultPrice}>
-                        {products
-                          .filter((product) => product.order === order.id)
-                          .reduce(
-                            (acc, product) => (acc += product.price[1].value),
-                            0
-                          )}{" "}
-                        UAH
+                      <div className={s.titProduct}>products</div>
+                    </div>
+                  </td>
+
+                  <td className={s.cellHalfDate}>
+                    <div className={s.smallDate}>
+                      {order.date &&
+                        order.date
+                          .split(" ")[0]
+                          .split("-")
+                          .reverse()
+                          .slice(0, 2)
+                          .join(" / ")}
+                    </div>
+
+                    <div className={s.bigDate}>
+                      {order.date &&
+                        new Date(order.date).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                    </div>
+                  </td>
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <>
+                      <td className={s.cellPrice}>
+                        <div>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[0].value),
+                              0
+                            )}{" "}
+                          $
+                        </div>
+
+                        <div className={s.defaultPrice}>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[1].value),
+                              0
+                            )}{" "}
+                          UAH
+                        </div>
+                      </td>
+                    </>
+                  )}
+                  {showProduct ? (
+                    <td
+                      className={`${
+                        order.id === showProduct ? s.arrowWrapper : ""
+                      }`}
+                    >
+                      <div
+                        className={s.arrowBtn}
+                        onClick={() => handlerProductShow(order.id)}
+                      >
+                        <MdOutlineArrowForwardIos
+                          className={s.arrowBtn}
+                        ></MdOutlineArrowForwardIos>
                       </div>
                     </td>
-                  </>
-                )}
-                {showProduct ? (
-                  <td
-                    className={`${
-                      order.id === showProduct ? s.arrowWrapper : ""
-                    }`}
-                  >
-                    <div
-                      className={s.arrowBtn}
-                      onClick={() => handlerProductShow(order.id)}
-                    >
-                      <MdOutlineArrowForwardIos
-                        className={s.arrowBtn}
-                      ></MdOutlineArrowForwardIos>
-                    </div>
-                  </td>
-                ) : (
-                  <td className={s.cellDeleteIcon}>
-                    <Trash
-                      className={s.delBtn}
-                      onClick={() => handleModalDeleteOrder(order.id)}
-                    ></Trash>
-                  </td>
-                )}
-              </tr>
-            )).reverse()}
+                  ) : (
+                    <td className={s.cellDeleteIcon}>
+                      <Trash
+                        className={s.delBtn}
+                        onClick={() => handleModalDeleteOrder(order.id)}
+                      ></Trash>
+                    </td>
+                  )}
+                </tr>
+              ))
+              .reverse()}
           </tbody>
         </table>
 
@@ -281,12 +293,15 @@ export const Orders = (props: any) => {
               </div>
             </div>
             <div className={s.fullWidthOrderDescripton}>
+              <div>
+                {orders.find((order) => order.id === showProduct)?.title}
+              </div>
               {orders.find((order) => order.id === showProduct)?.description}
             </div>{" "}
             <div className={s.addProdutnAndTitle}>
               <IoIosAddCircle
                 className={s.addProductBtn}
-                onClick={addProduct}
+                onClick={() => setAddProductPopupShow(true)}
               ></IoIosAddCircle>
               Add propduct
             </div>
