@@ -1,0 +1,35 @@
+
+.modalWrapper{
+
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+
+}
+.form {
+  padding: 20px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 100%;
+}
+
+
+.modalFooter {
+  justify-content: space-between;
+}
+
+.errorFrame {
+  border: solid 1px red;
+}
+
