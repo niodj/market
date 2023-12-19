@@ -3,7 +3,7 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
-import { Popup } from "../universalPopupConfigm/PopupConfirm";
+import { Popup } from "../popupuniversalConfirm/PopupConfirm";
 import Button from "react-bootstrap/Button";
 import { IoIosAddCircle } from "react-icons/io";
 import { FiList } from "react-icons/fi";
@@ -20,7 +20,6 @@ export const Orders = (props: any) => {
   const [showProduct, setShowProduct] = useState<number>();
 
   const handleModalDeleteOrder = (orderId: number) => {
-
     dispatch({
       type: "SET_MODAL",
       popupActionType: "DELETE_ORDER",
@@ -46,46 +45,46 @@ export const Orders = (props: any) => {
       popupConfirmId: productId,
       popupShow: true,
     });
-  }
+  };
 
-    const modalConfirmed = () => {
-      if (serviceState.popupActionType === "DELETE_ORDER") {
-        dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-        dispatch({
-          type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId,
-        });
-      }
-
-      if (serviceState.popupActionType === "DELETE_PRODUCT") {
-        dispatch({
-          type: "DELETE_PRODUCT",
-          productId: serviceState.popupConfirmId,
-        });
-      }
+  const modalConfirmed = () => {
+    if (serviceState.popupActionType === "DELETE_ORDER") {
+      dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
       dispatch({
-        type: "SET_MODAL",
-        popupShow: false,
-        popupActionType: "",
-        popupTitle: "",
-        popupText: "",
-        popupImage: "",
-        popupStatus: undefined,
-        popupConfirmId: undefined,
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
       });
-    };
+    }
 
+    if (serviceState.popupActionType === "DELETE_PRODUCT") {
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
+    }
+    dispatch({
+      type: "SET_MODAL",
+      popupShow: false,
+      popupActionType: "",
+      popupTitle: "",
+      popupText: "",
+      popupImage: "",
+      popupStatus: undefined,
+      popupConfirmId: undefined,
+    });
+  };
 
   const onModalReject = () => {
-          dispatch({
-            type: "SET_MODAL",
-            popupShow: false,
-            popupActionType: "",
-            popupTitle: "",
-            popupText: "",
-            popupImage: "",
-            popupStatus: undefined,
-            popupConfirmId: undefined,
-          });
+    dispatch({
+      type: "SET_MODAL",
+      popupShow: false,
+      popupActionType: "",
+      popupTitle: "",
+      popupText: "",
+      popupImage: "",
+      popupStatus: undefined,
+      popupConfirmId: undefined,
+    });
   };
   /////End modal
 
@@ -128,6 +127,7 @@ export const Orders = (props: any) => {
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
+      
       <div className={s.addBtnAndOrderTitle}>
         {" "}
         <IoIosAddCircle

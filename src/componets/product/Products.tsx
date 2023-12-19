@@ -7,7 +7,7 @@ import { Trash } from "react-bootstrap-icons";
 import s from "./Products.module.css";
 
 import Button from "react-bootstrap/Button";
-import { Popup } from "../universalPopupConfigm/PopupConfirm";
+import { Popup } from "../popupuniversalConfirm/PopupConfirm";
 
 export const Products = (props: any) => {
   const dispatch = useDispatch();
@@ -18,23 +18,22 @@ export const Products = (props: any) => {
   const [filterSpecification, setFilterSpecification] = useState<string>();
   const orders = useSelector((state: StoreType) => state.orders);
 
-const handleModalDeleteProduct = (productId: number) => {
-  dispatch({
-    type: "SET_MODAL",
-    popupActionType: "DELETE_PRODUCT",
-    popupTitle: `Are you sure you want to delete product?`,
-    popupText: `Delete product ${
-      products.find((product) => product.id === productId)?.title
-    }  sn: ${
-      products.find((product) => product.id === productId)?.serialNumber
-    } ?`,
-    popupImage: products.find((product) => product.id === productId)?.photo,
-    popupStatus: products.find((product) => product.id === productId)?.status,
-    popupConfirmId: productId,
-    popupShow: true,
-  });
-};
-
+  const handleModalDeleteProduct = (productId: number) => {
+    dispatch({
+      type: "SET_MODAL",
+      popupActionType: "DELETE_PRODUCT",
+      popupTitle: `Are you sure you want to delete product?`,
+      popupText: `Delete product ${
+        products.find((product) => product.id === productId)?.title
+      }  sn: ${
+        products.find((product) => product.id === productId)?.serialNumber
+      } ?`,
+      popupImage: products.find((product) => product.id === productId)?.photo,
+      popupStatus: products.find((product) => product.id === productId)?.status,
+      popupConfirmId: productId,
+      popupShow: true,
+    });
+  };
 
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
