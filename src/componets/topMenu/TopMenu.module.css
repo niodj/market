@@ -9,7 +9,14 @@
 padding-top: 10px;
 padding-bottom: 10px;
 background-color: white;
+transition: background-color 3s, color 3s;
 }
+
+.dark,wrapper  {
+background-color: rgb(61, 58, 41);
+  color:khaki;
+}
+
 .themeToggle{
   padding-left: 20px;
   min-width:160px;

@@ -13,7 +13,7 @@ export type RootAction =
   | AddOrderAction
   | AddProductAction
   | DeleteOrderProductsAction
-  
+
   | LoadingAction
   | IsDarkAction
   | SetSearchTerm;
@@ -58,7 +58,7 @@ export const productReducer = (
       return state.filter((product) => product.id !== action.productId);
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
-    case "ADD_PRODUCT":console.log(action)
+    case "ADD_PRODUCT":console.log(state)
       return state.length > 0
         ? [
             ...state,
@@ -91,7 +91,37 @@ export const productReducer = (
               date: action.date,
             },
           ]
-        : state;;
+        : [
+
+            {
+              id:1,
+              serialNumber: action.serialNumber,
+              isNew: action.isNew,
+              photo: action.photo,
+              title: action.title,
+              category: action.category,
+              status: action.status,
+              specification: action.specification,
+              guarantee: {
+                start: action.guarStart,
+                end: action.guarEnd,
+              },
+              price: [
+                {
+                  value: action.priceValue,
+                  symbol: action.symbol,
+                  isDefault: action.isDefault,
+                },
+                {
+                  value: action.price2Value,
+                  symbol: action.symbol2,
+                  isDefault: action.isDefault2,
+                },
+              ],
+              order: action.order,
+              date: action.date,
+            },
+          ];;
     default:
       return state;
   }
@@ -118,7 +148,7 @@ export const orderReducer = (
     case "DELETE_ORDER":
       return state.filter((order) => order.id !== action.orderId);
 
-    case "ADD_ORDER":
+    case "ADD_ORDER":console.log(state);
       return state.length > 0
         ? [
             ...state,
@@ -131,7 +161,16 @@ export const orderReducer = (
               products,
             },
           ]
-        : state;
+        : [
+            {
+              id:1,
+              title: action.orderTitle,
+              manager: action.selectedManager,
+              description: action.orderDescription,
+              date: action.date,
+              products,
+            },
+          ];
     default:
       return state;
   }

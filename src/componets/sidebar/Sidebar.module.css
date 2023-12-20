@@ -1,8 +1,10 @@
+
 .wrapperSidebarAndContent {
   display: flex;
   flex-direction: row;
 
 }
+
 
 .sidebarWrapper {
   display: flex;
@@ -15,8 +17,13 @@
   padding-left: 10px;
   padding-right: 10px;
   background-color: white;
+  transition: background-color 3s, color 3s;
 }
 
+.dark,sidebarWrapper {
+ background-color: rgb(61, 58, 41);
+  color:khaki;
+}
 .avatarAndSettings{
 position: relative;
 margin-bottom: 50px;

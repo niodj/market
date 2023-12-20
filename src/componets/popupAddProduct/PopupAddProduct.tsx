@@ -91,10 +91,10 @@ export const PopupAddProduct = (props: PopupPropsType) => {
       setTitleError(true);
       return;
     }
-    if (!category.trim()) {
-      setCategoryError(true);
-      return;
-    }
+    // if (!category.trim()) {
+    //   setCategoryError(true);
+    //   return;
+    // }
 
     if (+priceValue < 0.01) {
 
@@ -152,13 +152,13 @@ export const PopupAddProduct = (props: PopupPropsType) => {
 
           <Modal.Body>
             <form onSubmit={addProduct} className={s.form}>
-              <div className={categoryError ? s.errorFrame : ""}>
+              <div>
                 <label>category</label>
                 <select
                   value={category}
                   onChange={(e) => {
                     setCategory(e.target.value);
-                    setCategoryError(false);
+                    // setCategoryError(false);
                   }}
                   className='form-control'
                 >
@@ -229,11 +229,10 @@ export const PopupAddProduct = (props: PopupPropsType) => {
                         setIsNew(+e.target.value);
                       }}
                       className='form-control'
-                      defaultValue={1}
+
                     >
                       <option value={1}>New</option>
-                      <option value={1}>New</option>
-                      <option value={0}>Used</option>
+                    <option value={0}>Used</option>
                     </select>
                   </div>
                 </div>

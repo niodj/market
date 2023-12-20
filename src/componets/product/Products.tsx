@@ -93,7 +93,10 @@ export const Products = () => {
         <table className={s.productsTable}>
           <tbody>
             {filteredProducts.map((product) => (
-              <tr className={s.propductRow} key={product.id}>
+              <tr
+                className={`${s.propductRow} ${serviceState.dark ? s.dark : ""}`}
+                key={product.id}
+              >
                 <td className={s.cellMArkStatus}>
                   {product.status ? (
                     <div className={s.markTrueStatus} />
@@ -102,7 +105,7 @@ export const Products = () => {
                   )}
                 </td>
                 <td className={s.cellPhoto}>
-                  <img src={product.photo} className={s.photo}  />
+                  <img src={product.photo} className={s.photo} />
                 </td>
                 <td className={s.cellProductName}>
                   <div className={s.productName}>{product.title}</div>

@@ -14,15 +14,20 @@ export const PopupAddOrder = (props: PopupPropsType) => {
   const orders = useSelector((state: StoreType) => state.orders);
   const dispatch = useDispatch();
 
-  const uniqueManagers = Array.from(
-    new Set(orders.map((order) => order.manager))
-  );
-  const [selectedManager, setSelectedManager] = useState("");
+
+
   const [orderTitle, setOrderTitle] = useState("");
   const [orderDescription, setOrderDescription] = useState("");
   const [errorTitle, setErrorTitle] = useState(false);
-  const [errorDescr, setErrorDescr] = useState(false);
+   const [selectedManager, setSelectedManager] = useState("");
   const [errorManager, setErrorManager] = useState(false);
+  const [newManager, setNewManager] = useState('')
+  const [uniqueManagers, setUniqueManagers] = useState(
+    Array.from(new Set(orders.map((order) => order.manager)))
+  );
+
+
+
 
   const onHide = () => {
 
@@ -31,36 +36,27 @@ export const PopupAddOrder = (props: PopupPropsType) => {
       setOrderDescription("");
       setSelectedManager("");
       setErrorTitle(false);
-      setErrorDescr(false);
+
       props.onHide();
   };
 
   const addOrder = (e: React.FormEvent) => {
+
     e.preventDefault();
     if (!orderTitle.trim()) {
       setErrorTitle(true);
       return;
     }
-
-
     if (!selectedManager.trim()) {
       setErrorManager(true);
       return;
     }
-
-
-    if (!orderDescription.trim()) {
-      setErrorDescr(true);
-      return;
-    }
-
     dispatch({
       type: "ADD_ORDER",
       orderTitle,
       orderDescription,
       selectedManager,
       date: new Date().toISOString().slice(0, 19).replace("T", " "),
-
     });
  onHide();
 
@@ -76,7 +72,7 @@ export const PopupAddOrder = (props: PopupPropsType) => {
       >
         <Modal.Header closeButton>
           <Modal.Title className={s.title}>
-            New Order# {orders.length?orders[orders.length - 1].id + 1:""}
+            New Order# {orders.length ? orders[orders.length - 1].id + 1 : ""}
           </Modal.Title>
         </Modal.Header>
 
@@ -91,7 +87,7 @@ export const PopupAddOrder = (props: PopupPropsType) => {
                 name='title'
                 value={orderTitle}
                 onChange={(e) => {
-                  setOrderTitle(e.currentTarget.value);
+                  setOrderTitle(e.target.value);
                   setErrorTitle(false);
                 }}
                 placeholder='Enter order title'
@@ -101,8 +97,34 @@ export const PopupAddOrder = (props: PopupPropsType) => {
               )}
             </div>
 
-            <div className={errorManager ? s.errorFrame : ""}>
+            <div>
               <label htmlFor='manager'>Manager:</label>
+              <div className='form-control'>
+                <input
+                  type='text'
+                  value={newManager}
+                  onChange={(e) => setNewManager(e.target.value)}
+                  placeholder='new manager'
+                  className={`form-control`}
+                />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (
+                      !uniqueManagers.includes(newManager) &&
+                      newManager.trim() !== ""
+                    ) {
+                      setUniqueManagers((prevManagers) => [
+                        ...prevManagers,
+                        newManager,
+                      ]);
+                      setNewManager("");
+                    }
+                  }}
+                >
+                  Add new manager
+                </button>
+              </div>
               <select
                 id='manager'
                 name='manager'
@@ -111,7 +133,7 @@ export const PopupAddOrder = (props: PopupPropsType) => {
                   setSelectedManager(e.target.value);
                   setErrorManager(false);
                 }}
-                className='form-control'
+                className={`form-control ${errorManager ? "is-invalid" : ""}`}
               >
                 <option value=''>Select Manager</option>
                 {uniqueManagers.map((manager, index) => (
@@ -125,21 +147,15 @@ export const PopupAddOrder = (props: PopupPropsType) => {
             <div className='form-group'>
               <label htmlFor='description'>Description:</label>
               <textarea
-                className={`form-control ${errorDescr ? "is-invalid" : ""}`}
+                className='form-control'
                 id='description'
                 name='description'
                 value={orderDescription}
                 onChange={(e) => {
                   setOrderDescription(e.currentTarget.value);
-                  setErrorDescr(false);
                 }}
                 placeholder='Enter description'
               ></textarea>
-              {errorDescr && (
-                <div className='invalid-feedback'>
-                  Description cannot be empty
-                </div>
-              )}
             </div>
             <div className={s.buttonContainer}>
               <Button type='submit' variant='primary'>

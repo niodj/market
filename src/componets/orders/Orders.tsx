@@ -66,7 +66,7 @@ export const Orders = () => {
 
 
 
-    
+
   };
 
   ////////////////////////Filter
@@ -137,7 +137,12 @@ export const Orders = () => {
           <tbody>
             {orders
               .map((order: OrderType) => (
-                <tr className={s.cellhalfWidthOrderRow} key={order.id}>
+                <tr
+                  className={`${s.cellhalfWidthOrderRow} ${
+                    serviceState.dark ? s.dark : ""
+                  }`}
+                  key={order.id}
+                >
                   {currOrderId ? (
                     ""
                   ) : (
@@ -247,7 +252,11 @@ export const Orders = () => {
         </table>
 
         {currOrderId ? (
-          <div className={s.childComponentWraper}>
+          <div
+            className={`${s.childComponentWraper} ${
+              serviceState.dark ? s.dark : ""
+            }`}
+          >
             <div className={s.childOrderDescriptionAndCloseBtn}>
               {" "}
               <div className={s.closeProductBtn}>
@@ -274,7 +283,12 @@ export const Orders = () => {
                 {filteredProducts
                   .filter((product) => product.order === currOrderId)
                   .map((product) => (
-                    <tr key={product.id} className={s.childTableRow}>
+                    <tr
+                      key={product.id}
+                      className={`${s.childTableRow} ${
+                        serviceState.dark ? s.dark : ""
+                      }`}
+                    >
                       <td className={s.cellMArkStatus}>
                         {product.status ? (
                           <div className={s.markTrueStatus} />
@@ -296,7 +310,7 @@ export const Orders = () => {
                           <div className={s.statusTextFalse}>On repear</div>
                         )}
                       </td>
-                      <td className={s.cellDeleteIcon}>
+                      <td className={s.cellDeleteProduct}>
                         <Trash
                           className={s.delBtn}
                           onClick={() => {

@@ -15,7 +15,7 @@ export const TopMenu = () => {
 
 
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} ${dark ? s.dark : ""}`}>
         <div className={s.themeToggle}>
           {dark ? "it's a time of darkness." : "it's daylight time"}
         <Form>
