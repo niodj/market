@@ -76,7 +76,7 @@ export const PopupAddOrder = (props: PopupPropsType) => {
       >
         <Modal.Header closeButton>
           <Modal.Title className={s.title}>
-            New Order# {orders[orders.length - 1].id + 1}
+            New Order# {orders.length?orders[orders.length - 1].id + 1:""}
           </Modal.Title>
         </Modal.Header>
 

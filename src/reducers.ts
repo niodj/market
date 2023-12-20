@@ -30,12 +30,14 @@ export type AddProductAction = {
   specification: string;
   guarStart: string;
   guarEnd: string;
-    priceValue: number;
-    symbol: string;
-    isDefault: number;
+  priceValue: number;
+  symbol: string;
+  isDefault: number;
+  price2Value: number;
+  symbol2: string;
+  isDefault2: number;
   order: number;
   date: string;
-
 };
 
 export type DeleteProductAction = {
@@ -71,13 +73,22 @@ export const productReducer = (
               specification: action.specification,
               guarantee: {
                 start: action.guarStart,
-                end: action.guarEnd
+                end: action.guarEnd,
               },
-              price: [{ value: action.priceValue, symbol: action.symbol, isDefault: action.isDefault }],
+              price: [
+                {
+                  value: action.priceValue,
+                  symbol: action.symbol,
+                  isDefault: action.isDefault,
+                },
+                {
+                  value: action.price2Value,
+                  symbol: action.symbol2,
+                  isDefault: action.isDefault2,
+                },
+              ],
               order: action.order,
-              date: action.date
-
-
+              date: action.date,
             },
           ]
         : state;;
