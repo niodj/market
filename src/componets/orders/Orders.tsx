@@ -98,7 +98,7 @@ export const Orders = (props: any) => {
   //////////add Order Popup/////////////
 
   const [addOrderPopapShow, setAddOrderPopupShow] = useState(false);
-  const [addProductPopapShow, setAddProductPopupShow] = useState(true);
+  const [addProductPopapShow, setAddProductPopupShow] = useState(false);
 
 
 

@@ -28,17 +28,14 @@ export type AddProductAction = {
   category: string;
   status: boolean;
   specification: string;
-  guarantee: {
-    start: string;
-    end: string;
-  };
-  price: {
-    value: number;
+  guarStart: string;
+  guarEnd: string;
+    priceValue: number;
     symbol: string;
     isDefault: number;
-  }[];
   order: number;
   date: string;
+
 };
 
 export type DeleteProductAction = {
@@ -59,8 +56,31 @@ export const productReducer = (
       return state.filter((product) => product.id !== action.productId);
     case "DELETE_ORDER_PRODUCTS":
       return state.filter((product) => product.order !== action.orderId);
-    case "ADD_PRODUCT":
-      return state;
+    case "ADD_PRODUCT":console.log(action)
+      return state.length > 0
+        ? [
+            ...state,
+            {
+              id: state[state.length - 1].id + 1,
+              serialNumber: action.serialNumber,
+              isNew: action.isNew,
+              photo: action.photo,
+              title: action.title,
+              category: action.category,
+              status: action.status,
+              specification: action.specification,
+              guarantee: {
+                start: action.guarStart,
+                end: action.guarEnd
+              },
+              price: [{ value: action.priceValue, symbol: action.symbol, isDefault: action.isDefault }],
+              order: action.order,
+              date: action.date
+
+
+            },
+          ]
+        : state;;
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { Modal, Button, FormControl } from "react-bootstrap";
 import s from "./popupAddProduct.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreType } from "../../store";
-import {  useState } from "react";
+import {  ChangeEvent, useState } from "react";
 
 type PopupPropsType = {
   onHide: () => void;
@@ -12,7 +12,7 @@ type PopupPropsType = {
 };
 
 export const PopupAddProduct = (props: PopupPropsType) => {
-  const product = useSelector((state: StoreType) => state.product);
+  const products = useSelector((state: StoreType) => state.product);
   const orders = useSelector((state: StoreType) => state.orders);
   const dispatch = useDispatch();
 
@@ -28,25 +28,29 @@ export const PopupAddProduct = (props: PopupPropsType) => {
   const [specification, setSpecification] = useState("");
   const [guarStart, setGuarStart] = useState("");
   const [guarFinish, setGuarFinish] = useState("");
-
   const [priceValue, setPriceValue] = useState('');
-
-
   const [priceValueError, setPriceValueError] = useState(false);
-  const [symbol, setSymbol] = useState({});
-  const [priceValued, setdPrice] = useState({});
-  const [priceError, setPriceError] = useState(false);
+  const [symbol, setSymbol] = useState('');
 
-  const [order, setOrder] = useState(orders[orders.length - 1].id);
-  const [orderError, setOrderError] = useState(false);
+  const [defaultPrice, setDefaultPrice] = useState(1);
 
   const uniqueCategory = Array.from(
-    new Set(product.map((propduct) => propduct.category))
+    new Set(products.map((propduct) => propduct.category))
   );
-  const uniqueOrderNumber = Array.from(
-    new Set(product.map((propduct) => propduct.order))
-  );
-const handleInputChange = (e:any) => {
+
+ const uniqueCurrency = Array.from(
+   new Set(
+     products.flatMap((product) =>
+       product.price.map((currency) => currency.symbol)
+     )
+   )
+ );
+
+
+
+
+
+const handlePriceInput = (e: ChangeEvent<HTMLInputElement>) => {
   const inputValue = e.target.value;
   const dotCount = (inputValue.match(/\./g) || []).length;
 
@@ -62,10 +66,7 @@ const handleInputChange = (e:any) => {
   }
 };
 
-
-
-
-  const onHide = () => {
+ const onHide = () => {
     // Reset form state after submitting
     setTitle("");
     setSN("");
@@ -92,9 +93,9 @@ const handleInputChange = (e:any) => {
     }
 
     if (+priceValue < 0.01) {
-      console.log(+priceValue);
+
       setPriceValueError(true)
-       console.log(priceError);
+
       return;
     }
 
@@ -108,16 +109,13 @@ const handleInputChange = (e:any) => {
       category: category,
       status: status,
       specification: specification,
-      guarantee: {
-        start: guarStart,
-        end: guarFinish,
-      },
-      price: {
-        value: priceValue,
-        symbol: symbol,
-        isDefault: 1,
-      },
-      order: uniqueOrderNumber,
+      guarStart: guarStart,
+      guarEnd:guarFinish,
+      priceValue: priceValue,
+      symbol: symbol,
+      isDefault: 1,
+
+      order: props.orderId,
       date: new Date().toISOString().slice(0, 19).replace("T", " "),
     });
 
@@ -276,51 +274,41 @@ const handleInputChange = (e:any) => {
                   priceValueError ? "is-invalid" : ""
                 }`}
                 value={priceValue}
-                onChange={handleInputChange}
+                onChange={handlePriceInput}
                 placeholder='Enter price'
               />
             </div>
 
-            {/* <div className={errorManager ? s.errorFrame : ""}>
-              <label htmlFor='manager'>Manager:</label>
+            <div>
+              <label>Currency</label>
               <select
-                id='manager'
-                name='manager'
-                value={selectedManager}
+                value={symbol}
                 onChange={(e) => {
-                  setSelectedManager(e.target.value);
-                  setErrorManager(false);
+                  setSymbol(e.target.value);
                 }}
                 className='form-control'
+                defaultValue={uniqueCurrency[0]}
               >
-                <option value=''>Select Manager</option>
-                {uniqueManagers.map((manager, index) => (
-                  <option key={index} value={manager}>
-                    {manager}
+                {uniqueCurrency.map((curr, index) => (
+                  <option key={index} value={curr}>
+                    {curr}
                   </option>
                 ))}
               </select>
-            </div> */}
+            </div>
+            <div className={"form-control"}>
+              <label>default currency</label>
+              <input
+                type='checkbox'
+                checked={defaultPrice === 1}
+                onChange={() => setDefaultPrice(defaultPrice === 1 ? 0 : 1)}
+              />
+            </div>
 
-            {/*
-            <div>
-              <label>Description:</label>
-              <textarea
-                className={`form-control ${errorDescr ? "is-invalid" : ""}`}
 
-                value={orderDescription}
-                onChange={(e) => {
-                  setOrderDescription(e.currentTarget.value);
-                  setErrorDescr(false);
-                }}
-                placeholder='Enter description'
-              ></textarea>
-              {errorDescr && (
-                <div className='invalid-feedback'>
-                  Description cannot be empty
-                </div>
-              )}
-            </div> */}
+
+
+
             <div className={s.buttonContainer}>
               <Button type='submit' variant='primary'>
                 Submit
