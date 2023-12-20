@@ -58,6 +58,7 @@ cellhalfWidthOrderRow {
   background-color: black;
   color: khaki;
   transition: background-color 3s, color 3s;
+  border: solid  khaki 1px;
 }
 
 .cellhalfWidthOrderRow:hover {
