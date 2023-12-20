@@ -8,6 +8,7 @@ here used:
 -typescript
 -module.css
 -bootstrap
+-animation, framer-motion, transition
 -redux
 -localStorageMiddleware
 
