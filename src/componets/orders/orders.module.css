@@ -269,7 +269,7 @@ filter: drop-shadow(1px 3px 3px #000);
   margin-bottom: 15px;
   align-items: center;
 
-  justify-content: space-around;
+
 
 
 }
@@ -294,6 +294,7 @@ filter: drop-shadow(1px 3px 3px #000);
 }
 /* /////////CellPhoto////////// */
 .cellPhoto {
+width: 40px;
 
 }
 .photo {

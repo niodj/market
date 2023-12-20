@@ -319,7 +319,7 @@ export const Orders = (props: any) => {
                           <div className={s.markFalseStatus} />
                         )}
                       </td>
-                      <td>
+                      <td className={s.cellPhoto}>
                         <img src={product.photo} className={s.photo}></img>
                       </td>
                       <td className={s.cellProductName}>
