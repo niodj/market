@@ -9,8 +9,9 @@ import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { PopupAddOrder } from "../popupAddOrder/PopupAddOrder";
+
 import { PopupAddProduct } from "../popupAddProduct/PopupAddProduct";
+import { PopupAddOrder } from "../popupAddOrder/popupAddOrder";
 
 
 
