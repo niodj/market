@@ -1,0 +1,66 @@
+
+.modalWrapper{
+
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+
+}
+.title{
+  font-size: 15px;
+}
+.dataWrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modalFooter{
+  background-color: green;
+}
+/* //////////cellMArkStatus///////// */
+
+.markTrueStatus,
+.markFalseStatus {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+}
+.markTrueStatus {
+  background-color: greenyellow;
+}
+.markFalseStatus {
+  background-color: gray;
+}
+/* /////////CellPhoto////////// */
+.cellPhoto {
+
+}
+.photo {
+  width: 40px;
+}
+/* //////////CellProductName///////// */
+.cellProductName {
+  padding-right: 10px;
+  width: 400px;
+  min-width: 150px;
+  margin-left: 10px;
+}
+
+.productName {
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.4px;
+}
+
+.SN {
+  font-size: 10px;
+  color: rgb(192, 192, 192);
+  font-weight: bold;
+}

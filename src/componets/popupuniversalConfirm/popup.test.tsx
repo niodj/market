@@ -1,18 +1,11 @@
-
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Popup } from "./Popup";
-
-
-
-
-
+import { Popup } from "./PopupConfirm";
 
 type PopupPropsType = {
   popupStatus?: boolean;
 };
 describe("Popup component", () => {
-
   const mockProps = {
     showPopup: true,
     onHide: jest.fn(),
@@ -21,7 +14,6 @@ describe("Popup component", () => {
     popupImage: "path/to/image",
     title: "Test Title",
   };
-
 
   it("renders with provided props", () => {
     const { getByText, getByAltText } = render(<Popup {...mockProps} />);

@@ -1,89 +1,225 @@
-.productsContainer {
-  padding: 20px 0px 0px 0px ;
-}
-
-.filterSection {
-  margin-bottom: 15px;
-}
-
- .productsTable {
-  width: 100%;
-    border-collapse: separate;
-   border: 1px solid #dddddd;
-}
-
-.productsTable th,
-.productsTable td {
-  padding: 4px;
-  text-align: center;
-border: 1px solid #dddddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-}
-
-.productsTable th {
-
-}
-
-.productsTableWrapper {
+.wrapperProducts {
   margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 20px;
+  width: 100%;
+
 }
 
-.statusMarkTrue,
-.statusMarkFalse {
-  width: 15px;
-  height: 15px;
+/* ///////////////// */
+.titleAndfilters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  text-wrap: nowrap;
+}
+/* ////////productTableTitle/////////// */
+.productTableTitle {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-right: 25px;
+}
+.filterSection {
+  margin-right: 60px;
+}
+.filterLabel {
+  margin-right: 15px;
+}
+
+/* ////////TABLE/////////// */
+.productsTableWrapper {
+}
+.productsTable {
+  width: 100%;
+}
+
+.propductRow {
+  display: flex;
+  border: solid rgb(192, 192, 192) 0.1rem;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+.propductRow:hover{
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
+/* //////////cellMArkStatus///////// */
+.cellMArkStatus {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 1.5%;
+}
+.markTrueStatus,
+.markFalseStatus {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-
 }
-
-.statusMarkTrue {
+.markTrueStatus {
   background-color: greenyellow;
 }
-
-.statusMarkFalse {
+.markFalseStatus {
   background-color: gray;
 }
-.statusTextTrue,
-.statusTextFalse {
-    display: flex;
-  align-items: center;
-  justify-content: center;
+/* /////////CellPhoto////////// */
+.cellPhoto {
 
 }
+.photo {
+  width: 40px;
+}
+/* //////////CellProductName///////// */
+.cellProductName {
+  padding-right: 10px;
+  width: 150px;
+  min-width: 150px;
+  margin-left: 10px;
+}
+
+.productName {
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.4px;
+}
+
+.SN {
+  font-size: 10px;
+  color: rgb(192, 192, 192);
+  font-weight: bold;
+}
+/* /////cellStatusText///// */
+.cellStatusText {
+  margin-right: 10px;
+  width: 34px;
+}
+
+.statusTextTrue,
+.statusTextFalse {
+  font-size: 10px;
+  text-align: center;
+}
+
 .statusTextTrue {
-  margin: auto;
-  color: greenyellow;
+  color: rgb(170, 204, 118);
 }
 
 .statusTextFalse {
   color: gray;
 }
 
-.defaultPrice {
+/* //cellGuaranteeDate/// */
+.cellGuaranteeDate {
+  font-size: 8px;
+  margin-left: 10px;
+  width: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  text-wrap: nowrap;
+}
+.garantDateNumbers {
+  font-size: 10px;
+  margin-left: 5px;
   font-weight: bold;
 }
 
-.photo {
-  width: 40px;
-  height: 40px;
+/* ///cellIsNew// */
+
+.cellIsNew {
+  margin-left: 10px;
+  color: gray;
+  width: 23px;
+  font-size: 10px;
+  text-align: left;
 }
 
-.titleAndfilters{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.dateCell{
+/* ///cellPrice// */
+.cellPrice {
+  color: gray;
+  text-wrap: nowrap;
+  font-size: 12px;
+  margin-left: 10px;
   width: 110px;
+  min-width: 110px;
+  text-align: left;
 }
-.dateCellBig{
-   width: 120px;
-   font-size: small;
+.defaultPrice {
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px;
+  color: gray;
+}
+/* ////////cellSpecification////// */
+
+.cellSpecification {
+  font-size: 10px;
+  margin-left: 10px;
+  color: gray;
+  width: 100px;
+  min-width: 100px;
+  text-align: left;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 1px;
+}
+/* ////////cellManager////// */
+.cellManager {
+  font-size: 10px;
+  margin-left: 10px;
+  color: gray;
+
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 1px;
+  width: 100px;
+  min-width: 100px;
+}
+/* ////////cellOrderTitle////// */
+.cellOrderTitle {
+  font-size: 10px;
+  margin-left: 10px;
+  color: gray;
+  width: 150px;
+  min-width: 150px;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 1px;
 }
 
-.smallDate{
-  font-size: small;
+/* ////////cellOrderDate////// */
+.cellOrderDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  width: 73px;
+
+  color: gray;
+  font-size: 10px;
+  font-weight: bold;
+  text-wrap: nowrap;
+}
+/* ////////cellDeleteIcon////// */
+.cellDeleteIcon {
+  margin-left: 10px;
+  color: grey;
+  margin-right: 10px;
+  width: 1%;
+
+  text-align: right;
+}
+.cellDeleteIcon:hover {
+  cursor: pointer;
+  color: red;
 }

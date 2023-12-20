@@ -1,18 +1,33 @@
-import React from "react";
+
 import { Time } from "./Time";
 import s from "./TopMenu.module.css";
-import { useDispatch } from "react-redux";
+
+import { StoreType } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Form } from "react-bootstrap";
 
 
+export const TopMenu = () => {
+  const dispatch = useDispatch();
 
 
-export const TopMenu = (props: any) => {
+  const dark = useSelector((state: StoreType) => state.serviceState.dark);
 
-const dispatch = useDispatch();
 
   return (
     <div className={s.wrapper}>
-      <div>
+        <div className={s.themeToggle}>
+          {dark ? "it's a time of darkness." : "it's daylight time"}
+        <Form>
+          <Form.Check
+            type='switch'
+            checked={dark}
+            onChange={() => dispatch({ type: "CHANGE_THEME" })}
+          ></Form.Check>
+        </Form>
+      </div>
+
+      <div className={s.logoAndSearch}>
         <img
           src='https://www.freeiconspng.com/download/49594'
           className={s.logo}

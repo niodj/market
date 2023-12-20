@@ -6,13 +6,12 @@ import { Middleware } from "redux";
 //import thunk, { ThunkDispatch } from "redux-thunk";
 
 export type ProductType = {
-
   id: number;
   serialNumber: number;
   isNew: number;
   photo: string;
   title: string;
-  type: string;
+  category: string;
   status: boolean;
   specification: string;
   guarantee: {
@@ -34,17 +33,18 @@ export const products: ProductType[] = [
     serialNumber: 1234,
     isNew: 1,
     status: true,
-    photo: "https://m.media-amazon.com/images/I/51eWw4k9MTL._AC_US40_.jpg",
-    title: "Samsung monitor 22",
-    type: "Monitors",
-    specification: "Specification 1",
+    photo: "https://pricespy-75b8.kxcdn.com/product/standard/280/7302185.jpg",
+    title:
+      "Graphiccard Gigabyte GeForce RTX 3060 EAGLE OC 12GB (GV-N3060EAGLE OC-12GD 2.0 LHR)",
+    category: "Graphics Cards",
+    specification: "Middle level price",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
     },
     price: [
-      { value: 100, symbol: "USD", isDefault: 0 },
-      { value: 2600, symbol: "UAH", isDefault: 1 },
+      { value: 2100, symbol: "USD", isDefault: 0 },
+      { value: 2500500.5, symbol: "UAH", isDefault: 1 },
     ],
     order: 1,
     date: "2017-06-29 12:09:33",
@@ -53,11 +53,12 @@ export const products: ProductType[] = [
     id: 2,
     serialNumber: 1234,
     isNew: 0,
-    photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
-    title: "HP 3110",
-    type: "Printer",
+    photo: "https://pricespy-75b8.kxcdn.com/product/standard/280/7302185.jpg",
+    title: "XFX Radeon RX 7900 XT Speedster MERC310 Ultra HDMI 3xDP 20GB",
+    category: "Graphics Cards",
     status: false,
-    specification: "Specification 2",
+    specification:
+      "Portable Printer with Sublimation Technology and Wireless Connectivity",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -76,9 +77,10 @@ export const products: ProductType[] = [
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
     title: "Canon MF4410",
-    type: "Printer",
+    category: "Printer",
     status: false,
-    specification: "Specification 1",
+    specification:
+      "Portable Printer with Sublimation Technology and Wireless Connectivity",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -96,9 +98,9 @@ export const products: ProductType[] = [
     isNew: 0,
     photo: "https://lan-star.ru/uploads/posts/2018-03/1521466468_printer.png",
     title: "Acer 24",
-    type: "Monitors",
+    category: "Monitors",
     status: false,
-    specification: "Specification 2",
+    specification: "Compact Photo Printing Solutions",
     guarantee: {
       start: "2017-06-29 12:09:33",
       end: "2017-06-29 12:09:33",
@@ -107,17 +109,15 @@ export const products: ProductType[] = [
       { value: 100, symbol: "USD", isDefault: 0 },
       { value: 2600, symbol: "UAH", isDefault: 1 },
     ],
-    order: 2,
+    order: 3,
     date: "2017-06-29 12:09:33",
   },
 ];
 
-
-
-
 export type OrderType = {
   id: number;
   title: string;
+  manager: string;
   date: string;
   description: string;
   products: ProductType[];
@@ -127,8 +127,10 @@ export const orders = [
   {
     id: 1,
     title: "Order 1",
+    manager: "David Medison",
     date: "2017-06-29 12:09:33",
-    description: "A long long long long very log super long description",
+    description:
+      "This document outlines the safe transportation and reception of technology, covering packaging, handling, and equipment condition verification for efficient processing.",
     get products() {
       return products;
     },
@@ -136,8 +138,10 @@ export const orders = [
   {
     id: 2,
     title: "Order 2",
+    manager: "Fill Derban",
     date: "2017-06-29 12:09:33",
-    description: "desc",
+    description:
+      "A record of meticulous technology reception, highlighting transportation stages, unloading, and verification. From seals to equipment checks, this document ensures precise recording of received goods.",
     get products() {
       return products;
     },
@@ -145,8 +149,10 @@ export const orders = [
   {
     id: 3,
     title: "Order 3",
+    manager: "Ody Cram",
     date: "2017-06-29 12:09:33",
-    description: "desc",
+    description:
+      "Detailed reception description, including transportation and initial checks. Covers packaging, integrity, and functional status for clarity on new technological assets.",
     get products() {
       return products;
     },
@@ -154,10 +160,11 @@ export const orders = [
 ];
 
 export type serviceStateType = {
-  popupShow: boolean;
+
   popupConfirmId: number | undefined;
   popupActionType: string | undefined;
   popupTitle: string | undefined;
+  popupText: string | undefined;
   popupImage: string | undefined;
   popupStatus: string | undefined;
   searchTerm: string | undefined;
@@ -166,14 +173,15 @@ export type serviceStateType = {
 
 };
 export const serviceState: serviceStateType = {
-  popupShow: false,
+
   popupConfirmId: undefined,
   popupActionType: "",
-  popupTitle: "",
+  popupTitle: "Are you sure?",
+  popupText:"",
   popupImage: "",
   popupStatus: undefined,
   searchTerm: "",
-  dark: true,
+  dark: false,
   isLoading: false
 
 };

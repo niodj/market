@@ -3,8 +3,16 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
 import { OrderType, StoreType } from "../../store";
-import { Popup } from "../universalPopup/Popup";
-import Button from "react-bootstrap/Button";
+import { Popup } from "../popupuniversalConfirm/PopupConfirm";
+import { IoIosAddCircle } from "react-icons/io";
+import { FiList } from "react-icons/fi";
+import { Trash } from "react-bootstrap-icons";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { PopupAddOrder } from "../popupAddOrder/PopupAddOrder";
+import { PopupAddProduct } from "../popupAddProduct/PopupAddProduct";
+
+
 
 export const Orders = (props: any) => {
   const orders = useSelector((state: StoreType) => state.orders);
@@ -13,106 +21,86 @@ export const Orders = (props: any) => {
   const dispatch = useDispatch();
 
   const [showProduct, setShowProduct] = useState<number>();
-
+  ////////////////////confirmPopup/////////////
+  const [confirmPopupShow, setConfirmPopupShow] = useState(false);
   const handleModalDeleteOrder = (orderId: number) => {
     dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
+      type: "SET_MODAL",
       popupActionType: "DELETE_ORDER",
+      popupTitle: `Are you sure you want to delete order?`,
+      popupText: `Delete order #${orderId}?`,
+
+      popupConfirmId: orderId,
     });
-    dispatch({
-      type: "SET_POPUP_TITLE",
-      popupTitle: `Delete order #${orderId}?`,
-    });
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: orderId });
+    setConfirmPopupShow(true);
   };
 
   const handleModalDeleteProduct = (productId: number) => {
-
     dispatch({
-      type: "SET_POPUP_ACTION_TYPE",
+      type: "SET_MODAL",
       popupActionType: "DELETE_PRODUCT",
-    });
-
-    dispatch({
-      type: "SET_POPUP_TITLE",
-      popupTitle: `Delete product ${
+      popupTitle: `Are you sure you want to delete product?`,
+      popupText: `Delete product ${
         products.find((product) => product.id === productId)?.title
       }  sn: ${
         products.find((product) => product.id === productId)?.serialNumber
       } ?`,
-    });
-
-    dispatch({
-      type: "SET_POPUP_IMAGE",
       popupImage: products.find((product) => product.id === productId)?.photo,
-    });
-
-    dispatch({
-      type: "SET_POPUP_STATUS",
       popupStatus: products.find((product) => product.id === productId)?.status,
+      popupConfirmId: productId,
     });
-
-    dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: productId });
-    dispatch({ type: "SET_POPUP_SHOW", popupShow: true });
+    setConfirmPopupShow(true);
   };
 
   const modalConfirmed = () => {
     if (serviceState.popupActionType === "DELETE_ORDER") {
       dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-      dispatch({ type: "DELETE_ORDER_PRODUCTS", orderId: serviceState.popupConfirmId, });
+      dispatch({
+        type: "DELETE_ORDER_PRODUCTS",
+        orderId: serviceState.popupConfirmId,
+      });
     }
 
     if (serviceState.popupActionType === "DELETE_PRODUCT") {
-      dispatch({ type: "DELETE_PRODUCT", productId: serviceState.popupConfirmId, });
+      dispatch({
+        type: "DELETE_PRODUCT",
+        productId: serviceState.popupConfirmId,
+      });
     }
-      dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
-      dispatch({ type: "SET_POPUP_ACTION_TYPE", popupActionType: "", });
+    dispatch({
+      type: "SET_MODAL",
+      popupShow: false,
+      popupActionType: "",
+      popupTitle: "",
+      popupText: "",
+      popupImage: "",
+      popupStatus: undefined,
+      popupConfirmId: undefined,
+    });
+    setConfirmPopupShow(false);
+  };
 
-      dispatch({
-        type: "SET_POPUP_TITLE",
-        popupTitle: "",
-      });
+  const onModalReject = () => {
+    dispatch({
+      type: "SET_MODAL",
+      popupShow: false,
+      popupActionType: "",
+      popupTitle: "",
+      popupText: "",
+      popupImage: "",
+      popupStatus: undefined,
+      popupConfirmId: undefined,
+    });
+    setConfirmPopupShow(false);
+  };
+  /////End confirm popup
 
-      dispatch({
-        type: "SET_POPUP_IMAGE",
-        popupImage: "",
-      });
+  //////////add Order Popup/////////////
 
-      dispatch({
-        type: "SET_POPUP_STATUS",
-        popupStatus: undefined,
-      });
-      dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
-    
-
-  }
+  const [addOrderPopapShow, setAddOrderPopupShow] = useState(false);
+  const [addProductPopapShow, setAddProductPopupShow] = useState(false);
 
 
-const onModalReject = () => {
-  dispatch({ type: "SET_POPUP_SHOW", popupShow: false });
-  dispatch({
-    type: "SET_POPUP_ACTION_TYPE",
-    popupActionType: "",
-  });
-
-  dispatch({
-    type: "SET_POPUP_TITLE",
-    popupTitle: "",
-  });
-
-  dispatch({
-    type: "SET_POPUP_IMAGE",
-    popupImage: "",
-  });
-
-  dispatch({
-    type: "SET_POPUP_STATUS",
-    popupStatus: undefined,
-  });
-  dispatch({ type: "SET_POPUP_CONFIRM_ID", popupConfirmId: undefined });
-};
-  /////End modal
 
   const handlerProductShow = (order: number) => {
     showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
@@ -125,13 +113,15 @@ const onModalReject = () => {
 
   const [filterType, setFilterType] = useState<string>();
   const [filterSpecification, setFilterSpecification] = useState<string>();
-  const types = Array.from(new Set(products.map((product) => product.type)));
+  const types = Array.from(
+    new Set(products.map((product) => product.category))
+  );
   const specifications = Array.from(
     new Set(products.map((product) => product.specification))
   );
 
   const filteredProducts = products.filter((product) => {
-    const typeMatch = !filterType || product.type === filterType;
+    const typeMatch = !filterType || product.category === filterType;
     const specificationMatch =
       !filterSpecification || product.specification === filterSpecification;
     const searchMatch =
@@ -148,40 +138,75 @@ const onModalReject = () => {
         popupStatus={serviceState.popupStatus}
         popupImage={serviceState.popupImage}
         title={serviceState.popupTitle}
-        showPopup={serviceState.popupShow}
+        text={serviceState.popupText}
+        showPopup={confirmPopupShow}
         onHide={() => onModalReject()}
         onConfirm={() => modalConfirmed()}
       />
-
-      <h2>Orders / {orders.length}</h2>
-      <div>
-        <Button onClick={() => dispatch({ type: "ADD_ORDER" })}>
-          Add order
-        </Button>
+      <PopupAddOrder
+        showPopup={addOrderPopapShow}
+        onHide={() => setAddOrderPopupShow(false)}
+        onConfirm={() => setAddOrderPopupShow(false)}
+      />
+      <PopupAddProduct
+        showPopup={addProductPopapShow}
+        onHide={() => setAddProductPopupShow(false)}
+        onConfirm={() => setAddProductPopupShow(false)}
+        orderId={showProduct}
+      />
+      <div className={s.addBtnAndOrderTitle}>
+        {" "}
+        <IoIosAddCircle
+          className={s.addOrderBtn}
+          onClick={() => setAddOrderPopupShow(true)}
+        ></IoIosAddCircle>
+        {/* ///////Add S to order word////////// */}
+        <div className={s.orderTitle}>
+          Order{orders.length > 1 ? "s" : ""} / {orders.length}
+        </div>
+        {/* ///////Add S to order word////////// */}
       </div>
-      <div className={s.ordersAndProducts}>
-        <div className={`${showProduct ? s.halfWidth : s.fullWidth}`}>
-          <table className={s.table}>
-            <tbody>
-              {orders.map((order: OrderType) => (
-                <tr key={order.id}>
-                  <td className={s.titleAndshowbnt}>
-                    {order.description}
-                    <div className={s.ordersAmountInDescription}>
-                      (
-                      {
-                        products.filter((product) => product.order === order.id)
-                          .length
-                      }{" "}
-                      products )
-                    </div>
+
+      <div className={s.ordersTableWrapper}>
+        {/* ///////choise type table ////////// */}
+
+        {/* ///////Add S to order word////////// */}
+        <table
+          className={`${showProduct ? s.halfWidthTable : s.fullWidthTable}`}
+        >
+          <tbody>
+            {orders
+              .map((order: OrderType) => (
+                <tr className={s.cellhalfWidthOrderRow} key={order.id}>
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <td className={s.halfWidthOrderDescripton}>
+                      {order.title}
+                    </td>
+                  )}
+
+                  <td className={s.cellShowBtnAndProdutc}>
                     <div>
-                      <Button onClick={() => handlerProductShow(order.id)}>
-                        show/hide
-                      </Button>
+                      <FiList
+                        className={s.showProductBtn}
+                        onClick={() => handlerProductShow(order.id)}
+                      />
+                    </div>
+                    <div className={s.amountAndProductWrapper}>
+                      <div className={s.amountProductTitle}>
+                        {
+                          products.filter(
+                            (product) => product.order === order.id
+                          ).length
+                        }
+                      </div>
+
+                      <div className={s.titProduct}>products</div>
                     </div>
                   </td>
-                  <td>
+
+                  <td className={s.cellHalfDate}>
                     <div className={s.smallDate}>
                       {order.date &&
                         order.date
@@ -192,95 +217,126 @@ const onModalReject = () => {
                           .join(" / ")}
                     </div>
 
-                    <div>
+                    <div className={s.bigDate}>
                       {order.date &&
-                        order.date
-                          .split(" ")[0]
-                          .split("-")
-                          .reverse()
-                          .join(" / ")}
+                        new Date(order.date).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
                     </div>
                   </td>
-                  <td>
-                    <div className={s.defaultPrice}>
-                      {products
-                        .filter((product) => product.order === order.id)
-                        .reduce(
-                          (acc, product) => (acc += product.price[1].value),
-                          0
-                        )}{" "}
-                      UAH
-                    </div>
-                    <div>
-                      {products
-                        .filter((product) => product.order === order.id)
-                        .reduce(
-                          (acc, product) => (acc += product.price[0].value),
-                          0
-                        )}{" "}
-                      $
-                    </div>
-                  </td>
-                  <td>
-                    <Button
-                      variant='danger'
-                      className={s.delBtn}
-                      onClick={() => handleModalDeleteOrder(order.id)}
+                  {showProduct ? (
+                    ""
+                  ) : (
+                    <>
+                      <td className={s.cellPrice}>
+                        <div>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[0].value),
+                              0
+                            )}{" "}
+                          $
+                        </div>
+
+                        <div className={s.defaultPrice}>
+                          {products
+                            .filter((product) => product.order === order.id)
+                            .reduce(
+                              (acc, product) => (acc += product.price[1].value),
+                              0
+                            )}{" "}
+                          UAH
+                        </div>
+                      </td>
+                    </>
+                  )}
+                  {showProduct ? (
+                    <td
+                      className={`${
+                        order.id === showProduct ? s.arrowWrapper : ""
+                      }`}
                     >
-                      Delete
-                    </Button>
-                  </td>
+                      <div
+                        className={s.arrowBtn}
+                        onClick={() => handlerProductShow(order.id)}
+                      >
+                        <MdOutlineArrowForwardIos
+                          className={s.arrowBtn}
+                        ></MdOutlineArrowForwardIos>
+                      </div>
+                    </td>
+                  ) : (
+                    <td className={s.cellDeleteIcon}>
+                      <Trash
+                        className={s.delBtn}
+                        onClick={() => handleModalDeleteOrder(order.id)}
+                      ></Trash>
+                    </td>
+                  )}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              ))
+              .reverse()}
+          </tbody>
+        </table>
+
         {showProduct ? (
-          <div className={s.productsTableWrapper}>
-            <h3>
-              {orders.find((order) => order.id === showProduct)?.description}
-            </h3>
-
-            <div className={s.addProductBtnInOrder}>
-              <Button onClick={addProduct}>Add product</Button>
+          <div className={s.childComponentWraper}>
+            <div className={s.childOrderDescriptionAndCloseBtn}>
+              {" "}
+              <div className={s.closeProductBtn}>
+                <IoCloseCircleOutline
+                  onClick={() => setShowProduct(undefined)}
+                />
+              </div>
             </div>
-
+            <div className={s.fullWidthOrderDescripton}>
+              <div>
+                {orders.find((order) => order.id === showProduct)?.title}
+              </div>
+              {orders.find((order) => order.id === showProduct)?.description}
+            </div>{" "}
+            <div className={s.addProdutnAndTitle}>
+              <IoIosAddCircle
+                className={s.addProductBtn}
+                onClick={() => setAddProductPopupShow(true)}
+              ></IoIosAddCircle>
+              Add propduct
+            </div>
             <table className={s.productsTable}>
               <tbody>
                 {filteredProducts
                   .filter((product) => product.order === showProduct)
                   .map((product) => (
-                    <tr key={product.id}>
-                      <td>
+                    <tr key={product.id} className={s.childTableRow}>
+                      <td className={s.cellMArkStatus}>
                         {product.status ? (
-                          <div className={s.statusMarkTrue} />
+                          <div className={s.markTrueStatus} />
                         ) : (
-                          <div className={s.statusMarkFalse} />
+                          <div className={s.markFalseStatus} />
                         )}
                       </td>
                       <td>
                         <img src={product.photo} className={s.photo}></img>
                       </td>
-                      <td>
-                        <div>{product.title}</div>
-                        <div className={s.sn}>s/n:{product.serialNumber}</div>
+                      <td className={s.cellProductName}>
+                        <div className={s.productName}>{product.title}</div>
+                        <div className={s.SN}>s/n:{product.serialNumber}</div>
                       </td>
-                      <td>
+                      <td className={s.cellStatusText}>
                         {product.status ? (
                           <div className={s.statusTextTrue}>Free</div>
                         ) : (
                           <div className={s.statusTextFalse}>On repear</div>
                         )}
                       </td>
-
-                      <td>
-                        {" "}
-                        <Button
-                          variant='danger'
+                      <td className={s.cellDeleteIcon}>
+                        <Trash
+                          className={s.delBtn}
                           onClick={() => handleModalDeleteProduct(product.id)}
-                        >
-                          Delete
-                        </Button>
+                        ></Trash>
                       </td>
                     </tr>
                   ))}
