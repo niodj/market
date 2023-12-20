@@ -13,7 +13,7 @@ export type RootAction =
   | AddOrderAction
   | AddProductAction
   | DeleteOrderProductsAction
-  | SetModalDefault
+  
   | LoadingAction
   | IsDarkAction
   | SetSearchTerm;
@@ -139,17 +139,6 @@ export const orderReducer = (
 
 /////serviceStateReducer
 
-export type SetModalDefault = {
-  type: "SET_MODAL";
-  popupShow: boolean;
-  popupActionType: "";
-  popupTitle: "";
-  popupText: "";
-  popupImage: "";
-  popupStatus: undefined;
-  popupConfirmId: undefined;
-};
-
 export type LoadingAction = {
   type: "LOADING";
 };
@@ -166,17 +155,7 @@ export const serviceStateReducer = (
   action: RootAction
 ): serviceStateType => {
   switch (action.type) {
-    case "SET_MODAL":
-      return {
-        ...state,
-        popupConfirmId: action.popupConfirmId,
-        popupActionType: action.popupActionType,
-        popupTitle: action.popupTitle,
-        popupText: action.popupText,
-        popupImage: action.popupImage,
-        popupStatus: action.popupStatus,
-      };
-    case "LOADING":
+        case "LOADING":
       return { ...state, isLoading: true };
     case "CHANGE_THEME":
       return { ...state, dark: !state.dark };

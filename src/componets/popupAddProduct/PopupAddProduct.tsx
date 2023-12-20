@@ -32,8 +32,6 @@ export const PopupAddProduct = (props: PopupPropsType) => {
   const [priceValueError, setPriceValueError] = useState(false);
   const [price2Value, setPrice2Value] = useState('');
   const [price2ValueError, setPrice2ValueError] = useState(false);
-  // const [symbol, setSymbol] = useState('');
-  // const [symbol2, setSymbol2] = useState('');
   const [defaultPrice, setDefaultPrice] = useState(1);
   const [defaultPrice2, setDefaultPrice2] = useState(0);
 
@@ -114,7 +112,9 @@ export const PopupAddProduct = (props: PopupPropsType) => {
       type: "ADD_PRODUCT",
       serialNumber: SN,
       isNew: isNew,
-      photo: photoLink,
+      photo: photoLink
+        ? photoLink
+        : "https://static.thenounproject.com/png/1868038-200.png",
       title: title,
       category: category,
       status: status,
@@ -127,11 +127,9 @@ export const PopupAddProduct = (props: PopupPropsType) => {
       symbol2: "UAH",
       isDefault: defaultPrice,
       isDefault2: defaultPrice2,
-
       order: props.orderId,
       date: new Date().toISOString().slice(0, 19).replace("T", " "),
     });
-
     onHide();
 };
 

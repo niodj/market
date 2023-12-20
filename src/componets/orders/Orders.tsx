@@ -2,112 +2,71 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import s from "./orders.module.css";
-import { OrderType, StoreType } from "../../store";
-import { Popup } from "../popupuniversalConfirm/PopupConfirm";
+import { OrderType, ProductType, StoreType } from "../../store";
+
 import { IoIosAddCircle } from "react-icons/io";
 import { FiList } from "react-icons/fi";
 import { Trash } from "react-bootstrap-icons";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
-
 import { PopupAddProduct } from "../popupAddProduct/PopupAddProduct";
 import { PopupAddOrder } from "../popupAddOrder/popupAddOrder";
+import { PopupOrderDeleteConfirm } from "../popupOrderDeleteConfirm/PopupOrderDeleteConfirm";
+import { PopupProductDeleteConfirm } from "../popupProductDeleteConfirm/PopupProductDeleteConfirm";
 
 
-
-export const Orders = (props: any) => {
+export const Orders = () => {
   const orders = useSelector((state: StoreType) => state.orders);
   const products = useSelector((state: StoreType) => state.product);
   const serviceState = useSelector((state: StoreType) => state.serviceState);
   const dispatch = useDispatch();
 
-  const [showProduct, setShowProduct] = useState<number>();
-  ////////////////////confirmPopup/////////////
-  const [confirmPopupShow, setConfirmPopupShow] = useState(false);
-  const handleModalDeleteOrder = (orderId: number) => {
-    dispatch({
-      type: "SET_MODAL",
-      popupActionType: "DELETE_ORDER",
-      popupTitle: `Are you sure you want to delete order?`,
-      popupText: `Delete order #${orderId}?`,
+  ///////////POPUP STATE/////
+  const [showDelOrderPopup, setSDelOrederPopup] = useState(false);
+  const [showDelProductPopup, setDelProductPopup] = useState(false);
+  const [currOrderId, setCurrOrderId] = useState<number | undefined>();
+  const [currProduct, setCurrProduct] = useState<ProductType | undefined>();
+  ///////////POPUP STATE/////
 
-      popupConfirmId: orderId,
+  //////////ORDER DELETING
+  const orderDeleteConfirmed = () => {
+    dispatch({ type: "DELETE_ORDER", orderId: currOrderId });
+    dispatch({
+      type: "DELETE_ORDER_PRODUCTS",
+      orderId: currOrderId,
     });
-    setConfirmPopupShow(true);
+    setSDelOrederPopup(false);
   };
 
-  const handleModalDeleteProduct = (productId: number) => {
-    dispatch({
-      type: "SET_MODAL",
-      popupActionType: "DELETE_PRODUCT",
-      popupTitle: `Are you sure you want to delete product?`,
-      popupText: `Delete product ${
-        products.find((product) => product.id === productId)?.title
-      }  sn: ${
-        products.find((product) => product.id === productId)?.serialNumber
-      } ?`,
-      popupImage: products.find((product) => product.id === productId)?.photo,
-      popupStatus: products.find((product) => product.id === productId)?.status,
-      popupConfirmId: productId,
-    });
-    setConfirmPopupShow(true);
-  };
+    const onConfirDelOrderReject = () => {
+      setSDelOrederPopup(false);
+    };
 
-  const modalConfirmed = () => {
-    if (serviceState.popupActionType === "DELETE_ORDER") {
-      dispatch({ type: "DELETE_ORDER", orderId: serviceState.popupConfirmId });
-      dispatch({
-        type: "DELETE_ORDER_PRODUCTS",
-        orderId: serviceState.popupConfirmId,
-      });
-    }
 
-    if (serviceState.popupActionType === "DELETE_PRODUCT") {
-      dispatch({
-        type: "DELETE_PRODUCT",
-        productId: serviceState.popupConfirmId,
-      });
-    }
-    dispatch({
-      type: "SET_MODAL",
-      popupShow: false,
-      popupActionType: "",
-      popupTitle: "",
-      popupText: "",
-      popupImage: "",
-      popupStatus: undefined,
-      popupConfirmId: undefined,
-    });
-    setConfirmPopupShow(false);
-  };
 
-  const onModalReject = () => {
+  //////////PRODUCT DELETING
+  const productDeleteConfirmed = () => {
     dispatch({
-      type: "SET_MODAL",
-      popupShow: false,
-      popupActionType: "",
-      popupTitle: "",
-      popupText: "",
-      popupImage: "",
-      popupStatus: undefined,
-      popupConfirmId: undefined,
+      type: "DELETE_PRODUCT",
+      productId: currProduct?.id,
     });
-    setConfirmPopupShow(false);
+    setDelProductPopup(false);
   };
-  /////End confirm popup
+    const onConfirDelProductReject = () => {
+      setDelProductPopup(false);
+  };
 
   //////////add Order Popup/////////////
 
   const [addOrderPopapShow, setAddOrderPopupShow] = useState(false);
   const [addProductPopapShow, setAddProductPopupShow] = useState(false);
 
-
-
-  const handlerProductShow = (order: number) => {
-    showProduct === order ? setShowProduct(undefined) : setShowProduct(order);
-  };
   const addProduct = () => {
-    dispatch({ type: "ADD_PRODUCT", orderId: showProduct });
+    dispatch({ type: "ADD_PRODUCT", orderId: currOrderId });
+
+
+
+    
   };
 
   ////////////////////////Filter
@@ -135,14 +94,17 @@ export const Orders = (props: any) => {
 
   return (
     <div className={s.wrapper}>
-      <Popup
-        popupStatus={serviceState.popupStatus}
-        popupImage={serviceState.popupImage}
-        title={serviceState.popupTitle}
-        text={serviceState.popupText}
-        showPopup={confirmPopupShow}
-        onHide={() => onModalReject()}
-        onConfirm={() => modalConfirmed()}
+      <PopupOrderDeleteConfirm
+        showPopup={showDelOrderPopup}
+        currOrderId={currOrderId}
+        onHide={() => onConfirDelOrderReject()}
+        onConfirm={() => orderDeleteConfirmed()}
+      />
+      <PopupProductDeleteConfirm
+        currProduct={currProduct}
+        showPopup={showDelProductPopup}
+        onHide={() => onConfirDelProductReject()}
+        onConfirm={() => orderDeleteConfirmed()}
       />
       <PopupAddOrder
         showPopup={addOrderPopapShow}
@@ -152,8 +114,8 @@ export const Orders = (props: any) => {
       <PopupAddProduct
         showPopup={addProductPopapShow}
         onHide={() => setAddProductPopupShow(false)}
-        onConfirm={() => setAddProductPopupShow(false)}
-        orderId={showProduct}
+        onConfirm={() => productDeleteConfirmed}
+        orderId={currOrderId}
       />
       <div className={s.addBtnAndOrderTitle}>
         {" "}
@@ -169,17 +131,14 @@ export const Orders = (props: any) => {
       </div>
 
       <div className={s.ordersTableWrapper}>
-        {/* ///////choise type table ////////// */}
-
-        {/* ///////Add S to order word////////// */}
         <table
-          className={`${showProduct ? s.halfWidthTable : s.fullWidthTable}`}
+          className={`${currOrderId ? s.halfWidthTable : s.fullWidthTable}`}
         >
           <tbody>
             {orders
               .map((order: OrderType) => (
                 <tr className={s.cellhalfWidthOrderRow} key={order.id}>
-                  {showProduct ? (
+                  {currOrderId ? (
                     ""
                   ) : (
                     <td className={s.halfWidthOrderDescripton}>
@@ -191,7 +150,7 @@ export const Orders = (props: any) => {
                     <div>
                       <FiList
                         className={s.showProductBtn}
-                        onClick={() => handlerProductShow(order.id)}
+                        onClick={() => setCurrOrderId(order.id)}
                       />
                     </div>
                     <div className={s.amountAndProductWrapper}>
@@ -227,7 +186,7 @@ export const Orders = (props: any) => {
                         })}
                     </div>
                   </td>
-                  {showProduct ? (
+                  {currOrderId ? (
                     ""
                   ) : (
                     <>
@@ -254,15 +213,15 @@ export const Orders = (props: any) => {
                       </td>
                     </>
                   )}
-                  {showProduct ? (
+                  {currOrderId ? (
                     <td
                       className={`${
-                        order.id === showProduct ? s.arrowWrapper : ""
+                        order.id === currOrderId ? s.arrowWrapper : ""
                       }`}
                     >
                       <div
                         className={s.arrowBtn}
-                        onClick={() => handlerProductShow(order.id)}
+                        onClick={() => setCurrOrderId(order.id)}
                       >
                         <MdOutlineArrowForwardIos
                           className={s.arrowBtn}
@@ -273,7 +232,11 @@ export const Orders = (props: any) => {
                     <td className={s.cellDeleteIcon}>
                       <Trash
                         className={s.delBtn}
-                        onClick={() => handleModalDeleteOrder(order.id)}
+                        onClick={() => {
+                          setSDelOrederPopup(true);
+                          setCurrOrderId(order.id);
+                        }}
+                        ////////////////////////////
                       ></Trash>
                     </td>
                   )}
@@ -283,21 +246,21 @@ export const Orders = (props: any) => {
           </tbody>
         </table>
 
-        {showProduct ? (
+        {currOrderId ? (
           <div className={s.childComponentWraper}>
             <div className={s.childOrderDescriptionAndCloseBtn}>
               {" "}
               <div className={s.closeProductBtn}>
                 <IoCloseCircleOutline
-                  onClick={() => setShowProduct(undefined)}
+                  onClick={() => setCurrOrderId(undefined)}
                 />
               </div>
             </div>
             <div className={s.fullWidthOrderDescripton}>
               <div>
-                {orders.find((order) => order.id === showProduct)?.title}
+                {orders.find((order) => order.id === currOrderId)?.title}
               </div>
-              {orders.find((order) => order.id === showProduct)?.description}
+              {orders.find((order) => order.id === currOrderId)?.description}
             </div>{" "}
             <div className={s.addProdutnAndTitle}>
               <IoIosAddCircle
@@ -309,7 +272,7 @@ export const Orders = (props: any) => {
             <table className={s.productsTable}>
               <tbody>
                 {filteredProducts
-                  .filter((product) => product.order === showProduct)
+                  .filter((product) => product.order === currOrderId)
                   .map((product) => (
                     <tr key={product.id} className={s.childTableRow}>
                       <td className={s.cellMArkStatus}>
@@ -336,7 +299,10 @@ export const Orders = (props: any) => {
                       <td className={s.cellDeleteIcon}>
                         <Trash
                           className={s.delBtn}
-                          onClick={() => handleModalDeleteProduct(product.id)}
+                          onClick={() => {
+                            setDelProductPopup(true);
+                            setCurrProduct(product);
+                          }}
                         ></Trash>
                       </td>
                     </tr>

@@ -1,18 +1,18 @@
 
 import { Modal, Button } from 'react-bootstrap';
-import s from "./popupConfirm.module.css";
+import s from "./popupProductDeleteConfirm.module.css"
+import { ProductType } from '../../store';
+
 type PopupPropsType = {
-  popupStatus?: string;
-  popupImage?: string;
-  title?: string;
-  text?: string;
   onHide: () => void;
   onConfirm: () => void;
-  showPopup: boolean;
+
+    showPopup: boolean;
+    currProduct?: ProductType;
+
 };
 
-export const Popup = (props: PopupPropsType) => {
-
+export const PopupProductDeleteConfirm = (props: PopupPropsType) => {
   return (
     <div>
       <Modal
@@ -22,28 +22,37 @@ export const Popup = (props: PopupPropsType) => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title className={s.title}> {props.title}</Modal.Title>
+          <Modal.Title className={s.title}>
+
+            {props.currProduct ? (
+              <>
+                Are you sure you want to delete product #{props.currProduct.id}{" "}
+                from order number #{props.currProduct.order}?
+              </>
+            ) : null}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body className={s.modalWrapper}>
-          {props.popupStatus !== undefined ? (
+
+        <Modal.Body>
+          {props.currProduct ? (
             <div className={s.dataWrapper}>
-              {props.popupStatus ? (
+              {props.currProduct.status ? (
                 <div className={s.markTrueStatus}></div>
               ) : (
                 <div className={s.markFalseStatus}></div>
               )}
 
               <img
-                src={props.popupImage}
+                src={props.currProduct.photo}
                 className={s.photo}
                 alt='Popup Image'
               ></img>
-              {props.text}
-              
+              <div>
+                <div className={s.productName}>{props.currProduct.title}</div>
+                <div className={s.SN}>SN:{props.currProduct.serialNumber}</div>
+              </div>
             </div>
-          ) : (
-            ""
-          )}
+          ) : null}
         </Modal.Body>
         <Modal.Footer className={s.modalFooter}>
           <Button variant='primary' onClick={props.onConfirm}>

@@ -160,30 +160,15 @@ export const orders = [
 ];
 
 export type serviceStateType = {
-
-  popupConfirmId: number | undefined;
-  popupActionType: string | undefined;
-  popupTitle: string | undefined;
-  popupText: string | undefined;
-  popupImage: string | undefined;
-  popupStatus: string | undefined;
+ 
   searchTerm: string | undefined;
   dark: boolean;
   isLoading: boolean;
-
 };
 export const serviceState: serviceStateType = {
-
-  popupConfirmId: undefined,
-  popupActionType: "",
-  popupTitle: "Are you sure?",
-  popupText:"",
-  popupImage: "",
-  popupStatus: undefined,
   searchTerm: "",
   dark: false,
-  isLoading: false
-
+  isLoading: false,
 };
 
     // Сохраняем состояние в localStorage
