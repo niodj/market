@@ -8,12 +8,10 @@
   border-bottom: solid 1px wheat;
   border-right: solid 1px wheat;
   background-color: white;
-  width: 1000px;
+  width: 70vw;
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.3);
 padding-top: 10px;
 padding-bottom: 10px;
-
-
 }
 
 .dark,wrapper  {
@@ -23,7 +21,7 @@ padding-bottom: 10px;
 .themeToggle{
   padding-left: 20px;
   min-width: 160px;
-font-size: 80%;
+  font-size: 80%;
 }
 
 .logoAndSearch {
@@ -56,18 +54,15 @@ font-size: 80%;
 }
 .timeItems {
   width: 200px;
-
   margin-right: 10px;
-@include fn4;
 font-size:10px;
-color: black;
+font-weight: bold;
 }
+
 
 .clockLogo {
   width: 12px;
 }
-
-
 
 .searchline:hover {
   border-color: #aaa;

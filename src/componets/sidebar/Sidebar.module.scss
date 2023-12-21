@@ -4,17 +4,17 @@
 .wrapperSidebarAndContent {
   display: flex;
   flex-direction: row;
-@include ligth;
+
 }
 .dark,wrapperSidebarAndContent{
-  @include dark;
+
 }
 
 .sidebarWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 160px;
+  width: 10vw;
   letter-spacing: 2px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-right: solid 1px wheat;
@@ -22,10 +22,12 @@
   padding-right: 10px;
    transition: background-color 3s, color 3s;
 background-color: white;
+
 }
 
 .dark,sidebarWrapper {
-@include dark;
+background-color: rgb(61, 58, 41);
+ transition: background-color 3s, color 3s;
 }
 .avatarAndSettings{
 position: relative;
@@ -57,6 +59,7 @@ margin-bottom: 50px;
   width: 100px;
   height: 100vh;
   text-align: center;
+
 }
 
 .link,
@@ -65,8 +68,15 @@ margin-bottom: 50px;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  color: black;
+color: black;
+ transition: background-color 3s, color 3s;
 }
+.dark, link, linkActive{
+color:wheat;
+ transition: background-color 3s, color 3s;
+}
+
+
 .linkActive {
   text-decoration: underline;
   text-decoration-color: green;

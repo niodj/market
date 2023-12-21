@@ -20,11 +20,7 @@ export const Sidebar = () => {
       exit={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div
-        className={`${s.sidebarWrapper} ${dark ? s.dark : ""}`}
-
-      >
-
+      <div className={`${s.sidebarWrapper} ${dark ? s.dark : ""}`}>
         <div className={s.avatarAndSettings}>
           <img
             src='https://i.pinimg.com/474x/c2/88/dd/c288dd202b5f578cb2d492d606b0b522.jpg'
@@ -41,20 +37,25 @@ export const Sidebar = () => {
         <div className={s.sidebarlinks}>
           <NavLink
             to='/orders'
-            className={({ isActive }) => (isActive ? s.linkActive : s.link)}
+            className={`${({ isActive }: { isActive: boolean }) =>
+              isActive ? s.linkActive : s.link} ${s.link} ${
+              dark ? s.dark : ""
+            }`}
           >
             ORDERS
           </NavLink>
 
           <NavLink
             to='/products'
-            className={({ isActive }) => (isActive ? s.linkActive : s.link)}
+            className={`${({ isActive }: { isActive: boolean }) =>
+              isActive ? s.linkActive : s.link} ${s.link} ${
+              dark ? s.dark : ""
+            }`}
           >
             PRODUCTS
           </NavLink>
 
-          <a
-            className={s.link}
+          <a className={`${s.link} ${dark?s.dark:""}`}
             onClick={() => {
               alert("Local storage cleared");
               localStorage.clear();

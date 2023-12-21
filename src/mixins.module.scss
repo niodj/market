@@ -3,7 +3,7 @@
 @mixin ligth {
    transition: background-color 3s, color 3s;
       background-color: rgb(231, 230, 230);
-      color: grey;
+      color: rgb(0, 0, 0);
 }
 /* @include dark;  */
 @mixin dark {
@@ -44,13 +44,12 @@ font-size: 0.7vw;
 @mixin fn4 {
 font-size: 0.7vw;
   color: rgb(192, 192, 192);
-  font-weight: bold;
+
 }
 
 /* @include fn5;  */
 /*  sidebar, search line, */
 @mixin fn5 {
-
 font-size: 0.7vw;
   color: rgb(192, 192, 192);
   font-weight: bold;
@@ -60,7 +59,7 @@ font-size: 0.7vw;
 /*  productTableTitle */
 @mixin fn6 {
  font-weight: bold;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 font-size: 1.5vw;
   color: black;
 

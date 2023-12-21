@@ -60,9 +60,11 @@ export const Products = () => {
         <span className={s.productTableTitle}>
           Products / {products.length}
         </span>
-        <span className={s.filterSection}>
+
+        <span>
           <label className={s.filterLabel}>Type:</label>
           <select
+            className={s.filterSection}
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
           >
@@ -74,9 +76,10 @@ export const Products = () => {
             ))}
           </select>
         </span>
-        <div className={s.filterSection}>
+        <div>
           <label className={s.filterLabel}>Specification:</label>
           <select
+            className={s.filterSection}
             value={filterSpecification}
             onChange={(e) => setFilterSpecification(e.target.value)}
           >
