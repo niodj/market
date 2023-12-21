@@ -4,7 +4,7 @@
 .wrapperSidebarAndContent {
   display: flex;
   flex-direction: row;
-
+@include ligth;
 }
 .dark,wrapperSidebarAndContent{
   @include dark;
@@ -65,7 +65,7 @@ margin-bottom: 50px;
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
-  color: inherit;
+  color: black;
 }
 .linkActive {
   text-decoration: underline;
