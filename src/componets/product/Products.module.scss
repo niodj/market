@@ -1,0 +1,181 @@
+
+@import '../../mixins.module.scss';
+
+.wrapperProducts {
+
+
+}
+
+/* ///////////////// */
+.titleAndfilters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  text-wrap: nowrap;
+}
+
+.productTableTitle {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-right: 25px;
+}
+.filterSection {
+  margin-right: 60px;
+}
+.filterLabel {
+  margin-right: 15px;
+}
+
+/* ////////TABLE/////////// */
+.productsTableWrapper {
+ display: flex;
+flex-direction: row;
+
+border-bottom: 1px solid;
+align-items: center;
+justify-content: space-around;
+}
+//////////RESIZE TEXT////////
+.cellProductName {
+  @include centre;
+width: 10vw;
+ @include fn1;
+}
+.cellPrice {
+  @include centre;
+width: 5vw;
+@include fn2;
+  text-wrap: nowrap;
+  text-align: left;
+
+}
+.cellSpecification {
+  @include centre;
+width: 8vw;
+ @include fn1
+}
+
+.cellManager {
+  @include centre;
+width: 4vw;
+@include fn1
+
+}
+
+.cellOrderTitle {
+width: 12vw;
+ @include centre;
+@include fn1
+}
+
+
+.propductRow:hover{
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
+/* //////////cellMArkStatus///////// */
+.cellMArkStatus {
+ @include centre;
+
+}
+.markTrueStatus,
+.markFalseStatus {
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+}
+.markTrueStatus {
+  background-color: greenyellow;
+}
+.markFalseStatus {
+  background-color: gray;
+}
+/* /////////CellPhoto////////// */
+.cellPhoto{
+  @include centre;
+}
+.photo {
+
+  width: 4vw;
+}
+/* //////////CellProductName///////// */
+
+.SN {
+@include fn2;
+}
+/* /////cellStatusText///// */
+.cellStatusText {
+  @include centre;
+@include fn2;
+}
+
+.statusTextTrue,
+.statusTextFalse {
+
+
+}
+
+.statusTextTrue {
+  color: rgb(170, 204, 118);
+}
+
+.statusTextFalse {
+  color: gray;
+}
+
+/* //cellGuaranteeDate/// */
+.cellGuaranteeDate {
+  @include centre;
+@include fn1;
+  display: flex;
+  flex-direction: row;
+
+
+  text-wrap: nowrap;
+}
+.garantDateNumbers {
+
+  font-weight: bold;
+}
+
+/* ///cellIsNew// */
+
+.cellIsNew {
+  @include centre;
+@include fn2;
+
+}
+
+/* ///cellPrice// */
+
+.defaultPrice {
+text-align: left;
+@include fn1;
+  font-weight: bold;
+
+
+}
+/* ////////cellSpecification////// */
+
+
+/* ////////cellOrderDate////// */
+.cellOrderDate {
+  @include centre;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-wrap: nowrap;
+  @include fn2
+}
+/* ////////cellDeleteIcon////// */
+.cellDeleteIcon {
+
+@include right;
+
+}
+.cellDeleteIcon:hover {
+  cursor: pointer;
+  color: red;
+}

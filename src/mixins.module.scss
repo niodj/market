@@ -1,0 +1,33 @@
+
+// @include fn1
+@mixin fn1 {
+  font-size:0.7vw;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.4px;
+  text-align: left;
+}
+
+
+// @include fn2
+@mixin fn2 {
+
+font-size: 0.7vw;
+  color: rgb(192, 192, 192);
+  font-weight: bold;
+}
+// @include centre;
+@mixin centre {
+margin-left: 1vw;
+}
+
+// @include ;
+@mixin right {
+margin-right: 1vw;
+}
+// @include left;
+@mixin left {
+margin-right: 1vw;
+margin-left: 1vw;
+}
