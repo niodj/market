@@ -1,10 +1,10 @@
 import { TopMenu } from "./componets/topMenu/TopMenu";
-import s from "./App.module.css";
+import s from "./App.module.scss";
 import { AnimatedRoutes } from "./AnimatedRoutes";
 
 import { StoreType } from "./store";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+
 import { useEffect } from "react";
 
 function App() {

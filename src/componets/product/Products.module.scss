@@ -2,8 +2,9 @@
 @import '../../mixins.module.scss';
 
 .wrapperProducts {
-
-
+  
+width: 100vw;
+margin: 2vw;
 }
 
 /* ///////////////// */
@@ -16,27 +17,41 @@
 }
 
 .productTableTitle {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  margin-right: 25px;
+ @include fn6;
+ margin-right: 25px;
 }
 .filterSection {
   margin-right: 60px;
+  @include fn2;
 }
 .filterLabel {
   margin-right: 15px;
+  @include fn4;
 }
 
-/* ////////TABLE/////////// */
-.productsTableWrapper {
- display: flex;
-flex-direction: row;
 
+/* ////////TABLE/////////// */
+.productsTableWrapper{
+
+
+}
+.propductRow {
+display: flex;
 border-bottom: 1px solid;
 align-items: center;
 justify-content: space-around;
+margin-bottom: 20px;
+background-color: white;
+padding: 0.5vw;
 }
+.propductRow:hover{
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
+.dark,.propductRow{
+  background-color: white;
+}
+
+
+/* //////////cellMArkStatus///////// */
 //////////RESIZE TEXT////////
 .cellProductName {
   @include centre;
@@ -71,9 +86,7 @@ width: 12vw;
 }
 
 
-.propductRow:hover{
-  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
-/* //////////cellMArkStatus///////// */
+
 .cellMArkStatus {
  @include centre;
 

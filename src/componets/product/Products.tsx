@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductType, StoreType, orders, products } from "../../store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Trash } from "react-bootstrap-icons";
-import s from "./Products.module.css";
+import s from "./Products.module.scss";
 import { PopupProductDeleteConfirm } from "../popupProductDeleteConfirm/PopupProductDeleteConfirm";
 
 
@@ -90,152 +90,138 @@ export const Products = () => {
         </div>
       </div>
       <div className={s.productsTableWrapper}>
-        <table className={s.productsTable}>
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr
-                className={`${s.propductRow} ${serviceState.dark ? s.dark : ""}`}
-                key={product.id}
-              >
-                <td className={s.cellMArkStatus}>
-                  {product.status ? (
-                    <div className={s.markTrueStatus} />
+        {filteredProducts.map((product) => (
+          <div
+            className={`${s.propductRow} ${serviceState.dark ? s.dark : ""}`}
+            key={product.id}
+          >
+            <div className={s.cellMArkStatus}>
+              {product.status ? (
+                <div className={s.markTrueStatus} />
+              ) : (
+                <div className={s.markFalseStatus} />
+              )}
+            </div>
+            <div className={s.cellPhoto}>
+              <img src={product.photo} className={s.photo} />
+            </div>
+            <div className={s.cellProductName}>
+              <div className={s.productName}>{product.title}</div>
+              <div className={s.SN}>SN:{product.serialNumber}</div>
+            </div>
+
+            <div className={s.cellStatusText}>
+              {product.status ? (
+                <div className={s.statusTextTrue}>Free</div>
+              ) : (
+                <div className={s.statusTextFalse}>On repair</div>
+              )}
+            </div>
+            <div className={s.cellGuaranteeDate}>
+              <div>
+                <div>from</div>
+                <div>to</div>
+              </div>
+
+              <div>
+                <div className={s.garantDateNumbers}>
+                  {product.guarantee.start
+                    .split(" ")[0]
+                    .split("-")
+                    .reverse()
+                    .slice(0, 3)
+                    .join(" / ")}
+                </div>
+
+                <div className={s.garantDateNumbers}>
+                  {product.guarantee.end
+                    .split(" ")[0]
+                    .split("-")
+                    .reverse()
+                    .slice(0, 3)
+                    .join(" / ")}
+                </div>
+              </div>
+            </div>
+            <div className={s.cellIsNew}>
+              {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
+            </div>
+
+            <div className={s.cellPrice}>
+              {product.price.map((price, index) => (
+                <div
+                  key={index}
+                  className={price.isDefault ? s.defaultPrice : ""}
+                >
+                  {price.symbol === "USD"
+                    ? price.value.toLocaleString()
+                    : price.value.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                  {price.symbol === "USD" ? (
+                    <span> $</span>
                   ) : (
-                    <div className={s.markFalseStatus} />
+                    <span>
+                      <span> </span>
+                      {price.symbol}
+                    </span>
                   )}
-                </td>
-                <td className={s.cellPhoto}>
-                  <img src={product.photo} className={s.photo} />
-                </td>
-                <td className={s.cellProductName}>
-                  <div className={s.productName}>{product.title}</div>
-                  <div className={s.SN}>SN:{product.serialNumber}</div>
-                </td>
+                </div>
+              ))}
+            </div>
 
-                <td className={s.cellStatusText}>
-                  {product.status ? (
-                    <div className={s.statusTextTrue}>Free</div>
-                  ) : (
-                    <div className={s.statusTextFalse}>On repair</div>
-                  )}
-                </td>
-                <td className={s.cellGuaranteeDate}>
+            <div className={s.cellSpecification}>
+              <div> {product.specification}</div>
+            </div>
+            <div className={s.cellManager}>
+              <div>Order #{product.order}</div>
+              <div>
+                {orders.find((order) => order.id === product.order)?.manager ? (
                   <div>
-                    <div>from</div>
-                    <div>to</div>
+                    {
+                      orders.find((order) => order.id === product.order)
+                        ?.manager
+                    }
                   </div>
+                ) : (
+                  <div>-</div>
+                )}
+              </div>
+            </div>
+            <div className={s.cellOrderTitle}>
+              {orders.find((order) => order.id === product.order)?.description}
+            </div>
+            <div className={s.cellOrderDate}>
+              <div className={s.smallDate}>
+                {product.date &&
+                  product.date
+                    .split(" ")[0]
+                    .split("-")
+                    .reverse()
+                    .slice(0, 2)
+                    .join(" / ")}
+              </div>
 
-                  <div>
-                    <div className={s.garantDateNumbers}>
-                      {product.guarantee.start
-                        .split(" ")[0]
-                        .split("-")
-                        .reverse()
-                        .slice(0, 3)
-                        .join(" / ")}
-                    </div>
+              <div>
+                {product.date &&
+                  product.date.split(" ")[0].split("-").reverse().join(" / ")}
+              </div>
+            </div>
 
-                    <div className={s.garantDateNumbers}>
-                      {product.guarantee.end
-                        .split(" ")[0]
-                        .split("-")
-                        .reverse()
-                        .slice(0, 3)
-                        .join(" / ")}
-                    </div>
-                  </div>
-                </td>
-                <td className={s.cellIsNew}>
-                  {product.isNew === 1 ? <div>New</div> : <div>Used</div>}
-                </td>
-
-                <td className={s.cellPrice}>
-                  {product.price.map((price, index) => (
-                    <div
-                      key={index}
-                      className={price.isDefault ? s.defaultPrice : ""}
-                    >
-                      {price.symbol === "USD"
-                        ? price.value.toLocaleString()
-                        : price.value.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          })}
-                      {price.symbol === "USD" ? (
-                        <span> $</span>
-                      ) : (
-                        <span>
-                          <span> </span>
-                          {price.symbol}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </td>
-
-                <td className={s.cellSpecification}>
-                  <div> {product.specification}</div>
-                </td>
-                <td className={s.cellManager}>
-                  <div>Order #{product.order}</div>
-                  <div>
-                    {orders.find((order) => order.id === product.order)
-                      ?.manager ? (
-                      <div>
-                        {
-                          orders.find((order) => order.id === product.order)
-                            ?.manager
-                        }
-                      </div>
-                    ) : (
-                      <div>-</div>
-                    )}
-                  </div>
-                </td>
-                <td className={s.cellOrderTitle}>
-                  {
-                    orders.find((order) => order.id === product.order)
-                      ?.description
-                  }
-                </td>
-                <td className={s.cellOrderDate}>
-                  <div className={s.smallDate}>
-                    {product.date &&
-                      product.date
-                        .split(" ")[0]
-                        .split("-")
-                        .reverse()
-                        .slice(0, 2)
-                        .join(" / ")}
-                  </div>
-
-                  <div>
-                    {product.date &&
-                      product.date
-                        .split(" ")[0]
-                        .split("-")
-                        .reverse()
-                        .join(" / ")}
-                  </div>
-                </td>
-
-                <td className={s.cellDeleteIcon}>
-                  <Trash
-                    onClick={() => {
-                      setCurrProduct(product);
-                      setDelProductPopup(true);
-                    }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <div className={s.cellDeleteIcon}>
+              <Trash
+                onClick={() => {
+                  setCurrProduct(product);
+                  setDelProductPopup(true);
+                }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
-function dispatch(arg0: { type: string; popupActionType: string; popupTitle: string; popupText: string; popupImage: string; popupStatus: undefined; popupConfirmId: undefined; }) {
-  throw new Error("Function not implemented.");
-}
+
 

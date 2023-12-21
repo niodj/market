@@ -1,0 +1,9 @@
+
+@import './mixins.module.scss';
+
+.wrapper{
+ @include ligth;
+}
+.dark,wrapper{
+@include dark;
+}

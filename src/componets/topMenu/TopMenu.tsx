@@ -1,7 +1,6 @@
 
 import { Time } from "./Time";
-import s from "./TopMenu.module.css";
-
+import s from "./TopMenu.module.scss";
 import { StoreType } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
@@ -12,7 +11,7 @@ export const TopMenu = () => {
 
 
   const dark = useSelector((state: StoreType) => state.serviceState.dark);
-
+console.log(dark);
 
   return (
     <div className={`${s.wrapper} ${dark ? s.dark : ""}`}>

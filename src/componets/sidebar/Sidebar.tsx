@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
-import s from "./Sidebar.module.css";
-import Button from "react-bootstrap/Button";
+import s from "./Sidebar.module.scss";
+
 import { motion } from "framer-motion";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +24,7 @@ export const Sidebar = () => {
         className={`${s.sidebarWrapper} ${dark ? s.dark : ""}`}
 
       >
-        
+
         <div className={s.avatarAndSettings}>
           <img
             src='https://i.pinimg.com/474x/c2/88/dd/c288dd202b5f578cb2d492d606b0b522.jpg'

@@ -1,4 +1,7 @@
+ @import '../../mixins.module.scss';
+
 .wrapper {
+  @include ligth;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,13 +11,11 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 padding-top: 10px;
 padding-bottom: 10px;
-background-color: white;
-transition: background-color 3s, color 3s;
+
 }
 
 .dark,wrapper  {
-background-color: rgb(61, 58, 41);
-  color:khaki;
+  @include dark;
 }
 
 .themeToggle{
