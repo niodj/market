@@ -49,7 +49,7 @@ export const Products = () => {
   });
 ////////////////////////////////////////
   return (
-    <div className={s.wrapperProducts}>
+    <div className={`${s.wrapperProducts} ${serviceState.dark ? s.dark : ""}`}>
       <PopupProductDeleteConfirm
         showPopup={showDelProductPopup}
         currProduct={currProduct}

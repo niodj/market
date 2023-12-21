@@ -2,8 +2,8 @@
 @import '../../mixins.module.scss';
 
 .wrapperProducts {
-
-margin: 2%;
+width: 100%;
+padding: 2%;
 }
 
 /* ///////////////// */
@@ -16,10 +16,12 @@ margin: 2%;
 }
 
 .productTableTitle {
- @include fn6;
- margin-right: 25px;
+  font-weight: bold;
+  letter-spacing: 2px;
+font-size: 1.5vw;
 
-}
+ margin-right: 25px;}
+
 .filterSection {
   margin-right: 15px;
   @include fn2;
@@ -27,7 +29,6 @@ margin: 2%;
 .filterLabel {
   margin-right: 60px;
   @include fn4;
-
 }
 
 
@@ -42,15 +43,15 @@ border-bottom: 1px solid;
 align-items: center;
 justify-content: space-around;
 margin-bottom: 20px;
-background-color: white;
-padding: 0.5vw;
 
+padding: 0.5vw;
+@include ligth;
 }
 .propductRow:hover{
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
-.dark,.propductRow{
+.dark, propductRow{
  @include dark;
- background-color: rgb(74, 76, 3);
+
 }
 
 
