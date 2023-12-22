@@ -3,6 +3,7 @@
 .wrapperProducts {
   width: 100vw;
   padding: 2vw;
+
 }
 
 /* ///////////////// */
@@ -14,10 +15,7 @@
 }
 
 .productTableTitle {
-  font-weight: bold;
-  letter-spacing: 2px;
-  font-size: 1.5vw;
-  margin-right: 2vw;
+ @include fn7;
 }
 
 .filterSection {
@@ -45,6 +43,7 @@
 .dark,
 propductRow {
   @include dark;
+
 }
 
 /* //////////cellMArkStatus///////// */
@@ -79,6 +78,7 @@ propductRow {
   width: 13vw;
   .productName {
     @include fn1;
+
   }
 }
 .SN {

@@ -137,7 +137,7 @@ export const orders = [
   },
   {
     id: 2,
-    title: "Order 2",
+    title: "Order Order Order Order Order Order Order Order Order Order Order",
     manager: "Fill Derban",
     date: "2017-06-29 12:09:33",
     description:
@@ -160,7 +160,7 @@ export const orders = [
 ];
 
 export type serviceStateType = {
- 
+
   searchTerm: string | undefined;
   dark: boolean;
   isLoading: boolean;

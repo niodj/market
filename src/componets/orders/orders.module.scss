@@ -1,15 +1,17 @@
 @import '../../mixins.module.scss';
 
-.wrapper {
-padding: 2%;
-  width: 100%;
+.oredrsWrapper {
+width: 100vw;
+  padding: 2vw;
+}
+.dark,oredrsWrapper{
+  @include dark;
 }
 .addBtnAndOrderTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
-  text-wrap: nowrap;
+  margin-bottom: 2vw;
 }
 
 .addOrderBtn {
@@ -32,133 +34,119 @@ padding: 2%;
 }
 
 .orderTitle {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  margin-right: 25px;
-}
-.ordersTableWrapper {
-  display: flex;
-  flex-direction: row;
-
-}
-/* ///////////cellhalfWidthOrderRow////////// */
-.cellhalfWidthOrderRow {
-  display: flex;
-  margin-bottom: 15px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  transition: background-color 3s, color 3s;
-
+ @include fn7;
 }
 
-.dark,
-cellhalfWidthOrderRow {
-  background-color: black;
-  color: khaki;
-  transition: background-color 3s, color 3s;
 
+
+///////FW tablesWrapper//////
+.tablesWrapper {
+display: flex;
+flex-direction: row;
+}
+.ordersTable{
+width: 100%;
 }
 
-.cellhalfWidthOrderRow:hover {
+.halfRows, .fullRows{
+display: flex;
+flex-direction: row;
+border-bottom: solid 0.1vw ;
+justify-content: space-between;
+margin-bottom: 1vw;
+align-items: center;
+ @include ligth;
+}
+
+.fullRows:hover {
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
-}
 
-.fullWidthTable {
-  width: 100%;
 }
-
-.halfWidthTable {
+.halfRows:hover {
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
 
 }
 
-.halfWidthOrderRow {
-  display: flex;
-
-  border: solid rgb(192, 192, 192) 0.1rem;
-  margin-bottom: 15px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
+.darkR,halfRows,fullRows{
+ @include dark;
 }
 
-.halfWidthOrderDescripton {
-  width: 400px;
-  min-width: 400px;
-  padding-left: 20px;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.4px;
+.darkR,fullRows{
+ @include dark;
+}
+///////FW orderDescripton//////
+
+.orderDescripton {
+@include fn8;
+width: 30vw;
 }
 
+
+/////// FW cellShowBtnAndProdutc////////
 .cellShowBtnAndProdutc {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  margin-left: 20px;
+  width: 10vw;
+
 }
 .showProductBtn {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  font-size: 20px;
+  width: 2.5vw;
+  height: 2.5vw;
+  padding: 0.5vw;
+  font-size: 5vw;
   border-radius: 50%;
   border: solid 1px rgb(190, 189, 189);
 }
 .showProductBtn:hover {
   cursor: pointer;
 }
+
+//////FW amountAndProductWrapper
 .amountAndProductWrapper {
-  margin-left: 20%;
+  margin-left: 2vw;
 }
+
 .amountProductTitle {
-  font-size: 14px;
-  font-weight: bold;
+
 }
 .titProduct {
-  font-size: 10px;
+ @include fn5;
 }
-.cellHalfDate {
-  font-size: 8px;
-  margin-left: 10px;
-  width: 85px;
-  text-align: center;
+//////////cellFDate///////////////////////////
+///
+.cellFDate {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
-  text-wrap: nowrap;
 }
 .smallDate {
+   @include fn2;
 }
 .bigDate {
-  font-size: 12px;
-  margin-left: 5px;
-  font-weight: bold;
+ @include fn5;
 }
+/////////////////
 .cellPrice {
-  text-wrap: nowrap;
-  font-size: 13px;
-  margin-left: 10px;
-  width: 110px;
-  min-width: 110px;
-  text-align: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+width:10vw;
+ @include fn3;
+
 }
 .defaultPrice {
-  text-align: left;
-  font-weight: bold;
-  font-size: 14px;
+ @include fn5;
+}
+.price{
+ @include fn2;
 }
 
 /* ////////cellDeleteIcon////// */
 .cellDeleteProduct {
-  margin-left: 10px;
-
-  margin-right: 10px;
-  width: 1%;
+  width: 1vw;
 
   text-align: right;
 }
@@ -166,6 +154,10 @@ cellhalfWidthOrderRow {
   cursor: pointer;
   color: red;
 }
+
+
+
+
 .arrowWrapper {
   background-color: rgb(191, 191, 191);
 
@@ -176,6 +168,8 @@ cellhalfWidthOrderRow {
 .arrowBtn:hover {
   cursor: pointer;
 }
+
+
 /* ///////////CHILD COMPONENT/////////////// */
 .childComponentWraper  {
 background-color: white;
@@ -242,23 +236,6 @@ margin-left: 30px;
 
 .productsTable {
   width: 100%;
-
-}
-
-
-.childTableRow {
-  display: flex;
-  border-bottom: solid rgb(192, 192, 192) 0.1rem;
-  align-items: center;
-  padding-bottom: 10px;
-  justify-content: space-between;
-  transition: background-color 3s, color 3s;
-  background-color: white;
-
-}
-.dark,childTableRow{
-  @include dark;
-
 
 }
 /* //////////cellMArkStatus///////// */
