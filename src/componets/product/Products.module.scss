@@ -76,7 +76,7 @@ propductRow {
 /* //////////cellProductName///////// */
 .cellProductName {
   @include centre;
-  width: 14vw;
+  width: 13vw;
   .productName {
     @include fn1;
   }
@@ -127,7 +127,7 @@ align-items: center;
 /* //////////cellPrice///////// */
 .cellPrice {
   @include centre;
-  width: 6vw;
+  width: 8vw;
 }
 .price{
   @include fn4;
@@ -175,6 +175,7 @@ align-items: center;
 .cellDeleteIcon {
   font-size: 1.2vw;
   @include right;
+  @include centre;
 }
 
 .cellDeleteIcon:hover {
