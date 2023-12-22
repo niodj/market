@@ -209,10 +209,7 @@ export const Orders = () => {
                       order.id === currOrderId ? s.arrowWrapper : ""
                     }`}
                   >
-                    <div
-                      className={s.arrowBtn}
-                      onClick={() => setCurrOrderId(order.id)}
-                    >
+                    <div onClick={() => setCurrOrderId(order.id)}>
                       <MdOutlineArrowForwardIos
                         className={s.arrowBtn}
                       ></MdOutlineArrowForwardIos>
@@ -234,14 +231,15 @@ export const Orders = () => {
             ))
             .reverse()}
         </div>
-        <div className={s.productTable}>
+
+        <div className={s.productContainer}>
           {currOrderId ? (
             <div
-              className={`${s.childComponentWraper} ${
+              className={`${s.productWrapper} ${
                 serviceState.dark ? s.dark : ""
               }`}
             >
-              <div className={s.childOrderDescriptionAndCloseBtn}>
+              <div className={s.descriptionAndCloseBtn}>
                 {" "}
                 <div className={s.closeProductBtn}>
                   <IoCloseCircleOutline
@@ -249,7 +247,7 @@ export const Orders = () => {
                   />
                 </div>
               </div>
-              <div className={s.fullWidthOrderDescripton}>
+              <div className={s.prOrderDescripton}>
                 <div>
                   {orders.find((order) => order.id === currOrderId)?.title}
                 </div>

@@ -1,10 +1,11 @@
-@import '../../mixins.module.scss';
+@import "../../mixins.module.scss";
 
 .oredrsWrapper {
-width: 100vw;
+  width: 100vw;
   padding: 2vw;
 }
-.dark,oredrsWrapper{
+.dark,
+oredrsWrapper {
   @include dark;
 }
 .addBtnAndOrderTitle {
@@ -15,7 +16,7 @@ width: 100vw;
 }
 
 .addOrderBtn {
-  font-size: 25px;
+  font-size: 3vw;
   margin-right: 20px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
@@ -34,53 +35,54 @@ width: 100vw;
 }
 
 .orderTitle {
- @include fn7;
+  @include fn7;
 }
-
-
 
 ///////FW tablesWrapper//////
 .tablesWrapper {
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-.ordersTable{
-width: 100%;
+.ordersTable {
+  width: 100%;
 }
 
-.halfRows, .fullRows{
-display: flex;
-flex-direction: row;
-border-bottom: solid 0.1vw ;
-justify-content: space-between;
-margin-bottom: 1vw;
-align-items: center;
- @include ligth;
+.halfRows,
+.fullRows {
+  display: flex;
+  flex-direction: row;
+  border-bottom: solid 0.1vw;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+  align-items: center;
+  @include ligth;
+  padding-left: 2vw;
+  padding: 1vw;
 }
 
 .fullRows:hover {
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
-
 }
 .halfRows:hover {
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
-
 }
 
-.darkR,halfRows,fullRows{
- @include dark;
+.darkR,
+halfRows,
+fullRows {
+  @include dark;
 }
 
-.darkR,fullRows{
- @include dark;
+.darkR,
+fullRows {
+  @include dark;
 }
 ///////FW orderDescripton//////
 
 .orderDescripton {
-@include fn8;
-width: 30vw;
+  @include fn8;
+  width: 30vw;
 }
-
 
 /////// FW cellShowBtnAndProdutc////////
 .cellShowBtnAndProdutc {
@@ -88,7 +90,6 @@ width: 30vw;
   justify-content: center;
   align-items: center;
   width: 10vw;
-
 }
 .showProductBtn {
   width: 2.5vw;
@@ -108,46 +109,43 @@ width: 30vw;
 }
 
 .amountProductTitle {
-
+  font-size: 1.2vw;
 }
 .titProduct {
- @include fn5;
+  @include fn5;
 }
 //////////cellFDate///////////////////////////
 ///
 .cellFDate {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .smallDate {
-   @include fn2;
+  @include fn2;
 }
 .bigDate {
- @include fn5;
+  @include fn5;
 }
 /////////////////
 .cellPrice {
   display: flex;
   flex-direction: column;
   align-items: center;
-width:10vw;
- @include fn3;
-
+  width: 10vw;
+  @include fn3;
 }
 .defaultPrice {
- @include fn5;
+  @include fn5;
 }
-.price{
- @include fn2;
+.price {
+  @include fn2;
 }
 
 /* ////////cellDeleteIcon////// */
 .cellDeleteProduct {
-  width: 1vw;
-
+  font-size: 0.7vw;
   text-align: right;
 }
 .cellDeleteIcon:hover {
@@ -155,73 +153,71 @@ width:10vw;
   color: red;
 }
 
-
-
-
 .arrowWrapper {
   background-color: rgb(191, 191, 191);
-
-  width: 30px;
-  height: 40px;
+}
+.arrowBtn {
+  height: 2vw;
   text-align: center;
 }
 .arrowBtn:hover {
   cursor: pointer;
 }
 
-
-/* ///////////CHILD COMPONENT/////////////// */
-.childComponentWraper  {
-background-color: white;
-margin-left: 30px;
-  transition: background-color 3s, color 3s;
+/* ///////////productContainer /////////////// */
+.productContainer {
 }
 
-.childOrderDescriptionAndCloseBtn {
+.productWrapper {
+
+  margin-left: 30px;
+  transition: background-color 3s, color 3s;
+}
+.dark,
+productWrapper {
+  @include dark;
+}
+
+.descriptionAndCloseBtn {
   position: relative;
 }
 .closeProductBtn {
   position: absolute;
-  top: -30px;
-  right: -20px;
-  font-size: 35px;
+  top: -3vw;
+  right: -1vw;
+  font-size: 3vw;
   filter: drop-shadow(1px 3px 3px #000);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-
   color: white;
   border-radius: 50%;
 }
 .closeProductBtn:hover {
   filter: drop-shadow(1px 1px px #000);
   cursor: pointer;
-  font-size: 40px;
+  font-size: 4vw;
 }
-.fullWidthOrderDescripton {
-  margin-bottom: 20px;
-  margin-left: 30px;
-
-  font-size: 16px;
-  font-weight: 600;
+.prOrderDescripton {
+  padding: 1vw 2vw;
+  @include fn5;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 0.4px;
 }
+
 .addProdutnAndTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 20px;
-  font-size: 12px;
+  font-size: 1.2vw;
   color: green;
-  margin-bottom: 20px;
 }
 .addProductBtn {
-  font-size: 25px;
-  margin-right: 20px;
+  font-size: 2vw;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
   color: green;
   border-radius: 50%;
+  margin: 0vw 1vw 0vw 1vw;
 }
 
 .addProductBtn:active {
@@ -233,20 +229,33 @@ margin-left: 30px;
   transform: scale(1.2);
   cursor: pointer;
 }
-
+//////////////////////////////////
 .productsTable {
-  width: 100%;
 
+   margin-top: 1vw;
+}
+.childTableRow {
+ @include ligth;
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1vw;
+  border-bottom: solid 0.1vw;
+}
+.dark,childTableRow{
+ @include dark;
 }
 /* //////////cellMArkStatus///////// */
 .cellMArkStatus {
-  width: 5%;
-  margin-left: 20px;
+  width: 2vw;
+  @include centre;
 }
 .markTrueStatus,
 .markFalseStatus {
-  width: 10px;
-  height: 10px;
+  width: 1vw;
+  height: 1vw;
   border-radius: 50%;
 }
 .markTrueStatus {
@@ -257,43 +266,36 @@ margin-left: 30px;
 }
 /* /////////CellPhoto////////// */
 .cellPhoto {
-  width: 3vw;
-  height: 3vw;
+  @include centre;
+
 }
 .photo {
-  width: 40px;
+  width: 3vw;
 }
 /* //////////CellProductName///////// */
 .cellProductName {
   @include centre;
-width: 50vw;
- @include fn1;
+  width: 27vw;
 }
 
 .productName {
+  font-size: 1vw;
 
-  font-size: 12px;
-  font-weight: bold;
   text-decoration: underline;
   text-decoration-color: rgb(192, 192, 192);
   text-decoration-thickness: 0.4px;
 }
 
 .SN {
-  font-size: 10px;
-
-  font-weight: bold;
+  font-size: 1vw;
+  color: gray;
 }
 /* /////cellStatusText///// */
 .cellStatusText {
-  margin-right: 10px;
-  width: 35px;
-}
-
-.statusTextTrue,
-.statusTextFalse {
-  font-size: 12px;
+  @include centre;
+  @include fn5;
   text-align: center;
+  width: 2vw;
 }
 
 .statusTextTrue {
@@ -304,17 +306,12 @@ width: 50vw;
   color: gray;
 }
 .delBtn {
-margin-right: 20px;
+  margin-left: 6vw;
+  font-size: 1.5vw;
 }
 .cellDeleteProduct {
-  margin-left: 10px;
-
-  margin-right: 10px;
-  width: 3%;
-
-  text-align: right;
 }
-.cellDeleteProduct:hover{
+.cellDeleteProduct:hover {
   color: red;
   cursor: pointer;
 }
