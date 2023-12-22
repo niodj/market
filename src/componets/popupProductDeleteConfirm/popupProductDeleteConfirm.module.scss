@@ -1,0 +1,57 @@
+ @import '../../mixins.module.scss';
+
+
+ .wrapper{
+
+ }
+.dataWrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.title{
+@include fn6;
+
+}
+.modalFooter{
+  background-color: green;
+}
+/* //////////cellMArkStatus///////// */
+
+.markTrueStatus,
+.markFalseStatus {
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 3vw;
+
+}
+.markTrueStatus {
+  background-color: greenyellow;
+}
+.markFalseStatus {
+  background-color: gray;
+}
+/* /////////CellPhoto////////// */
+
+.photo {
+  width: 4vw;
+  margin-right: 1.5vw;
+}
+/* //////////CellProductName///////// */
+.cellProductName {
+  padding-right: 2vw;
+  width: 20vw;
+  margin-left: 2vw;
+}
+
+.productName {
+  @include fn1;
+
+}
+
+.SN {
+  @include fn4;
+
+}
