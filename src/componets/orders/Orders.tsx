@@ -208,12 +208,11 @@ export const Orders = () => {
                     className={`${
                       order.id === currOrderId ? s.arrowWrapper : ""
                     }`}
-                  >
-                    <div onClick={() => setCurrOrderId(order.id)}>
-                      <MdOutlineArrowForwardIos
+                  ><MdOutlineArrowForwardIos
+                        onClick={() => setCurrOrderId(order.id)}
                         className={s.arrowBtn}
                       ></MdOutlineArrowForwardIos>
-                    </div>
+
                   </div>
                 ) : (
                   <div className={s.cellDeleteIcon}>

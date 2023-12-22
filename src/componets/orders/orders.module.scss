@@ -56,8 +56,8 @@ oredrsWrapper {
   margin-bottom: 1vw;
   align-items: center;
   @include ligth;
-  padding-left: 2vw;
-  padding: 1vw;
+  padding-left: 1vw;
+
 }
 
 .fullRows:hover {
@@ -155,9 +155,10 @@ fullRows {
 
 .arrowWrapper {
   background-color: rgb(191, 191, 191);
+font-size: 2vw;
 }
 .arrowBtn {
-  height: 2vw;
+font-size: 2vw;
   text-align: center;
 }
 .arrowBtn:hover {
@@ -170,7 +171,7 @@ fullRows {
 
 .productWrapper {
 
-  margin-left: 30px;
+  margin-left: 1vw;
   transition: background-color 3s, color 3s;
 }
 .dark,
