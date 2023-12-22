@@ -33,10 +33,7 @@ font-size: 1.5vw;
 
 
 /* ////////TABLE/////////// */
-.productsTableWrapper{
-border: solid;
 
-}
 .propductRow {
 display: flex;
 border-bottom: 1px solid;
@@ -97,8 +94,8 @@ width: 12vw;
 }
 .markTrueStatus,
 .markFalseStatus {
-  width: 1vw;
-  height: 1vw;
+  width: 0.7vw;
+  height:0.7vw;
   border-radius: 50%;
 }
 .markTrueStatus {
@@ -113,7 +110,7 @@ width: 12vw;
 }
 .photo {
 
-  width: 4vw;
+  width: 3vw;
 }
 /* //////////CellProductName///////// */
 

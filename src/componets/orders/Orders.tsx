@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import s from "./orders.module.css";
+import s from "./orders.module.scss";
 import { OrderType, ProductType, StoreType } from "../../store";
 
 import { IoIosAddCircle } from "react-icons/io";
@@ -93,7 +93,7 @@ export const Orders = () => {
   });
 
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} ${serviceState.dark ? s.dark : ""}`}>
       <PopupOrderDeleteConfirm
         showPopup={showDelOrderPopup}
         currOrderId={currOrderId}

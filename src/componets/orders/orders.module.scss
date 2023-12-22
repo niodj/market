@@ -1,7 +1,7 @@
+@import '../../mixins.module.scss';
+
 .wrapper {
-  margin-top: 40px;
-  margin-left: 50px;
-  margin-right: 40px;
+padding: 2%;
   width: 100%;
 }
 .addBtnAndOrderTitle {
@@ -58,6 +58,7 @@ cellhalfWidthOrderRow {
   background-color: black;
   color: khaki;
   transition: background-color 3s, color 3s;
+
 }
 
 .cellhalfWidthOrderRow:hover {
@@ -248,7 +249,6 @@ margin-left: 30px;
 .childTableRow {
   display: flex;
   border-bottom: solid rgb(192, 192, 192) 0.1rem;
-
   align-items: center;
   padding-bottom: 10px;
   justify-content: space-between;
@@ -257,7 +257,7 @@ margin-left: 30px;
 
 }
 .dark,childTableRow{
-  background-color: rgb(0, 0, 0);
+  @include dark;
 
 
 }
@@ -280,18 +280,17 @@ margin-left: 30px;
 }
 /* /////////CellPhoto////////// */
 .cellPhoto {
-  width: 40px;
-  height: 40px;
+  width: 3vw;
+  height: 3vw;
 }
 .photo {
   width: 40px;
 }
 /* //////////CellProductName///////// */
 .cellProductName {
-  padding-right: 10px;
-  width: 400px;
-
-  margin-left: 10px;
+  @include centre;
+width: 50vw;
+ @include fn1;
 }
 
 .productName {
