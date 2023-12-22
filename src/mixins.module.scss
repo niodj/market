@@ -1,4 +1,69 @@
 
+
+
+
+/*  @include fn1   */
+@mixin fn1 {
+  font-size:0.7vw;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgb(192, 192, 192);
+  text-decoration-thickness: 0.4px;
+  text-align: left;
+}
+
+/* @include fn2; */
+
+@mixin fn2 {
+font-size: 0.7vw;
+ color: grey;
+
+}
+
+/* @include fn3;  */
+@mixin fn3 {
+font-size: 0.9vw;
+  color: black;
+  font-weight: bold;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* @include fn4;  */
+
+@mixin fn4 {
+  font-size: 0.7vw;
+  color: grey;
+}
+
+/* @include fn5;  */
+
+@mixin fn5 {
+font-size: 1vw;
+ color: grey;
+  font-weight: bold;
+}
+
+
+/* @include fn6;  */
+
+@mixin fn6 {
+font-size: 1.2vw;
+  font-weight: 500;
+  font-weight: bold;
+}
+
+
+
+
+/* @include centre; */
+@mixin centre {
+margin-left: 1vw;
+}
+
+/* @include ; */
+@mixin right {
+margin-right: 1vw;
+}
+
 /*  @include ligth;    */
 @mixin ligth {
    transition: background-color 3s, color 3s;
@@ -21,61 +86,7 @@
     color:wheat;
      transition: background-color 3s, color 3s;
 }
-/*  @include fn1   */
-/*  name, default price,  */
-@mixin fn1 {
-  font-size:0.7vw;
-  font-weight: bold;
-  text-decoration: underline;
-  text-decoration-color: rgb(192, 192, 192);
-  text-decoration-thickness: 0.4px;
-  text-align: left;
-}
-
-
-
-/* @include fn2; */
-/*  status, condition,date, filterSection,  */
-@mixin fn2 {
-
-font-size: 0.7vw;
-  color: rgb(192, 192, 192);
-  font-weight: bold;
-}
-
-/* @include fn3;  */
-/*  manager Name, order name, description   */
-@mixin fn2 {
-font-size: 0.7vw;
-  color: rgb(192, 192, 192);
-  font-weight: bold;
-}
-/* @include fn4;  */
-/*  usd price, mounth/year / from to guarantee, top menu date, filterLabel  */
-@mixin fn4 {
-font-size: 0.7vw;
-  color: rgb(192, 192, 192);
-
-}
-
-/* @include fn5;  */
-/*  sidebar, search line, */
-@mixin fn5 {
-font-size: 0.7vw;
-  color: rgb(192, 192, 192);
-  font-weight: bold;
-}
 
 
 
 
-
-/* @include centre; */
-@mixin centre {
-margin-left: 1vw;
-}
-
-/* @include ; */
-@mixin right {
-margin-right: 1vw;
-}

@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Trash } from "react-bootstrap-icons";
 import s from "./Products.module.scss";
 import { PopupProductDeleteConfirm } from "../popupProductDeleteConfirm/PopupProductDeleteConfirm";
+import { Outlet } from "react-router-dom";
 
 
 export const Products = () => {
@@ -121,7 +122,7 @@ export const Products = () => {
               )}
             </div>
             <div className={s.cellGuaranteeDate}>
-              <div>
+              <div className={s.label}>
                 <div>from</div>
                 <div>to</div>
               </div>
@@ -154,7 +155,7 @@ export const Products = () => {
               {product.price.map((price, index) => (
                 <div
                   key={index}
-                  className={price.isDefault ? s.defaultPrice : ""}
+                  className={price.isDefault ? s.defaultPrice : s.price}
                 >
                   {price.symbol === "USD"
                     ? price.value.toLocaleString()
@@ -206,7 +207,7 @@ export const Products = () => {
                     .join(" / ")}
               </div>
 
-              <div>
+              <div className={s.bigDate}>
                 {product.date &&
                   product.date.split(" ")[0].split("-").reverse().join(" / ")}
               </div>

@@ -12,12 +12,12 @@ background-color: rgb(237, 236, 236);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10vw;
+  width: 12vw;
   letter-spacing: 2px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border-right: solid 1px wheat;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 1vw;
+  padding-right: 1vw;
    transition: background-color 3s, color 3s;
 background-color: white;
 
@@ -29,41 +29,40 @@ background-color: rgb(61, 58, 41);
 }
 .avatarAndSettings{
 position: relative;
-margin-bottom: 50px;
+margin-bottom: 2vw;
 }
 
 .avatar {
-  margin-top: 30px;
-  width: 90px;
+  margin-top: 2vw;
+  width: 7vw;
   border-radius: 50%;
 
 }
 .settingBtn {
-  width: 40px;
+  width: 3vw;
   position: absolute;
-  top: 90px;
-  left: 60px;
+  top: 6vw;
+  left: 4vw;
   border-radius: 50%;
   transition: width 0.5s ease;
   border: solid 1px;
 }
 .settingBtn:hover {
-  width: 45px;
+  width: 3.5vw;
 }
 
 .sidebarlinks {
   display: flex;
   flex-direction: column;
-  width: 100px;
-  height: 100vh;
+    height: 100vh;
   text-align: center;
 
 }
 
 .link,
 .linkActive {
-  margin-top: 15px;
-  font-weight: 500;
+  @include fn6;
+  margin-top: 1vw;
   text-decoration: none;
   cursor: pointer;
 color: black;

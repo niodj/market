@@ -1,6 +1,6 @@
 
 import { Modal, Button } from 'react-bootstrap';
-import s from "./popupOrderDeleteConfirm.module.css"
+import s from "./popupOrderDeleteConfirm.module.scss"
 import { orderReducer } from '../../reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductType, StoreType } from '../../store';

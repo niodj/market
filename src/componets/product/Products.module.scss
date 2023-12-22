@@ -1,9 +1,8 @@
-
-@import '../../mixins.module.scss';
+@import "../../mixins.module.scss";
 
 .wrapperProducts {
-width: 100%;
-padding: 2%;
+  width: 100vw;
+  padding: 2vw;
 }
 
 /* ///////////////// */
@@ -11,91 +10,52 @@ padding: 2%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
-  text-wrap: nowrap;
+  margin-bottom: 2vw;
 }
 
 .productTableTitle {
   font-weight: bold;
   letter-spacing: 2px;
-font-size: 1.5vw;
-
- margin-right: 25px;}
+  font-size: 1.5vw;
+  margin-right: 2vw;
+}
 
 .filterSection {
-  margin-right: 15px;
-  @include fn2;
+  margin-right: 5vw;
+  @include fn3;
 }
 .filterLabel {
-  margin-right: 60px;
+  margin-right: 1vw;
   @include fn4;
 }
-
 
 /* ////////TABLE/////////// */
 
 .propductRow {
-display: flex;
-border-bottom: 1px solid;
-align-items: center;
-justify-content: space-around;
-margin-bottom: 20px;
-
-padding: 0.5vw;
-@include ligth;
+  display: flex;
+  border-bottom: 1px solid;
+  align-items: center;
+  margin-bottom: 0.7vw;
+  padding: 0.5vw;
+  @include ligth;
 }
-.propductRow:hover{
-  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);}
-.dark, propductRow{
- @include dark;
-
+.propductRow:hover {
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.2);
 }
-
+.dark,
+propductRow {
+  @include dark;
+}
 
 /* //////////cellMArkStatus///////// */
-//////////RESIZE TEXT////////
-.cellProductName {
-  @include centre;
-width: 12vw;
- @include fn1;
-}
-.cellPrice {
-  @include centre;
-width: 5vw;
-@include fn2;
-  text-wrap: nowrap;
-  text-align: left;
-
-}
-.cellSpecification {
-  @include centre;
-width: 8vw;
- @include fn1
-}
-
-.cellManager {
-  @include centre;
-width: 4vw;
-@include fn1
-
-}
-
-.cellOrderTitle {
-width: 12vw;
- @include centre;
-@include fn1
-}
-
-
 
 .cellMArkStatus {
- @include centre;
-
+  @include centre;
 }
 .markTrueStatus,
 .markFalseStatus {
   width: 0.7vw;
-  height:0.7vw;
+  height: 0.7vw;
   border-radius: 50%;
 }
 .markTrueStatus {
@@ -104,35 +64,39 @@ width: 12vw;
 .markFalseStatus {
   background-color: gray;
 }
+
 /* /////////CellPhoto////////// */
-.cellPhoto{
+.cellPhoto {
   @include centre;
 }
 .photo {
-
   width: 3vw;
 }
-/* //////////CellProductName///////// */
 
-.SN {
-@include fn2;
+/* //////////cellProductName///////// */
+.cellProductName {
+  @include centre;
+  width: 14vw;
+  .productName {
+    @include fn1;
+  }
 }
+.SN {
+  @include fn2;
+}
+
 /* /////cellStatusText///// */
 .cellStatusText {
+  width: 3vw;
   @include centre;
-@include fn2;
+  @include fn3;
 }
-
 .statusTextTrue,
 .statusTextFalse {
-
-
 }
-
 .statusTextTrue {
   color: rgb(170, 204, 118);
 }
-
 .statusTextFalse {
   color: gray;
 }
@@ -140,37 +104,58 @@ width: 12vw;
 /* //cellGuaranteeDate/// */
 .cellGuaranteeDate {
   @include centre;
-@include fn1;
   display: flex;
   flex-direction: row;
-
-
+justify-content: center;
+align-items: center;
   text-wrap: nowrap;
 }
+.label{
+  @include fn4;
+}
 .garantDateNumbers {
-
-  font-weight: bold;
+  @include fn3;
+  margin-left: 0.5vw;
 }
 
 /* ///cellIsNew// */
 
 .cellIsNew {
   @include centre;
-@include fn2;
-
+  @include fn3;
 }
-
-/* ///cellPrice// */
-
+/* //////////cellPrice///////// */
+.cellPrice {
+  @include centre;
+  width: 6vw;
+}
+.price{
+  @include fn4;
+}
 .defaultPrice {
-text-align: left;
-@include fn1;
-  font-weight: bold;
-
-
+  @include fn3;
 }
 /* ////////cellSpecification////// */
+.cellSpecification {
+  @include centre;
+  @include fn5;
+    width: 10vw;
+}
 
+
+
+/* ////////cellManager////// */
+.cellManager {
+  @include centre;
+  @include fn5;
+    width: 7vw;
+}
+/* ////////cellOrderTitle////// */
+.cellOrderTitle {
+  width: 10vw;
+  @include centre;
+  @include fn5;
+}
 
 /* ////////cellOrderDate////// */
 .cellOrderDate {
@@ -179,16 +164,19 @@ text-align: left;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  text-wrap: nowrap;
-  @include fn2
+
 }
+.smallDate{
+   @include fn4;
+}
+.bigDate{@include fn3}
+
 /* ////////cellDeleteIcon////// */
 .cellDeleteIcon {
-
-@include right;
-
+  font-size: 1.2vw;
+  @include right;
 }
+
 .cellDeleteIcon:hover {
   cursor: pointer;
   color: red;

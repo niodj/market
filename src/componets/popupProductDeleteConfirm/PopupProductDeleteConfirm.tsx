@@ -1,6 +1,6 @@
 
 import { Modal, Button } from 'react-bootstrap';
-import s from "./popupProductDeleteConfirm.module.css"
+import s from "./popupProductDeleteConfirm.module.scss"
 import { ProductType } from '../../store';
 
 type PopupPropsType = {
@@ -20,15 +20,15 @@ export const PopupProductDeleteConfirm = (props: PopupPropsType) => {
         onHide={props.onHide}
         aria-labelledby='contained-modal-title-vcenter'
         centered
+        className={s.wrapper}
       >
         <Modal.Header closeButton>
-          <Modal.Title className={s.title}>
-
+          <Modal.Title >
             {props.currProduct ? (
-              <>
+              <div className={s.title}>
                 Are you sure you want to delete product #{props.currProduct.id}{" "}
                 from order number #{props.currProduct.order}?
-              </>
+              </div>
             ) : null}
           </Modal.Title>
         </Modal.Header>
@@ -36,6 +36,7 @@ export const PopupProductDeleteConfirm = (props: PopupPropsType) => {
         <Modal.Body>
           {props.currProduct ? (
             <div className={s.dataWrapper}>
+              
               {props.currProduct.status ? (
                 <div className={s.markTrueStatus}></div>
               ) : (

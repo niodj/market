@@ -15,16 +15,7 @@ console.log(dark);
 
   return (
     <div className={`${s.wrapper} ${dark ? s.dark : ""}`}>
-      <div className={s.themeToggle}>
-        {dark ? "it's a time of darkness." : "it's daylight time"}
-        <Form >
-          <Form.Check
-            type='switch'
-            checked={dark}
-            onChange={() => dispatch({ type: "CHANGE_THEME" })}
-          ></Form.Check>
-        </Form>
-      </div>
+      
 
       <div className={s.logoAndSearch}>
         <img
