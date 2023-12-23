@@ -145,8 +145,13 @@ fullRows {
 
 /* ////////cellDeleteIcon////// */
 .cellDeleteProduct {
-  font-size: 0.7vw;
+
+
+}
+.delOrderBtn{
+    font-size: 1.5vw;
   text-align: right;
+  margin-right: 1vw;
 }
 .cellDeleteIcon:hover {
   cursor: pointer;
@@ -307,10 +312,11 @@ productWrapper {
   color: gray;
 }
 .delBtn {
-  margin-left: 6vw;
+  margin-left:8vw;
   font-size: 1.5vw;
 }
 .cellDeleteProduct {
+
 }
 .cellDeleteProduct:hover {
   color: red;

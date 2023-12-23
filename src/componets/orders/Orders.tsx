@@ -35,6 +35,7 @@ export const Orders = () => {
       orderId: currOrderId,
     });
     setSDelOrederPopup(false);
+    setCurrOrderId(undefined);
   };
 
   const onConfirDelOrderReject = () => {
@@ -208,16 +209,16 @@ export const Orders = () => {
                     className={`${
                       order.id === currOrderId ? s.arrowWrapper : ""
                     }`}
-                  ><MdOutlineArrowForwardIos
-                        onClick={() => setCurrOrderId(order.id)}
-                        className={s.arrowBtn}
-                      ></MdOutlineArrowForwardIos>
-
+                  >
+                    <MdOutlineArrowForwardIos
+                      onClick={() => setCurrOrderId(order.id)}
+                      className={s.arrowBtn}
+                    ></MdOutlineArrowForwardIos>
                   </div>
                 ) : (
                   <div className={s.cellDeleteIcon}>
                     <Trash
-                      className={s.delBtn}
+                      className={s.delOrderBtn}
                       onClick={() => {
                         setSDelOrederPopup(true);
                         setCurrOrderId(order.id);

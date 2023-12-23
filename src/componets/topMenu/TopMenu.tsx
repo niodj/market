@@ -11,11 +11,11 @@ export const TopMenu = () => {
 
 
   const dark = useSelector((state: StoreType) => state.serviceState.dark);
-console.log(dark);
+
 
   return (
     <div className={`${s.wrapper} ${dark ? s.dark : ""}`}>
-      
+
 
       <div className={s.logoAndSearch}>
         <img
