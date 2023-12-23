@@ -14,7 +14,7 @@ type PopupPropsType = {
 
 export const PopupProductDeleteConfirm = (props: PopupPropsType) => {
   return (
-    <div>
+    <div className={s.g}>
       <Modal
         show={props.showPopup}
         onHide={props.onHide}
@@ -36,7 +36,7 @@ export const PopupProductDeleteConfirm = (props: PopupPropsType) => {
         <Modal.Body>
           {props.currProduct ? (
             <div className={s.dataWrapper}>
-              
+
               {props.currProduct.status ? (
                 <div className={s.markTrueStatus}></div>
               ) : (

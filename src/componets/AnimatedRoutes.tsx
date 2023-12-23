@@ -15,7 +15,7 @@ export const AnimatedRoutes = () => {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path='/' element={<Sidebar />}>
-          <Route index element={<div>start</div>} />
+          <Route index element={<Products />} />
           <Route path='/products' element={<Products />} />
           <Route path='/orders' element={<Orders />} />
           <Route path='*' element={<div>404 No page</div>} />

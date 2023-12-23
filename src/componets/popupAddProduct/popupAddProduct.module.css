@@ -7,8 +7,10 @@ bottom: 0;
 left: 0;
 
 }
+label{
+   font-size: 2vw;
+}
 .modalDialog{
-
 
 }
 .group{
@@ -16,19 +18,23 @@ left: 0;
   flex-direction: row;
   justify-content: space-between;
   gap: 1;;
+
+
 }
 .productName{
   width: 60%;
+ font-size: 2vw;
 }
 
 .form {
   display: flex;
 flex-direction: column;
-  padding: 20px;
+  font-size: 2vw;
 }
 
 .title {
-  font-size: 20px;
+
+  font-size: 2vw;
 }
 
 

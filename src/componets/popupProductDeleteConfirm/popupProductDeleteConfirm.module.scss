@@ -1,6 +1,8 @@
  @import '../../mixins.module.scss';
 
+.g{
 
+}
  .wrapper{
 
  }
@@ -8,7 +10,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
+width:50vw;
 }
 .title{
 @include fn6;
