@@ -1,23 +1,31 @@
  @import '../../mixins.module.scss';
 
+
 .g{
 
 }
  .wrapper{
 
  }
+ .dark, wrapper{
+@include dark;
+ }
+
 .dataWrapper{
   display: flex;
   flex-direction: row;
   align-items: center;
-width:50vw;
 }
 .title{
 @include fn6;
 
 }
 .modalFooter{
+
   background-color: green;
+}
+.btn{
+  font-size: 1vw;
 }
 /* //////////cellMArkStatus///////// */
 
