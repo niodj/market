@@ -28,6 +28,7 @@ export const PopupAddProduct = (props: PopupPropsType) => {
   const [specification, setSpecification] = useState("");
   const [guarStart, setGuarStart] = useState("");
   const [guarFinish, setGuarFinish] = useState("");
+  const [guarErrors, setGuarErrors] = useState(false);
   const [priceValue, setPriceValue] = useState('');
   const [priceValueError, setPriceValueError] = useState(false);
   const [price2Value, setPrice2Value] = useState('');
@@ -47,22 +48,7 @@ export const PopupAddProduct = (props: PopupPropsType) => {
    )
  );
 
-// const handlePriceInput = (e: ChangeEvent<HTMLInputElement>, typePrice:number) => {
-//   const inputValue = e.target.value;
-//   const dotCount = (inputValue.match(/\./g) || []).length;
 
-//   if (dotCount <= 1) {
-//     const cleanedValue = inputValue
-//       .replace(/[^\d.]/g, "") // Удаляем все символы, кроме цифр и точек
-//       .replace(/^00/, "0") // Заменяем два нуля в начале строки на один
-//       .replace(/^0(\d)/, "$1") // Удаляем 0 в начале строки перед цифрой
-//       .replace(/^\.+/g, "") // Удаляем точки в начале строки
-//       .replace(/(\.\d{2})\d*$/, "$1"); // Удостоверяемся, что после точки не больше двух цифр
-
-//     if(typePrice===1)setPriceValue(cleanedValue);
-//     if(typePrice===2)setPrice2Value(cleanedValue);
-//   }
-// };
 
  const onHide = () => {
     // Reset form state after submitting
@@ -106,7 +92,12 @@ export const PopupAddProduct = (props: PopupPropsType) => {
      setPrice2ValueError(true);
 
      return;
-   }
+    }
+      if (!guarStart || !guarFinish) {
+        setGuarErrors(true);
+
+        return;
+      }
 
     dispatch({
       type: "ADD_PRODUCT",
@@ -229,13 +220,13 @@ export const PopupAddProduct = (props: PopupPropsType) => {
                         setIsNew(+e.target.value);
                       }}
                       className='form-control'
-
                     >
                       <option value={1}>New</option>
-                    <option value={0}>Used</option>
+                      <option value={0}>Used</option>
                     </select>
                   </div>
                 </div>
+
                 <div>
                   <label>Status</label>
                   <select
@@ -248,7 +239,8 @@ export const PopupAddProduct = (props: PopupPropsType) => {
                     <option value={false.toString()}>On Repair</option>
                   </select>
                 </div>
-
+              </div>
+              <div className={`form-control ${guarErrors ? "is-invalid" : ""}`}>
                 <div>
                   <label>guarantee date start:</label>
                   <input
